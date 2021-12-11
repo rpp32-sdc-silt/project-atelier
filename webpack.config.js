@@ -15,6 +15,18 @@ module.exports = {
           },
         },
       },
+      {
+        test: /\.css$/,
+        use: {
+          loader: 'style-loader!css-loader'
+        }
+      },
+      {
+        test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
+        use: {
+          loader: 'url-loader',
+        }
+      }
     ],
   },
 };
