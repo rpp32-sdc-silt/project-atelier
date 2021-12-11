@@ -4,7 +4,8 @@
   "description": "FEC Project",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --watch"
+    "build": "webpack --watch",
+    "start": "npx nodemon ./server.js"
   },
   "repository": {
     "type": "git",
