@@ -12,10 +12,11 @@ class Overview extends React.Component {
   }
 
   componentDidMount() {
-    axios.get(this.apiUrl + '/products', {headers: {"Authorization": this.props.token}})
+    axios.defaults.headers.common['Authorization'] = this.props.token
+    axios.get(this.apiUrl + '/products')
     .then((results) => {
       this.setState({products: results.data})
-    })
+    });
   }
 
   render() {
