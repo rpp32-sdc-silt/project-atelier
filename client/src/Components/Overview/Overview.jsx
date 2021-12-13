@@ -22,11 +22,11 @@ class Overview extends React.Component {
   render() {
     return (
       <div>
-        <h2>Carousel</h2>
+        <h1>Carousel</h1>
         <div>{this.state.products.map(product => {
-          return <div key={product.id}>{product.name}</div>
+          return <div key={product.id}>{product.name + ': ' + product.description}</div>
         })}</div>
-        <h3>Style selector</h3>
+        <h2>Style selector</h2>
         <h3>Cart</h3>
         <h3>Description</h3>
       </div>
