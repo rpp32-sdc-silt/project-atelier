@@ -5,7 +5,8 @@ class Overview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      products: []
+      products: [],
+      currentProduct: null
     }
     this.apiUrl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp'
   }
