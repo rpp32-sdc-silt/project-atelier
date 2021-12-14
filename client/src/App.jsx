@@ -4,13 +4,15 @@ import token from '../../config.js';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {}
+    this.state = {
+      currentProduct: 59553
+    }
     this.apiUrl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp'
   }
   render() {
     return (
       <div>
-        <Overview apiUrl={this.apiUrl} token={token}/>
+        <Overview apiUrl={this.apiUrl} token={token} currentProduct={this.state.currentProduct}/>
         {/*Related
         Q&A
         Ratings & Reviews*/}
