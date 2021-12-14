@@ -8,12 +8,11 @@ class Overview extends React.Component {
       products: [],
       currentProduct: null
     }
-    this.apiUrl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp'
   }
 
   componentDidMount() {
     axios.defaults.headers.common['Authorization'] = this.props.token
-    axios.get(this.apiUrl + '/products')
+    axios.get(this.props.apiUrl + '/products')
     .then((results) => {
       this.setState({products: results.data})
     });
