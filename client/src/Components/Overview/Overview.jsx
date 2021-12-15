@@ -1,30 +1,31 @@
 import React from 'react';
 import axios from 'axios';
-
+import Gallery from './Gallery.jsx'
 class Overview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      products: [],
-      currentProduct: null
+      styles: [],
+      productInfo: []
     }
   }
 
   componentDidMount() {
     axios.defaults.headers.common['Authorization'] = this.props.token
-    axios.get(this.props.apiUrl + '/products')
+    axios.get(this.props.apiUrl + '/products/' + this.props.currentProduct + '/styles')
     .then((results) => {
-      this.setState({products: results.data})
+      this.setState({styles: results.data.results})
+    });
+    axios.get(this.props.apiUrl + '/products/' + this.props.currentProduct)
+    .then((results) => {
+      this.setState({productInfo: results.data})
     });
   }
 
   render() {
     return (
       <div>
-        <h1>Carousel</h1>
-        <div>{this.state.products.map(product => {
-          return <div key={product.id}>{product.name + ': ' + product.description}</div>
-        })}</div>
+        <Gallery/>
         <h2>Style selector</h2>
         <h3>Cart</h3>
         <h3>Description</h3>
