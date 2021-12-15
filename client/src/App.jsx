@@ -1,5 +1,6 @@
 import React from 'react';
 import Overview from './Components/Overview/Overview.jsx';
+import RR from './Components/RatingsAndReviews/RatingsAndReviews.jsx';
 import token from '../../config.js';
 class App extends React.Component {
   constructor(props) {
@@ -11,9 +12,9 @@ class App extends React.Component {
     return (
       <div>
         <Overview apiUrl={this.apiUrl} token={token}/>
+        <RR apiUrl={this.apiUrl} token={token} />
         {/*Related
-        Q&A
-        Ratings & Reviews*/}
+        Q&A*/}
       </div>
     )
   }
