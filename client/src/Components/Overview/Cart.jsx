@@ -1,13 +1,13 @@
 import React from 'react';
 
-class Styles extends React.Component {
+class Cart extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
   render() {
-    return (<div>Style selector Here</div>)
+    return (<div>Cart Here</div>)
   }
 }
 
-export default Styles;
+export default Cart;

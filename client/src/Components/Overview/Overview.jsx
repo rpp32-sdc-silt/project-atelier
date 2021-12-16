@@ -1,6 +1,10 @@
 import React from 'react';
 import axios from 'axios';
 import Gallery from './Gallery.jsx'
+import Description from './Description.jsx';
+import Styles from './Styles.jsx';
+import Cart from './Cart.jsx';
+
 class Overview extends React.Component {
   constructor(props) {
     super(props);
@@ -26,9 +30,9 @@ class Overview extends React.Component {
     return (
       <div>
         <Gallery/>
-        <h2>Style selector</h2>
-        <h3>Cart</h3>
-        <h3>Description</h3>
+        <Styles/>
+        <Cart/>
+        <Description/>
       </div>
     )
   }
