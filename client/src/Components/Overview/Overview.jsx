@@ -32,7 +32,7 @@ class Overview extends React.Component {
         <Gallery/>
         <Styles/>
         <Cart/>
-        <Description/>
+        <Description productInfo={this.state.productInfo}/>
       </div>
     )
   }
