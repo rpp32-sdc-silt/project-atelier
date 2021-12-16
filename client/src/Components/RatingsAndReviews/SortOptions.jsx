@@ -9,7 +9,13 @@ class SortOptions extends React.Component {
   render() {
     return (
       <div>
-        <b>SortOptions</b>
+        <label>Sort on: </label>
+        <select>
+          <option value="relevant">Relevant</option>
+          <option value="newest">Newest</option>
+          <option value="helpful">Helpful</option>
+        </select>
+        <br/>
         <br/>
       </div>
     )
