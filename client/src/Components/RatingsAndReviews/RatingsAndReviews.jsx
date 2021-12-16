@@ -12,21 +12,22 @@ class RR extends React.Component {
     super(props);
     this.state = {
       reviews: [],
-      productId: '59553'
+      sorting: 'relevance',
+      meta: {}
     };
   }
 
   componentDidMount() {
     axios.defaults.headers.common['Authorization'] = this.props.token
-    axios.get(`${this.props.apiUrl}/reviews/?product_id=${this.state.productId}`)
+    axios.get(`${this.props.apiUrl}/reviews/?product_id=${this.props.currentProduct}`)
       .then((results) => {
-        console.log('axios results: ', results);
         this.setState({
           reviews: results.data.results
         })
+        console.log('this.state.reviews: ', this.state.reviews);
       })
       .catch((err) => {
-        console.log('API get failed with error: ', err);
+        console.log('API get /reviews failed with error: ', err);
       })
     // =======================
     // Alternative Method
@@ -39,6 +40,16 @@ class RR extends React.Component {
     //  }
     // })
     //   .then ...
+    axios.get(`${this.props.apiUrl}/reviews/meta/?product_id=${this.props.currentProduct}`)
+      .then((results) => {
+        this.setState({
+          meta: results.data
+        })
+        console.log('this.state.meta: ', this.state.meta);
+      })
+      .catch((err) => {
+        console.log('API get /reviews/meta failed with error: ', err);
+      })
   }
 
   render() {
@@ -46,10 +57,14 @@ class RR extends React.Component {
       <div>
         <h1>Ratings and Reviews</h1>
         <h3>Reviews List</h3>
-        <SortOptions />
-        <RatingBreakdown />
+        <SortOptions sorting={this.state.sorting} />
+        <RatingBreakdown reviews={this.state.reviews} meta={this.state.meta} />
+        <ProductBreakdown meta={this.state.meta} />
         {this.state.reviews.map((review) => (
-          <IndividualReviewTile key={review.review_id} review={review}/>
+          <div key={review.review_id}>
+            <IndividualReviewTile review={review}/>
+            <br/>
+          </div>
         ))}
         <NewReview />
       </div>

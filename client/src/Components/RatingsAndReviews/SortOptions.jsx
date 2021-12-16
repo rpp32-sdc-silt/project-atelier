@@ -9,7 +9,8 @@ class SortOptions extends React.Component {
   render() {
     return (
       <div>
-        SortOptions
+        <b>SortOptions</b>
+        <br/>
       </div>
     )
   }
