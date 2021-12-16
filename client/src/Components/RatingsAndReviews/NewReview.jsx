@@ -9,7 +9,7 @@ class NewReview extends React.Component {
   render() {
     return (
       <div>
-        <b>NewReview</b>
+        <button>NewReview</button>
         <br/>
       </div>
     )
