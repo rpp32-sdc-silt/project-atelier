@@ -12,6 +12,7 @@ class Overview extends React.Component {
       currentPhoto: 0,
       currentStyle: 0,
       photo: '',
+      styles: [],
       productInfo: [],
       maxLength: 0
     }
@@ -22,9 +23,20 @@ class Overview extends React.Component {
     var currentPhotoIndex = this.state.currentPhoto
     if(event.target.id === 'forward') {
       if(this.state.currentPhoto < this.state.maxLength) {
+        this.setState({photo: this.state.styles[currentPhotoIndex + 1].photos[this.state.currentStyle].url})
         this.setState({currentPhoto: currentPhotoIndex + 1})
       } else {
-        this.setState({currentPhoto: 0});
+        this.setState({photo: this.state.styles[0].photos[this.state.currentStyle].url});
+        this.setState({currentPhoto: 0})
+      }
+    }
+    if(event.target.id === 'back') {
+      if(this.state.currentPhoto > 0) {
+        this.setState({photo: this.state.styles[currentPhotoIndex - 1].photos[this.state.currentStyle].url})
+        this.setState({currentPhoto: currentPhotoIndex - 1})
+      } else {
+        this.setState({photo: this.state.styles[0].photos[this.state.currentStyle].url});
+        this.setState({currentPhoto: maxLength})
       }
     }
   }
@@ -35,6 +47,7 @@ class Overview extends React.Component {
     .then((results) => {
       //set photos to API results at current index at photos array at current style index
       this.setState({photo: results.data.results[0].photos[0].url})
+      this.setState({styles: results.data.results});
       this.setState({maxLength: results.data.results.map(id => id.photos).length})
     });
     axios.get(this.props.apiUrl + '/products/' + this.props.currentProduct)
