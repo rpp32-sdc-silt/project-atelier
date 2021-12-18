@@ -68,7 +68,7 @@ class Overview extends React.Component {
     return (
       <div>
         <Gallery photo={this.state.photo} currentStyle={this.state.currentStyle} changePhoto={this.changePhoto}/>
-        <Styles thumbnails={this.state.styles.map(style => style.photos).map(arr => arr[0].thumbnail_url)} changeStyle={this.changeStyle}/>
+        <Styles thumbnails={this.state.styles.map(style => style.photos).map(arr => arr[0].thumbnail_url)} changeStyle={this.changeStyle} styles={this.state.styles}/>
         <Cart/>
         <Description productInfo={this.state.productInfo}/>
       </div>
