@@ -11,9 +11,9 @@ class Gallery extends React.Component {
   render(){
     return (
       <>
-        <button id="back" onClick={this.props.changePhoto}>Back</button>
+        <button id="back" onClick={this.props.changePhoto}>←</button>
         <img class="gallery" src={this.props.photo}></img>
-        <button id="forward" onClick={this.props.changePhoto}>Forward</button>
+        <button id="forward" onClick={this.props.changePhoto}>→</button>
       </>
     )
   }
