@@ -9,7 +9,10 @@ class ProductBreakdown extends React.Component {
   render() {
     return (
       <div>
-        ProductBreakdown
+        <b>ProductBreakdown</b>
+        <div>Size</div>
+        <div>Comfort</div>
+        <br/>
       </div>
     )
   }
