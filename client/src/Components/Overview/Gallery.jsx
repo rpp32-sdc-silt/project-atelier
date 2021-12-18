@@ -1,12 +1,21 @@
 import React from 'react';
 
 class Gallery extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
-    this.state = {};
+    this.state = {
+      currentUrl: ''
+    };
   }
-  render() {
-    return (<div>Gallery Here</div>)
+
+  render(){
+    return (
+      <>
+        <button id="back" onClick={this.props.changePhoto}>←</button>
+        <img class="gallery" src={this.props.photo}></img>
+        <button id="forward" onClick={this.props.changePhoto}>→</button>
+      </>
+    )
   }
 }
 
