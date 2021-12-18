@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --watch",
-    "start": "npx nodemon ./server.js"
+    "start": "npx nodemon ./server.js",
+    "test": "jest --coverage",
+    "run": "npm run build & npm run start"
   },
   "repository": {
     "type": "git",
