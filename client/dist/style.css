@@ -1,3 +1,7 @@
+.gallery {
+  max-width: 500px;
+  max-height: 500px;
+}
 .top-bar {
   display:flex;
   justify-content: space-between;
