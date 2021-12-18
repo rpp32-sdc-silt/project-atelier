@@ -63,7 +63,7 @@ class Overview extends React.Component {
         <Gallery photo={this.state.photo} currentStyle={this.state.currentStyle} changePhoto={this.changePhoto}/>
         <Styles/>
         <Cart/>
-        <Description/>
+        <Description productInfo={this.state.productInfo}/>
       </div>
     )
   }
