@@ -12,7 +12,7 @@ class Gallery extends React.Component {
     return (
       <>
         <button id="back" onClick={this.props.changePhoto}>Back</button>
-        <img src={this.props.photo}></img>
+        <img class="gallery" src={this.props.photo}></img>
         <button id="forward" onClick={this.props.changePhoto}>Forward</button>
       </>
     )
