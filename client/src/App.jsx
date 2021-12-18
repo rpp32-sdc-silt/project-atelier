@@ -1,5 +1,6 @@
 import React from 'react';
 import Overview from './Components/Overview/Overview.jsx';
+import Related from './Components/Related/Related.jsx'
 import RR from './Components/RatingsAndReviews/RatingsAndReviews.jsx';
 import token from '../../config.js';
 class App extends React.Component {
@@ -17,6 +18,7 @@ class App extends React.Component {
         <RR apiUrl={this.apiUrl} token={token} currentProduct={this.state.currentProduct} />
         {/*Related
         Q&A*/}
+        <Related apiUrl={this.apiUrl}/>
       </div>
     )
   }
