@@ -35,10 +35,11 @@ export default class Related extends Component {
   }
 
   getAllProductsInfoFromId() {
-    let counter = this.state.endPointList.flat();
-    console.log(counter)
+
+    console.log(this.state.endPointList)
   }
-//   const arr = ['one', 'two', 'three', 'four'];
+
+  //   const arr = ['one', 'two', 'three', 'four'];
 
 // function func(arr) {
 //   let count = arr.length;
