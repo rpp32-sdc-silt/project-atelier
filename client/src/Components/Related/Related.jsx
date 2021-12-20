@@ -8,23 +8,27 @@ export default class Related extends Component {
 
     this.getAllRelatedProductIds = this.getAllRelatedProductIds.bind(this);
     this.getAllEndPoints = this.getAllEndPoints.bind(this);
+    this.getAllProducts = this.getAllProducts.bind(this);
 
     this.state = {
       relatedProductsIdList: [],
-      endPointList: []
+      endPointList: [],
+      products: []
 
     }
   }
 
   componentDidMount() {
     this.getAllRelatedProductIds();
-    this.getAllEndPoints();
+
+    // this.getAllEndPoints();
   }
 
   getAllRelatedProductIds() {
     axios.defaults.headers.common['Authorization'] = this.props.token
     axios.get(this.props.apiUrl + '/products/59553/related')
-    .then((results) => { this.setState({relatedProductsIdList: results.data})})
+    .then((results) => { this.setState({relatedProductsIdList: results.data},
+      () => this.getAllEndPoints())})
   }
 
   getAllEndPoints() {
@@ -33,12 +37,25 @@ export default class Related extends Component {
       let id = this.state.relatedProductsIdList[i];
         list.push(this.props.apiUrl + '/products/' + id)
     }
-    return list
+    this.setState({
+      endPointList: list
+    }, () => this.getAllProducts())
+    // return list
   }
+  getAllProducts() {
+    axios.all(this.state.endPointList.map((endpoint) => {
+    axios.defaults.headers.common['Authorization'] = this.props.token
+    return axios.get(endpoint)}))
+    .then(
+      (res) => this.setState({products: res.map(item => item.data)})
+    );
+  }
+
+
 
   render() {
     // console.log(this.getAllEndPoints());
-    // console.log(this.state.endPointList)
+    console.log(this.state.products)
     return (
       <div>
         {/* <ProductList products={this.state.products}/> */}
