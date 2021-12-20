@@ -24,19 +24,19 @@ class Overview extends React.Component {
     var max = this.state.maxLength;
     if(event.target.id === 'forward') {
       if(this.state.currentPhoto < this.state.maxLength - 1) {
-        this.setState({photo: this.state.styles[currentPhotoIndex + 1].photos[this.state.currentStyle].url})
+        this.setState({photo: this.state.styles[this.state.currentStyle].photos[currentPhotoIndex + 1].url})
         this.setState({currentPhoto: currentPhotoIndex + 1})
       } else {
-        this.setState({photo: this.state.styles[0].photos[0].url});
+        this.setState({photo: this.state.styles[this.state.currentStyle].photos[0].url});
         this.setState({currentPhoto: 0})
       }
     }
     if(event.target.id === 'back') {
       if(this.state.currentPhoto > 0) {
-        this.setState({photo: this.state.styles[currentPhotoIndex - 1].photos[this.state.currentStyle].url})
+        this.setState({photo: this.state.styles[this.state.currentStyle].photos[currentPhotoIndex - 1].url})
         this.setState({currentPhoto: currentPhotoIndex - 1})
       } else {
-        this.setState({photo: this.state.styles[this.state.styles.length -1].photos[this.state.currentStyle].url});
+        this.setState({photo: this.state.styles[this.state.currentStyle].photos[max -1].url});
         this.setState({currentPhoto: this.state.styles.length - 1})
       }
     }
