@@ -8,7 +8,7 @@ export default class Related extends Component {
 
     this.getAllRelatedProductIds = this.getAllRelatedProductIds.bind(this);
     this.getAllEndPoints = this.getAllEndPoints.bind(this);
-    this.getAllProducts = this.getAllProducts.bind(this);
+    this.getAllRelatedProducts = this.getAllRelatedProducts.bind(this);
 
     this.state = {
       relatedProductsIdList: [],
@@ -39,10 +39,10 @@ export default class Related extends Component {
     }
     this.setState({
       endPointList: list
-    }, () => this.getAllProducts())
+    }, () => this.getAllRelatedProducts())
     // return list
   }
-  getAllProducts() {
+  getAllRelatedProducts() {
     axios.all(this.state.endPointList.map((endpoint) => {
     axios.defaults.headers.common['Authorization'] = this.props.token
     return axios.get(endpoint)}))
