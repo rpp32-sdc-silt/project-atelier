@@ -72,7 +72,7 @@ class Overview extends React.Component {
       <div>
         <Gallery photo={this.state.photo} currentStyle={this.state.currentStyle} changePhoto={this.changePhoto}/>
         <Styles thumbnails={this.state.styles.map(style => style.photos).map(arr => arr[0].thumbnail_url)} changeStyle={this.changeStyle} styles={this.state.styles}/>
-        <Cart inventory={Object.values(this.state.inventory)}/>
+        <Cart inventory={Object.entries(this.state.inventory)}/>
         <Description productInfo={this.state.productInfo}/>
       </div>
     )
