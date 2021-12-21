@@ -19,6 +19,12 @@ function Description(props) {
           <td>{productInfo.description}</td>
           <td>${productInfo.default_price}</td>
         </tr>
+        <tr>
+          <th>Features</th>
+        </tr>
+        <tr>
+        {productInfo.features? productInfo.features.map((feature, id) => <tr key={'feature' + id}><td><b>{feature.feature}</b>: {feature.value}</td></tr>): ''}
+        </tr>
       </tbody>
     </table>
   )
