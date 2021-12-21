@@ -17,6 +17,7 @@ class Overview extends React.Component {
       maxLength: 0
     }
     this.changePhoto = this.changePhoto.bind(this);
+    this.changeStyle = this.changeStyle.bind(this);
   }
 
   changePhoto(event) {
@@ -42,6 +43,12 @@ class Overview extends React.Component {
     }
   }
 
+  changeStyle(event) {
+    var id = Number.parseInt(event.target.id);
+    this.setState({currentStyle: id})
+    this.setState({photo: this.state.styles[id].photos[0].url})
+  }
+
   componentDidMount() {
     axios.defaults.headers.common['Authorization'] = this.props.token
     axios.get(this.props.apiUrl + '/products/' + this.props.currentProduct + '/styles')
@@ -61,7 +68,7 @@ class Overview extends React.Component {
     return (
       <div>
         <Gallery photo={this.state.photo} currentStyle={this.state.currentStyle} changePhoto={this.changePhoto}/>
-        <Styles/>
+        <Styles thumbnails={this.state.styles.map(style => style.photos).map(arr => arr[0].thumbnail_url)} changeStyle={this.changeStyle} styles={this.state.styles}/>
         <Cart/>
         <Description productInfo={this.state.productInfo}/>
       </div>
