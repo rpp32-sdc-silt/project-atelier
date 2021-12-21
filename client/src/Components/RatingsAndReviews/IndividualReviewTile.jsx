@@ -11,7 +11,7 @@ class IndividualReviewTile extends React.Component {
     return (
       <div>
         <b>IndividualReviewTile</b>
-        <div className="top-bar">
+        <div className="rr-top-bar">
           <span className="rating">Rating: {rating}</span>
           <span className="recommend">{recommend ? 'Recommended' : null}</span>
           <span className="reviewer_name">Reviewer: {reviewer_name}</span>
