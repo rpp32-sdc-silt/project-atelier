@@ -12,12 +12,12 @@ class Cart extends React.Component {
     this.selectQuantity = this.selectQuantity.bind(this);
   }
   selectSize(event) {
-    if (event.target.value !== 'Please select a size.') {
-      var sku = Number.parseInt(event.target.selectedOptions[0].id);
-      var item = event.target.value.slice(0, event.target.value.length - 6).split(':')
-      this.setState({ size: item[0] })
-      this.setState({ maxQuantity: Number.parseInt(item[1]) })
-      this.setState({ sku: sku })
+    if (event.target.value !== 'Size:') {
+      var skuAndQty = event.target.selectedOptions[0].id;
+      var item = event.target.value
+      this.setState({ size: item })
+      this.setState({ maxQuantity: Number.parseInt(skuAndQty.split('qty')[1]) })
+      this.setState({ sku: Number.parseInt(skuAndQty.split('qty')[0]) })
     } else {
       this.setState({ size: '' });
       this.setState({ maxQuantity: 0 })
@@ -32,8 +32,8 @@ class Cart extends React.Component {
   render() {
     return (<form><label htmlFor="size">Size</label>
       <select name="size" onChange={this.selectSize}>Size
-        <option key='default'>Please select a size.</option>
-        {this.props.inventory.map((item, index) => <option key={item[0]} id={item[0]}>{item[1].size + ':' + item[1].quantity + ' items'}</option>)}
+        <option key='default'>Size:</option>
+        {this.props.inventory.map((item, index) => <option key={item[0]} id={item[0] + 'qty' + item[1].quantity}>{item[1].size}</option>)}
       </select>
       <label htmlFor="quantity">Quantity</label>
       <select name="quantity" onChange={this.selectQuantity}>Quantity
