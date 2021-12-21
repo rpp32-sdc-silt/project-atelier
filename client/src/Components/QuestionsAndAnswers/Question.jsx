@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import AnswersList from './AnswersList';
+import AnswersList from './AnswersList.jsx';
 
 class Question extends React.Component {
   constructor(props) {
@@ -8,10 +8,12 @@ class Question extends React.Component {
   }
 
   render() {
-    <div>
-      {/* Question body goes here*/}
-      <AnswersList id={this.props.question.question_id}/>
-    </div>
+    return (
+      <div>
+        {/* Question body goes here*/}
+        <AnswersList id={this.props.question.question_id} apiUrl={this.props.apiUrl} />
+      </div>
+    )
   }
 }
 
