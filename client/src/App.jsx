@@ -18,7 +18,7 @@ class App extends React.Component {
         <RR apiUrl={this.apiUrl} token={token} currentProduct={this.state.currentProduct} />
         {/*Related
         Q&A*/}
-        <Related apiUrl={this.apiUrl}/>
+        <Related apiUrl={this.apiUrl} token={token}/>
       </div>
     )
   }
