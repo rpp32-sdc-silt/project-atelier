@@ -10,22 +10,24 @@ class AnswersList extends React.Component {
   }
 
   //method to get answers list for particular questions id passed through props
-  getList(id) {
+  componentDidMount() {
     //make call to api for list using question id
     //save answers list to state
   }
 
   render() {
-    <div>
-      {/* Call getList here */}
-      <ol>
-        {
-          this.state.answers.map((answer, index) => {
-            return <li key={index}>{/*Answer information*/}</li>
-          })
-        }
-      </ol>
-    </div>
+    return (
+      <div>
+        {/* Call getList here */}
+        <ol>
+          {
+            this.state.answers.map((answer, index) => {
+              return <li key={index}>{/*Answer information*/}</li>
+            })
+          }
+        </ol>
+      </div>
+    )
   }
 }
 
