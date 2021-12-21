@@ -39,7 +39,7 @@ class Cart extends React.Component {
         </select>
         <label htmlFor="quantity">Quantity</label>
         <select name="quantity" onChange={this.selectQuantity}>Quantity
-          {Array.from({ length: this.state.maxQuantity }, (blank, i) => i).map((option, i) => {
+          {Array.from({ length: this.state.maxQuantity + 1 }, (blank, i) => i).map((option, i) => {
             return <option key={'quantity' + i}>{i}</option>
           })}
         </select>
