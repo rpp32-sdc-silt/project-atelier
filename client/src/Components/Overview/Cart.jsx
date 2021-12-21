@@ -23,12 +23,12 @@ class Cart extends React.Component {
   render() {
     return (<form><label htmlFor="size">Size</label>
       <select name="size" onChange={this.selectSize}>Size
-        {this.props.inventory.map(item => <option>{item.size + ':' + item.quantity + ' items'}</option>)}
+        {this.props.inventory.map((item, index) => <option key={'item' + index}>{item.size + ':' + item.quantity + ' items'}</option>)}
       </select>
       <label htmlFor="quantity">Quantity</label>
       <select name="quantity" onChange={this.selectQuantity}>Quantity
       {Array.from({length: this.state.maxQuantity}, (blank, i) => i).map((option, i) => {
-        return <option key={i}>{i}</option>
+        return <option key={'quantity' + i}>{i}</option>
         })}
       </select>
     </form>)
