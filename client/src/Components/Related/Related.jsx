@@ -20,8 +20,6 @@ export default class Related extends Component {
 
   componentDidMount() {
     this.getAllRelatedProductIds();
-
-    // this.getAllEndPoints();
   }
 
   getAllRelatedProductIds() {
@@ -40,7 +38,6 @@ export default class Related extends Component {
     this.setState({
       endPointList: list
     }, () => this.getAllRelatedProducts())
-    // return list
   }
   getAllRelatedProducts() {
     axios.all(this.state.endPointList.map((endpoint) => {
@@ -54,11 +51,10 @@ export default class Related extends Component {
 
 
   render() {
-    // console.log(this.getAllEndPoints());
     console.log(this.state.products)
     return (
       <div>
-        {/* <ProductList products={this.state.products}/> */}
+        <ProductList products={this.state.products}/>
       </div>
     )
   }
