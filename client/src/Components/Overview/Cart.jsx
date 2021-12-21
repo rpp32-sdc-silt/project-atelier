@@ -30,18 +30,20 @@ class Cart extends React.Component {
   }
 
   render() {
-    return (<form><label htmlFor="size">Size</label>
-      <select name="size" onChange={this.selectSize}>Size
-        <option key='default'>Size:</option>
-        {this.props.inventory.map((item, index) => <option key={item[0] + 'qty' + item[1].quantity} id={item[0] + 'qty' + item[1].quantity}>{item[1].size}</option>)}
-      </select>
-      <label htmlFor="quantity">Quantity</label>
-      <select name="quantity" onChange={this.selectQuantity}>Quantity
-        {Array.from({ length: this.state.maxQuantity }, (blank, i) => i).map((option, i) => {
-          return <option key={'quantity' + i}>{i}</option>
-        })}
-      </select>
-    </form>)
+    return (
+      <form>
+        <label htmlFor="size">Size</label>
+        <select name="size" onChange={this.selectSize}>Size
+          <option key='default'>Size:</option>
+          {this.props.inventory.map((item, index) => <option key={item[0] + 'qty' + item[1].quantity} id={item[0] + 'qty' + item[1].quantity}>{item[1].size}</option>)}
+        </select>
+        <label htmlFor="quantity">Quantity</label>
+        <select name="quantity" onChange={this.selectQuantity}>Quantity
+          {Array.from({ length: this.state.maxQuantity }, (blank, i) => i).map((option, i) => {
+            return <option key={'quantity' + i}>{i}</option>
+          })}
+        </select>
+      </form>)
   }
 }
 
