@@ -3,25 +3,36 @@ class Cart extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
+      sku: null,
       size: '',
-      selectedQuantity: 0,
       maxQuantity: 0,
-      sku: null
+      selectedQuantity: 0
     };
     this.selectSize = this.selectSize.bind(this);
     this.selectQuantity = this.selectQuantity.bind(this);
+    this.submitToCart = this.submitToCart.bind(this);
   }
+
+  submitToCart(event) {
+    event.preventDefault();
+    if (this.state.size.length > 0 && this.state.selectedQuantity > 0 && this.state.sku !== null) {
+      this.props.addToCart(this.state)
+    } else {
+      alert('Please select product options.')
+    }
+  }
+
   selectSize(event) {
     if (event.target.value !== 'Size:') {
       var skuAndQty = event.target.selectedOptions[0].id;
       var item = event.target.value
+      this.setState({ sku: Number.parseInt(skuAndQty.split('qty')[0]) })
       this.setState({ size: item })
       this.setState({ maxQuantity: Number.parseInt(skuAndQty.split('qty')[1]) })
-      this.setState({ sku: Number.parseInt(skuAndQty.split('qty')[0]) })
     } else {
+      this.setState({ sku: null })
       this.setState({ size: '' });
       this.setState({ maxQuantity: 0 })
-      this.setState({ sku: null })
     }
   }
 
@@ -43,6 +54,7 @@ class Cart extends React.Component {
             return <option key={'quantity' + i}>{i}</option>
           })}
         </select>
+        <button id="addItem" onClick={this.submitToCart}>Submit</button>
       </form>)
   }
 }

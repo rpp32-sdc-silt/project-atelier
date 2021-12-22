@@ -15,10 +15,18 @@ class Overview extends React.Component {
       styles: [],
       productInfo: [],
       maxLength: 0,
-      inventory: []
+      inventory: [],
+      cart: []
     }
     this.changePhoto = this.changePhoto.bind(this);
     this.changeStyle = this.changeStyle.bind(this);
+    this.addToCart = this.addToCart.bind(this)
+  }
+
+  addToCart(cartState) {
+    var newCart = this.state.cart.slice();
+    newCart.push(cartState);
+    this.setState({cart: newCart})
   }
 
   changePhoto(event) {
@@ -72,7 +80,7 @@ class Overview extends React.Component {
       <div>
         <Gallery photo={this.state.photo} currentStyle={this.state.currentStyle} changePhoto={this.changePhoto}/>
         <Styles thumbnails={this.state.styles.map(style => style.photos).map(arr => arr[0].thumbnail_url)} changeStyle={this.changeStyle} styles={this.state.styles}/>
-        <Cart inventory={Object.entries(this.state.inventory)}/>
+        <Cart inventory={Object.entries(this.state.inventory)} addToCart={this.addToCart}/>
         <Description productInfo={this.state.productInfo}/>
       </div>
     )
