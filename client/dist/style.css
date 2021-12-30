@@ -43,3 +43,7 @@
   color:darkgray;
   cursor: pointer;
 }
+
+.rr-checked {
+  color: orange;
+}
