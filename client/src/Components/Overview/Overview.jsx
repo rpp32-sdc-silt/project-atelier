@@ -14,10 +14,19 @@ class Overview extends React.Component {
       photo: '',
       styles: [],
       productInfo: [],
-      maxLength: 0
+      maxLength: 0,
+      inventory: [],
+      cart: []
     }
     this.changePhoto = this.changePhoto.bind(this);
     this.changeStyle = this.changeStyle.bind(this);
+    this.addToCart = this.addToCart.bind(this)
+  }
+
+  addToCart(cartState) {
+    var newCart = this.state.cart.slice();
+    newCart.push(cartState);
+    this.setState({cart: newCart})
   }
 
   changePhoto(event) {
@@ -47,6 +56,7 @@ class Overview extends React.Component {
     var id = Number.parseInt(event.target.id);
     this.setState({currentStyle: id})
     this.setState({photo: this.state.styles[id].photos[0].url})
+    this.setState({inventory: this.state.styles[id].skus})
   }
 
   componentDidMount() {
@@ -56,6 +66,7 @@ class Overview extends React.Component {
       //set photos to API results at current index at photos array at current style index
       this.setState({photo: results.data.results[0].photos[0].url})
       this.setState({styles: results.data.results});
+      this.setState({inventory: results.data.results[0].skus})
       this.setState({maxLength: results.data.results.map(id => id.photos).length})
     });
     axios.get(this.props.apiUrl + '/products/' + this.props.currentProduct)
@@ -69,7 +80,7 @@ class Overview extends React.Component {
       <div>
         <Gallery photo={this.state.photo} currentStyle={this.state.currentStyle} changePhoto={this.changePhoto}/>
         <Styles thumbnails={this.state.styles.map(style => style.photos).map(arr => arr[0].thumbnail_url)} changeStyle={this.changeStyle} styles={this.state.styles}/>
-        <Cart/>
+        <Cart inventory={Object.entries(this.state.inventory)} addToCart={this.addToCart}/>
         <Description productInfo={this.state.productInfo}/>
       </div>
     )

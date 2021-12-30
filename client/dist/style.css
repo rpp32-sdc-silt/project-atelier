@@ -47,3 +47,15 @@
 .rr-checked {
   color: orange;
 }
+
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-content: space-around;
+}
+
+.card {
+  margin: 10px;
+  width: 150px;
+  text-align: center;
+}

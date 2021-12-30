@@ -24,7 +24,7 @@ class RR extends React.Component {
         this.setState({
           reviews: results.data.results
         })
-        console.log('this.state.reviews: ', this.state.reviews);
+        // console.log('this.state.reviews: ', this.state.reviews);
       })
       .catch((err) => {
         console.log('API get /reviews failed with error: ', err);
@@ -45,7 +45,7 @@ class RR extends React.Component {
         this.setState({
           meta: results.data
         })
-        console.log('this.state.meta: ', this.state.meta);
+        // console.log('this.state.meta: ', this.state.meta);
       })
       .catch((err) => {
         console.log('API get /reviews/meta failed with error: ', err);
