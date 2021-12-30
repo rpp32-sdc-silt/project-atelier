@@ -1,7 +1,17 @@
-function sum(a, b) {
-  return a + b;
-}
+import React from 'react';
+import {render, fireEvent, screen} from '@testing-library/react';
+import QandA from '../../src/Components/QuestionsAndAnswers/QandA.jsx';
+import Question from '../../src/Components/QuestionsAndAnswers/Question.jsx';
+import AnswersList from '../../src/Components/QuestionsAndAnswers/AnswersList.jsx';
 
-test('adds 1 + 2 to equal 3', () => {
-  expect(sum(1, 2)).toBe(3);
+describe('QandA', () => {
+  test('renders the QandA parent component', () => {
+    render(<QandA/>);
+  });
+});
+
+describe('Question', () => {
+  test('renders individual question component', () => {
+    render(<Question/>);
+  });
 });
