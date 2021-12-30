@@ -11,7 +11,9 @@ class Overview extends React.Component {
     this.state = {
       currentPhoto: 0,
       currentStyle: 0,
+      prevPhoto: '',
       photo: '',
+      nextPhoto: '',
       styles: [],
       productInfo: [],
       maxLength: 0,
@@ -34,7 +36,9 @@ class Overview extends React.Component {
     var max = this.state.maxLength;
     if(event.target.id === 'forward') {
       if(this.state.currentPhoto < this.state.maxLength - 1) {
+        this.setState({prevPhoto: this.state.styles[this.state.currentStyle].photos[currentPhotoIndex].url})
         this.setState({photo: this.state.styles[this.state.currentStyle].photos[currentPhotoIndex + 1].url})
+        this.setState({nextPhoto: this.state.styles[this.state.currentStyle].photos[currentPhotoIndex + 2].url})
         this.setState({currentPhoto: currentPhotoIndex + 1})
       } else {
         this.setState({photo: this.state.styles[this.state.currentStyle].photos[0].url});
@@ -43,7 +47,9 @@ class Overview extends React.Component {
     }
     if(event.target.id === 'back') {
       if(this.state.currentPhoto > 0) {
+        this.setState({prevPhoto: this.state.styles[this.state.currentStyle].photos[currentPhotoIndex - 2].url})
         this.setState({photo: this.state.styles[this.state.currentStyle].photos[currentPhotoIndex - 1].url})
+        this.setState({nextPhoto: this.state.styles[this.state.currentStyle].photos[currentPhotoIndex - 0].url})
         this.setState({currentPhoto: currentPhotoIndex - 1})
       } else {
         this.setState({photo: this.state.styles[this.state.currentStyle].photos[max -1].url});
@@ -64,7 +70,9 @@ class Overview extends React.Component {
     axios.get(this.props.apiUrl + '/products/' + this.props.currentProduct + '/styles')
     .then((results) => {
       //set photos to API results at current index at photos array at current style index
+      this.setState({prevPhoto: results.data.results[0].photos[results.data.results[0].photos.length -1].url})
       this.setState({photo: results.data.results[0].photos[0].url})
+      this.setState({nextPhoto: results.data.results[0].photos[1].url})
       this.setState({styles: results.data.results});
       this.setState({inventory: results.data.results[0].skus})
       this.setState({maxLength: results.data.results.map(id => id.photos).length})
@@ -78,7 +86,7 @@ class Overview extends React.Component {
   render() {
     return (
       <div>
-        <Gallery photo={this.state.photo} currentStyle={this.state.currentStyle} changePhoto={this.changePhoto}/>
+        <Gallery photo={this.state.photo} prevPhoto={this.state.prevPhoto} nextPhoto={this.state.nextPhoto} currentStyle={this.state.currentStyle} changePhoto={this.changePhoto}/>
         <Styles thumbnails={this.state.styles.map(style => style.photos).map(arr => arr[0].thumbnail_url)} changeStyle={this.changeStyle} styles={this.state.styles}/>
         <Cart inventory={Object.entries(this.state.inventory)} addToCart={this.addToCart}/>
         <Description productInfo={this.state.productInfo}/>
