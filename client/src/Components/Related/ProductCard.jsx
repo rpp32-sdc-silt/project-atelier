@@ -3,11 +3,11 @@ import React from 'react';
 export default function ProductCard({ key, id, image, category, name, price}) {
  // console.log(category)
  return (
-   <div className="card" key={id}>
-       <h3>{image}</h3>
-       <h3>{category}</h3>
-       <h3>{name}</h3>
-       <h3>{price}</h3>
+   <div className="related-card" key={id}>
+       <div>{image}</div>
+       <b>{category}</b>
+       <div>{name} ${price}</div>
+       <div></div>
    </div>
  )
 }

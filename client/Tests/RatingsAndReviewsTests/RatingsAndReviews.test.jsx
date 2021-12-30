@@ -35,6 +35,6 @@ import RR from '../../src/Components/RatingsAndReviews/RatingsAndReviews';
 describe('RR', () => {
   test('renders RR component', () => {
     render(<RR />);
-    screen.debug();
+    // screen.debug();
   });
 });
