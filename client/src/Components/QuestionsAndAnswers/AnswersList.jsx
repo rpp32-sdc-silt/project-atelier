@@ -29,7 +29,7 @@ class AnswersList extends React.Component {
   render() {
     return (
       <div>
-        {console.log(this.state.answers)}
+        {console.log('answers*********', this.state.answers)}
         <h2>A: </h2>
         <ol>
           {
