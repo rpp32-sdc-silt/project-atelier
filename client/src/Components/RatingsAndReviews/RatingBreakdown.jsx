@@ -35,7 +35,7 @@ class RatingBreakdown extends React.Component {
   }
 
   render() {
-    console.log(this.props.meta);
+    // console.log(this.props.meta);
     var metaData = this.props.meta;
     var display;
     if (Object.keys(metaData).length > 0) {

@@ -15,7 +15,7 @@ class NewReview extends React.Component {
   }
 
   closeBtnHandler() {
-    console.log('close button clicked');
+    // console.log('close button clicked');
     this.setState({
       showModal: false
     })
