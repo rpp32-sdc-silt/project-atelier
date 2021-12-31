@@ -8,11 +8,11 @@
   max-height: 100px;
 }
 
+
 .ov-changePhoto {
-  position:unset;
-  height: 500px;
-  width:200px
+  position:absolute;
 }
+
 
 .rr-top-bar {
   display:flex;
