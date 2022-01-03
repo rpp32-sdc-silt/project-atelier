@@ -5,6 +5,7 @@ import Description from './Description.jsx';
 import Styles from './Styles.jsx';
 import Cart from './Cart.jsx';
 import Modal from './Modal.jsx';
+import $ from 'jquery';
 
 class Overview extends React.Component {
   constructor(props) {
@@ -64,8 +65,10 @@ class Overview extends React.Component {
   toggleModal() {
     if (this.state.modalOn === true) {
       this.setState({modalOn: false})
+      $('html body').css({overflow: 'visible'})
     } else {
       this.setState({modalOn: true})
+      $('html body').css({overflow: 'hidden'})
     }
   }
 

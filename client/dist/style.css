@@ -9,18 +9,15 @@
 }
 
 .ov-modal {
-  background-size: 100%;
+  position:fixed;
   background-color: gray;
-  margin:auto;
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
+  height:100%;
+  width:100%;
 }
-
-.ov-changePhoto {
-  position:absolute;
-}
-
 
 .rr-top-bar {
   display:flex;
