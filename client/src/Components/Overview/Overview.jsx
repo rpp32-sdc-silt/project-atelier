@@ -65,10 +65,12 @@ class Overview extends React.Component {
   toggleModal() {
     if (this.state.modalOn === true) {
       this.setState({modalOn: false})
-      $('html body').css({overflow: 'visible'})
+      $('html body').css({overflow: 'visible'});
+      $('.ov-changePhoto').css({visibility: 'visible'})
     } else {
       this.setState({modalOn: true})
-      $('html body').css({overflow: 'hidden'})
+      $('html body').css({overflow: 'hidden'});
+      $('.ov-changePhoto').css({visibility: 'hidden'})
     }
   }
 
