@@ -1,29 +1,3 @@
-.ov-gallery {
-  max-width: 500px;
-  max-height: 500px;
-}
-
-.ov-styles {
-  max-width: 100px;
-  max-height: 100px;
-}
-
-.ov-modal {
-  position:fixed;
-  background-color: gray;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  height:100%;
-  width:100%;
-}
-
-.ov-changePhoto {
-  visibility: visible;
-  position: absolute;
-}
-
 .rr-container {
   display: flex;
 }
@@ -98,16 +72,4 @@
 #rr-modal-btn {
   padding: 15px;
   margin-bottom: 100px;
-}
-
-.related-card-container {
-  display: flex;
-  justify-content: center;
-  align-content: space-around;
-}
-
-.related-card {
-  margin: 10px;
-  width: 150px;
-  text-align: center;
 }
