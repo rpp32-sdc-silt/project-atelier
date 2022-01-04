@@ -10,8 +10,11 @@ class Question extends React.Component {
   render() {
     return (
       <div>
-        {/* Question body goes here*/}
-        <AnswersList id={this.props.question.question_id} apiUrl={this.props.apiUrl} />
+        <h2>Q: {this.props.question.question_body}</h2>
+        <p>Helpful?</p>
+        <p id='yes'>Yes ({this.props.question.question_helpfulness}) |</p>
+        <p id='addAnswer'>Add Answer</p>
+        <AnswersList id={this.props.question.question_id} apiUrl={this.props.apiUrl} token={this.props.token} />
       </div>
     )
   }
