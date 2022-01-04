@@ -51,9 +51,10 @@ export default class Related extends Component {
 
 
   render() {
-    console.log(this.state.products)
+    // console.log(this.state.products)
     return (
       <div>
+        <h2>Related</h2>
         <ProductList products={this.state.products}/>
       </div>
     )

@@ -55,18 +55,23 @@ class RR extends React.Component {
   render() {
     return (
       <div>
-        <h1>Ratings and Reviews</h1>
-        <h3>Reviews List</h3>
-        <SortOptions sorting={this.state.sorting} />
-        <RatingBreakdown reviews={this.state.reviews} meta={this.state.meta} />
-        <ProductBreakdown meta={this.state.meta} />
-        {this.state.reviews.map((review) => (
-          <div key={review.review_id}>
-            <IndividualReviewTile review={review}/>
-            <br/>
+        <h2>Ratings & Reviews</h2>
+        <div className="rr-container">
+          <div className="rr-breakdown">
+            <RatingBreakdown reviews={this.state.reviews} meta={this.state.meta} />
+            <ProductBreakdown meta={this.state.meta} />
           </div>
-        ))}
-        <NewReview />
+          <div className="rr-reviews">
+            <SortOptions sorting={this.state.sorting} />
+            {this.state.reviews.map((review) => (
+              <div key={review.review_id}>
+                <IndividualReviewTile review={review}/>
+                <br/>
+              </div>
+            ))}
+            <NewReview />
+          </div>
+        </div>
       </div>
     )
   }
