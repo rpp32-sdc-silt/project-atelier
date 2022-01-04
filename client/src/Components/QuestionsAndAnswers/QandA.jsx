@@ -30,11 +30,10 @@ class QandA extends React.Component {
   render() {
     return (
       <div id="QandA">
-        {console.log('questions*******: ', this.state.questions)}
         {
           this.state.questions.map((question, index) => {
             return (
-            <Question key={index} question={question} apiUrl={this.props.apiUrl} />
+            <Question key={index} question={question} apiUrl={this.props.apiUrl} token={this.props.token} />
             )
           })
         }
