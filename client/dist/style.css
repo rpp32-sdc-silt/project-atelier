@@ -22,7 +22,8 @@
 .ov-changePhoto {
   visibility: visible;
   position: absolute;
-  
+}
+
 .rr-container {
   display: flex;
 }
