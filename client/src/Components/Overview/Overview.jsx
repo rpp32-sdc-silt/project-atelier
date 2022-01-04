@@ -4,6 +4,8 @@ import Gallery from './Gallery.jsx'
 import Description from './Description.jsx';
 import Styles from './Styles.jsx';
 import Cart from './Cart.jsx';
+import Modal from './Modal.jsx';
+import $ from 'jquery';
 
 class Overview extends React.Component {
   constructor(props) {
@@ -18,11 +20,13 @@ class Overview extends React.Component {
       productInfo: [],
       maxLength: 0,
       inventory: [],
-      cart: []
+      cart: [],
+      modalOn: false
     }
     this.changePhoto = this.changePhoto.bind(this);
     this.changeStyle = this.changeStyle.bind(this);
     this.addToCart = this.addToCart.bind(this)
+    this.toggleModal = this.toggleModal.bind(this);
   }
 
   addToCart(cartState) {
@@ -58,6 +62,18 @@ class Overview extends React.Component {
     }
   }
 
+  toggleModal() {
+    if (this.state.modalOn === true) {
+      this.setState({modalOn: false})
+      $('html body').css({overflow: 'visible'});
+      $('.ov-changePhoto').css({visibility: 'visible'})
+    } else {
+      this.setState({modalOn: true})
+      $('html body').css({overflow: 'hidden'});
+      $('.ov-changePhoto').css({visibility: 'hidden'})
+    }
+  }
+
   changeStyle(event) {
     var id = Number.parseInt(event.target.id);
     this.setState({currentStyle: id})
@@ -84,12 +100,21 @@ class Overview extends React.Component {
   }
 
   render() {
+    var modal;
+    if (this.state.modalOn) {
+      modal = <Modal photo={this.state.photo} toggleModal={this.toggleModal}/>
+    } else {
+      modal = null;
+    }
     return (
       <div>
-        <Gallery photo={this.state.photo} prevPhoto={this.state.prevPhoto} nextPhoto={this.state.nextPhoto} currentStyle={this.state.currentStyle} changePhoto={this.changePhoto}/>
+      {modal}
+      <div>
+        <Gallery photo={this.state.photo} prevPhoto={this.state.prevPhoto} nextPhoto={this.state.nextPhoto} currentStyle={this.state.currentStyle} changePhoto={this.changePhoto} toggleModal={this.toggleModal}/>
         <Styles thumbnails={this.state.styles.map(style => style.photos).map(arr => arr[0].thumbnail_url)} changeStyle={this.changeStyle} styles={this.state.styles}/>
         <Cart inventory={Object.entries(this.state.inventory)} addToCart={this.addToCart}/>
         <Description productInfo={this.state.productInfo}/>
+      </div>
       </div>
     )
   }
