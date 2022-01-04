@@ -66,10 +66,12 @@ class Overview extends React.Component {
     if (this.state.modalOn === true) {
       this.setState({modalOn: false})
       $('html body').css({overflow: 'visible'});
+      $('html body').removeClass('ov-removeMargin');
       $('.ov-changePhoto').css({visibility: 'visible'})
     } else {
       this.setState({modalOn: true})
       $('html body').css({overflow: 'hidden'});
+      $('html body').addClass('ov-removeMargin');
       $('.ov-changePhoto').css({visibility: 'hidden'})
     }
   }

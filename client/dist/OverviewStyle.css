@@ -23,6 +23,10 @@
   width:100%;
 }
 
+.ov-removeMargin {
+  margin: 0;
+}
+
 .ov-changePhoto {
   visibility: visible;
   position: absolute;
