@@ -1,3 +1,9 @@
+.ov-main {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
 .ov-gallery {
   max-width: 500px;
   max-height: 500px;
@@ -21,6 +27,7 @@
   overflow: hidden;
   height:100%;
   width:100%;
+  flex-grow: unset;
 }
 
 .ov-removeMargin {
