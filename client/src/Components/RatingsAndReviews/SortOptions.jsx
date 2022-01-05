@@ -10,7 +10,7 @@ class SortOptions extends React.Component {
     return (
       <div>
         <label>Sort on: </label>
-        <select>
+        <select onChange={this.props.changeSort}>
           <option value="relevant">Relevant</option>
           <option value="newest">Newest</option>
           <option value="helpful">Helpful</option>

@@ -12,14 +12,14 @@ class RR extends React.Component {
     super(props);
     this.state = {
       reviews: [],
-      sorting: 'relevance',
       meta: {}
     };
+    this.changeSort = this.changeSort.bind(this);
   }
 
   componentDidMount() {
     axios.defaults.headers.common['Authorization'] = this.props.token
-    axios.get(`${this.props.apiUrl}/reviews/?product_id=${this.props.currentProduct}`)
+    axios.get(`${this.props.apiUrl}/reviews/?product_id=${this.props.currentProduct}&sort=relevant`)
       .then((results) => {
         this.setState({
           reviews: results.data.results
@@ -52,6 +52,18 @@ class RR extends React.Component {
       })
   }
 
+  changeSort(e) {
+    axios.get(`${this.props.apiUrl}/reviews/?product_id=${this.props.currentProduct}&sort=${e.target.value}`)
+      .then((results) => {
+        this.setState({
+          reviews: results.data.results
+        })
+      })
+      .catch((err) => {
+        console.log('API get /reviews failed with error: ', err);
+      })
+  }
+
   render() {
     return (
       <div>
@@ -62,7 +74,7 @@ class RR extends React.Component {
             <ProductBreakdown meta={this.state.meta} />
           </div>
           <div className="rr-reviews">
-            <SortOptions sorting={this.state.sorting} />
+            <SortOptions changeSort={this.changeSort} />
             {this.state.reviews.map((review) => (
               <div key={review.review_id}>
                 <IndividualReviewTile review={review}/>
