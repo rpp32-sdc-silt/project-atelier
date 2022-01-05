@@ -15,6 +15,7 @@
 }
 
 .ov-changePhoto {
+  visibility:visible;
   position:absolute;
 }
 
@@ -25,16 +26,22 @@
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  flex-grow: unset;
   height:100%;
   width:100%;
-  flex-grow: unset;
+}
+
+.ov-modal .ov-thumbnail {
+  display:flex;
+  flex-flow: column;
+  position: relative;
+  left: 100px;
+}
+
+.ov-thumbnail-photo {
+  max-height:100px
 }
 
 .ov-removeMargin {
   margin: 0;
-}
-
-.ov-changePhoto {
-  visibility: visible;
-  position: absolute;
 }

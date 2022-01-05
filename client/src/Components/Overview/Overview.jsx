@@ -48,8 +48,7 @@ class Overview extends React.Component {
         this.setState({ photo: this.state.styles[this.state.currentStyle].photos[0].url });
         this.setState({ currentPhoto: 0 })
       }
-    }
-    if (event.target.id === 'back') {
+    } else if (event.target.id === 'back') {
       if (this.state.currentPhoto > 0) {
         this.setState({ prevPhoto: this.state.styles[this.state.currentStyle].photos[currentPhotoIndex - 2].url })
         this.setState({ photo: this.state.styles[this.state.currentStyle].photos[currentPhotoIndex - 1].url })
@@ -59,6 +58,11 @@ class Overview extends React.Component {
         this.setState({ photo: this.state.styles[this.state.currentStyle].photos[max - 1].url });
         this.setState({ currentPhoto: this.state.styles.length - 1 })
       }
+    } else {
+      this.setState({prevPhoto: this.state.styles[this.state.currentStyle].photos[Number.parseInt(event.target.id) - 1].url});
+      this.setState({photo: this.state.styles[this.state.currentStyle].photos[Number.parseInt(event.target.id)].url});
+      this.setState({nextPhoto: this.state.styles[this.state.currentStyle].photos[Number.parseInt(event.target.id) + 1].url});
+      this.setState({ currentPhoto: Number.parseInt(event.target.id)});
     }
   }
 
@@ -79,7 +83,9 @@ class Overview extends React.Component {
   changeStyle(event) {
     var id = Number.parseInt(event.target.id);
     this.setState({ currentStyle: id })
+    this.setState({ prevPhoto: this.state.styles[id].photos[this.state.styles[id].photos.length - 1].url })
     this.setState({ photo: this.state.styles[id].photos[0].url })
+    this.setState({ nextPhoto: this.state.styles[id].photos[1].url })
     this.setState({ inventory: this.state.styles[id].skus })
   }
 
@@ -104,7 +110,7 @@ class Overview extends React.Component {
   render() {
     var modal;
     if (this.state.modalOn) {
-      modal = <Modal photo={this.state.photo} toggleModal={this.toggleModal} />
+      modal = <Modal photos={this.state.styles[this.state.currentStyle].photos} photo={this.state.photo} toggleModal={this.toggleModal} changePhoto={this.changePhoto} />
     } else {
       modal = null;
     }
