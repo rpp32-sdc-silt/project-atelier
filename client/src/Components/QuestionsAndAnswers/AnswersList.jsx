@@ -26,6 +26,11 @@ class AnswersList extends React.Component {
     }).catch((err) => {console.log('Error getting answers from API: ' + err)});
   }
 
+  //method to map over photos of the current answer and return them as html images
+  renderAnswerPhotos(currentAnswer) {
+
+  }
+
   render() {
     return (
       <div>
@@ -34,8 +39,21 @@ class AnswersList extends React.Component {
         <ol>
           {
             this.state.answers.map((answer, index) => {
+              var months = ['January', 'February', 'March', 'April', 'May', 'June',
+              'July', 'August', 'September', 'October', 'November', 'December'];
+              var monthNumber = Number(answer.date.slice(5, 7));
+              var monthName = months[monthNumber - 1];
+              var year = answer.date.slice(0, 4);
+              var day = answer.date.slice(8, 10);
+
               return <li key={index}>
-                <p>{answer.body}</p>
+                <p className='QandAAnswerBody'>{answer.body}</p>
+                <p className='QandAby'>by {answer.answerer_name}, {monthName + ' ' + day + ', ' + year}</p>
+                <p> | </p>
+                <p className='QandAHelpfulAnswer'>Helpful? </p>
+                <p className='QandAyes'>Yes ({answer.helpfulness})</p>
+                <p> | </p>
+                <p className='QandAreportAnswer'>Report</p>
               </li>
             })
           }
