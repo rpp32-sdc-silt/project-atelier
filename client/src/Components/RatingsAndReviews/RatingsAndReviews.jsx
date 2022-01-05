@@ -13,7 +13,8 @@ class RR extends React.Component {
     this.state = {
       reviews: [],
       sorting: 'relevance',
-      meta: {}
+      meta: {},
+      productName: ''
     };
   }
 
@@ -28,6 +29,15 @@ class RR extends React.Component {
       })
       .catch((err) => {
         console.log('API get /reviews failed with error: ', err);
+      })
+    axios.get(`${this.props.apiUrl}/products/${this.props.currentProduct}`)
+      .then((result) => {
+        this.setState({
+          productName: result.data.name
+        })
+      })
+      .catch((err) => {
+        console.log(`API get /products/${this.props.currentProduct} failed with error: `, err);
       })
     // =======================
     // Alternative Method
@@ -69,7 +79,7 @@ class RR extends React.Component {
                 <br/>
               </div>
             ))}
-            <NewReview />
+            <NewReview productName={this.state.productName}/>
           </div>
         </div>
       </div>
