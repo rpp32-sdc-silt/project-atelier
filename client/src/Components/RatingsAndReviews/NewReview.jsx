@@ -47,10 +47,10 @@ class NewReview extends React.Component {
               <br/>
               <b>Do you recommend this product? * </b>
               <label>Yes
-                <input type="radio"/>
+                <input type="radio" name="recommend"/>
               </label>
               <label>No
-                <input type="radio" name="No"/>
+                <input type="radio" name="recommend"/>
               </label>
               <br/>
               <br/>
@@ -71,27 +71,27 @@ class NewReview extends React.Component {
                     <td><b>Size</b></td>
                     <td>
                       <label>A size too small
-                        <input type="radio"></input>
+                        <input type="radio" name="size"></input>
                       </label>
                     </td>
                     <td>
                       <label>Half a size too small
-                        <input type="radio"></input>
+                        <input type="radio" name="size"></input>
                       </label>
                     </td>
                     <td>
                       <label>Perfect
-                        <input type="radio"></input>
+                        <input type="radio" name="size"></input>
                       </label>
                     </td>
                     <td>
                       <label>Half a size too big
-                        <input type="radio"></input>
+                        <input type="radio" name="size"></input>
                       </label>
                     </td>
                     <td>
                       <label>A size too wide
-                        <input type="radio"></input>
+                        <input type="radio" name="size"></input>
                       </label>
                     </td>
                   </tr>
@@ -99,27 +99,27 @@ class NewReview extends React.Component {
                     <td><b>Width</b></td>
                     <td>
                       <label>Too narrow
-                        <input type="radio"></input>
+                        <input type="radio" name="width"></input>
                       </label>
                     </td>
                     <td>
                       <label>Slightly narrow
-                        <input type="radio"></input>
+                        <input type="radio" name="width"></input>
                       </label>
                     </td>
                     <td>
                       <label>Perfect
-                        <input type="radio"></input>
+                        <input type="radio" name="width"></input>
                       </label>
                     </td>
                     <td>
                       <label>Slightly wide
-                        <input type="radio"></input>
+                        <input type="radio" name="width"></input>
                       </label>
                     </td>
                     <td>
                       <label>Too wide
-                        <input type="radio"></input>
+                        <input type="radio" name="width"></input>
                       </label>
                     </td>
                   </tr>
@@ -127,27 +127,27 @@ class NewReview extends React.Component {
                     <td><b>Comfort</b></td>
                     <td>
                       <label>Uncomfortable
-                        <input type="radio"></input>
+                        <input type="radio" name="comfort"></input>
                       </label>
                     </td>
                     <td>
                       <label>Slightly uncomfortable
-                        <input type="radio"></input>
+                        <input type="radio" name="comfort"></input>
                       </label>
                     </td>
                     <td>
                       <label>Ok
-                        <input type="radio"></input>
+                        <input type="radio" name="comfort"></input>
                       </label>
                     </td>
                     <td>
                       <label>Comfortable
-                        <input type="radio"></input>
+                        <input type="radio" name="comfort"></input>
                       </label>
                     </td>
                     <td>
                       <label>Perfect
-                        <input type="radio"></input>
+                        <input type="radio" name="comfort"></input>
                       </label>
                     </td>
                   </tr>
@@ -155,27 +155,27 @@ class NewReview extends React.Component {
                     <td><b>Quality</b></td>
                     <td>
                       <label>Poor
-                        <input type="radio"></input>
+                        <input type="radio" name="quality"></input>
                       </label>
                     </td>
                     <td>
                       <label>Below average
-                        <input type="radio"></input>
+                        <input type="radio" name="quality"></input>
                       </label>
                     </td>
                     <td>
                       <label>What I expected
-                        <input type="radio"></input>
+                        <input type="radio" name="quality"></input>
                       </label>
                     </td>
                     <td>
                       <label>Pretty great
-                        <input type="radio"></input>
+                        <input type="radio" name="quality"></input>
                       </label>
                     </td>
                     <td>
                       <label>Perfect
-                        <input type="radio"></input>
+                        <input type="radio" name="quality"></input>
                       </label>
                     </td>
                   </tr>
@@ -183,27 +183,27 @@ class NewReview extends React.Component {
                     <td><b>Length</b></td>
                     <td>
                       <label>Runs short
-                        <input type="radio"></input>
+                        <input type="radio" name="length"></input>
                       </label>
                     </td>
                     <td>
                       <label>Runs slightly short
-                        <input type="radio"></input>
+                        <input type="radio" name="length"></input>
                       </label>
                     </td>
                     <td>
                       <label>Perfect
-                        <input type="radio"></input>
+                        <input type="radio" name="length"></input>
                       </label>
                     </td>
                     <td>
                       <label>Runs slightly long
-                        <input type="radio"></input>
+                        <input type="radio" name="length"></input>
                       </label>
                     </td>
                     <td>
                       <label>Runs long
-                        <input type="radio"></input>
+                        <input type="radio" name="length"></input>
                       </label>
                     </td>
                   </tr>
@@ -211,27 +211,27 @@ class NewReview extends React.Component {
                     <td><b>Fit</b></td>
                     <td>
                       <label>Runs tight
-                        <input type="radio"></input>
+                        <input type="radio" name="fit"></input>
                       </label>
                     </td>
                     <td>
                       <label>Runs slightly tight
-                        <input type="radio"></input>
+                        <input type="radio" name="fit"></input>
                       </label>
                     </td>
                     <td>
                       <label>Perfect
-                        <input type="radio"></input>
+                        <input type="radio" name="fit"></input>
                       </label>
                     </td>
                     <td>
                       <label>Runs slightly long
-                        <input type="radio"></input>
+                        <input type="radio" name="fit"></input>
                       </label>
                     </td>
                     <td>
                       <label>Runs long
-                        <input type="radio"></input>
+                        <input type="radio" name="fit"></input>
                       </label>
                     </td>
                   </tr>
@@ -258,7 +258,7 @@ class NewReview extends React.Component {
               <br/>
               <br/>
               <b>Your email * </b>
-              <input type="email" maxLength="60" placeholder="Example: jackson11@email.com" size="25"></input>
+              <input type="email" maxLength="60" placeholder="Example: jackson11@email.com" size="50"></input>
               <br/>
               <small>For authentication reasons, you will not be emailed</small>
               <br/>
