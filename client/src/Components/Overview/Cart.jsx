@@ -17,6 +17,7 @@ class Cart extends React.Component {
     event.preventDefault();
     if (this.state.size.length > 0 && this.state.selectedQuantity > 0 && this.state.sku !== null) {
       this.props.addToCart(this.state)
+      alert('Added ' + this.state.selectedQuantity + ' of size ' + this.state.size + ' to the cart.')
     } else {
       alert('Please select product options.')
     }
