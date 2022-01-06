@@ -50,11 +50,13 @@
   padding: 20px;
   margin: auto;
   width: 75%;
+  overflow-y: auto;
+  max-height: calc(100vh - 150px);
 }
 
 .rr-close-btn {
   float: right;
-  color: lightgray;
+  color: gray;
   font-size: 24px;
   font-weight: bold;
 }
@@ -72,4 +74,8 @@
 #rr-modal-btn {
   padding: 15px;
   margin-bottom: 100px;
+}
+
+.rr-paddingBtwCols td {
+  padding: 2.5px 15px;
 }
