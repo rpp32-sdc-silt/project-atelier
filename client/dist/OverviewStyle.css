@@ -43,11 +43,19 @@
   max-width:100vmax;
 }
 
-.ov-thumbnail-photo {
-  max-height:100px;
-  max-width:100px
+.ov-changePhoto {
+  visibility: visible;
+  position: relative;
 }
 
-.ov-removeMargin {
-  margin: 0;
+#back {
+  align-self: center;
+  right: 75%;
+  bottom:40%
+}
+
+#forward {
+  align-self: center;
+  right:25%;
+  bottom:40%
 }
