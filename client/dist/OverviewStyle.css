@@ -35,13 +35,30 @@
   display:flex;
   flex-flow: column;
   position: relative;
-  left: 100px;
+  right: -100px;
+  z-index: 1;
 }
 
 .ov-thumbnail-photo {
-  max-height:100px
+  max-height:100px;
+  padding-bottom: 10px;
 }
 
 .ov-removeMargin {
   margin: 0;
+}
+
+.ov-modal-image {
+  max-height:50vmax;
+  max-width:100vmax;
+}
+
+.ov-zoomIn {
+  transform: scale(1);
+  cursor: zoom-in
+}
+
+.ov-zoomOut {
+  transform: scale(2.5);
+  cursor: zoom-out
 }
