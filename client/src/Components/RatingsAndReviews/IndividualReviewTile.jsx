@@ -1,9 +1,14 @@
 import React from 'react';
+import axios from 'axios';
 
 class IndividualReviewTile extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      helpful: false,
+      helpfulCount: Number(this.props.review.helpfulness)
+    };
+    this.helpfulClick = this.helpfulClick.bind(this);
   }
 
   renderStars(rating) {
@@ -18,6 +23,22 @@ class IndividualReviewTile extends React.Component {
       }
     }
     return stars;
+  }
+
+  helpfulClick() {
+    if ( !this.state.helpful ) {
+      axios.put(`${this.props.apiUrl}/reviews/${this.props.review.review_id}/helpful`)
+        .then(() => {
+          console.log('post success');
+          this.setState({
+            helpful: true,
+            helpfulCount: this.state.helpfulCount + 1
+          })
+        })
+        .catch((err) => {
+          console.log('API post /reviews/<review_id>/helpful failed with ', err);
+        })
+    }
   }
 
   render() {
@@ -35,7 +56,7 @@ class IndividualReviewTile extends React.Component {
         <span className={isRecommended}>{recValue}</span>
         <div className="rr-helpful-report-style">
           Helpful?
-          <span > Yes({helpfulness})</span>
+          <span onClick={this.helpfulClick}> Yes({this.state.helpfulCount})</span>
         </div>
       </div>
     )
