@@ -65,7 +65,7 @@ class RR extends React.Component {
             <SortOptions sorting={this.state.sorting} />
             {this.state.reviews.map((review) => (
               <div key={review.review_id}>
-                <IndividualReviewTile review={review}/>
+                <IndividualReviewTile review={review} apiUrl={this.props.apiUrl}/>
                 <br/>
               </div>
             ))}
