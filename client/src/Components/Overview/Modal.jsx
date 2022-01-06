@@ -17,7 +17,7 @@ class Modal extends React.Component {
           {this.props.photos.map((photo, index) => {
               return <img className='ov-thumbnail-photo' id={index} src={photo.thumbnail_url} onClick={this.props.changePhoto}></img>
           })}</div>
-        <img src={this.props.photo}></img>
+        <img src={this.props.photo} alt={this.props.productInfo.description}></img>
         <button id="toggleModal" onClick={this.props.toggleModal}>Close</button>
       </div>
     )
