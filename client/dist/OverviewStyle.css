@@ -36,5 +36,18 @@
 
 .ov-changePhoto {
   visibility: visible;
-  position: absolute;
+  position: relative;
+}
+
+#back {
+  align-self: center;
+  right: 75%;
+  bottom:40%
+}
+
+
+#forward {
+  align-self: center;
+  right:25%;
+  bottom:40%
 }
