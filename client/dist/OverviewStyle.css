@@ -53,12 +53,18 @@
   max-width:100vmax;
 }
 
-.ov-zoomIn {
+.ov-zoomedOut {
   transform: scale(1);
   cursor: zoom-in
 }
 
-.ov-zoomOut {
+.ov-zoomedIn {
   transform: scale(2.5);
   cursor: zoom-out
+}
+
+#ov-toggleModal {
+  position:fixed;
+  top:50px;
+  right:50px;
 }

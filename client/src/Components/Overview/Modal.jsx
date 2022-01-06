@@ -15,11 +15,11 @@ class Modal extends React.Component {
     //zoomed state: right: 225px;
     if (this.state.zoom === false) {
       this.setState({zoom: true});
-      $(e.target).addClass('ov-zoomOut').removeClass('ov-zoomIn');
+      $(e.target).addClass('ov-zoomedIn').removeClass('ov-zoomedOut');
       $('.ov-modal .ov-thumbnail').css('right', 225);
     } else {
       this.setState({zoom: false});
-      $(e.target).addClass('ov-zoomIn').removeClass('ov-zoomOut');
+      $(e.target).addClass('ov-zoomedOut').removeClass('ov-zoomedIn');
       $('.ov-modal .ov-thumbnail').css('right', -100);
     }
   }
@@ -31,8 +31,8 @@ class Modal extends React.Component {
           {this.props.photos.map((photo, index) => {
             return <img className='ov-thumbnail-photo' id={index} src={photo.thumbnail_url} onClick={this.props.changePhoto}></img>
           })}</div>
-          <img className='ov-zoomIn ov-modal-image' src={this.props.photo} alt={this.props.productInfo.description} onClick={this.changeZoomLevel}></img>
-        <button id="toggleModal" onClick={this.props.toggleModal}>Close</button>
+          <img className='ov-zoomedOut ov-modal-image' src={this.props.photo} alt={this.props.productInfo.description} onClick={this.changeZoomLevel}></img>
+        <button id="ov-toggleModal" onClick={this.props.toggleModal}>Close</button>
       </div>
     )
   }
