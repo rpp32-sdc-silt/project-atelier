@@ -28,7 +28,13 @@ class AnswersList extends React.Component {
 
   //method to map over photos of the current answer and return them as html images
   renderAnswerPhotos(currentAnswer) {
-
+    if (currentAnswer.photos.length > 0) {
+      currentAnswer.photos.map((photo, index) => {
+        var image = <img src='' />;
+        image.src = photo.url;
+        return image;
+      })
+    }
   }
 
   render() {
@@ -48,6 +54,7 @@ class AnswersList extends React.Component {
 
               return <li key={index}>
                 <p className='QandAAnswerBody'>{answer.body}</p>
+                {/* {this.renderAnswerPhotos(answer)} */}
                 <p className='QandAby'>by {answer.answerer_name}, {monthName + ' ' + day + ', ' + year}</p>
                 <p> | </p>
                 <p className='QandAHelpfulAnswer'>Helpful? </p>
