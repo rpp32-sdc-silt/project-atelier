@@ -38,6 +38,12 @@
   position: relative;
   left: 100px;
 }
+
+.ov-thumbnail-photo {
+  max-height:100px;
+  max-width:100px;
+}
+
 .ov-modal-image {
   max-height:50vmax;
   max-width:100vmax;
@@ -58,4 +64,8 @@
   align-self: center;
   right:25%;
   bottom:40%
+}
+
+.ov-removeMargin {
+  margin: 0;
 }
