@@ -110,7 +110,7 @@ class Overview extends React.Component {
   render() {
     var modal;
     if (this.state.modalOn) {
-      modal = <Modal photos={this.state.styles[this.state.currentStyle].photos} photo={this.state.photo} toggleModal={this.toggleModal} changePhoto={this.changePhoto} />
+      modal = <Modal productInfo={this.state.productInfo} photos={this.state.styles[this.state.currentStyle].photos} photo={this.state.photo} toggleModal={this.toggleModal} changePhoto={this.changePhoto} />
     } else {
       modal = null;
     }
@@ -118,7 +118,7 @@ class Overview extends React.Component {
       <div className='ov-main'>
         {modal}
         <div>
-          <Gallery photo={this.state.photo} prevPhoto={this.state.prevPhoto} nextPhoto={this.state.nextPhoto} currentStyle={this.state.currentStyle} changePhoto={this.changePhoto} toggleModal={this.toggleModal} />
+          <Gallery productInfo={this.state.productInfo} photo={this.state.photo} prevPhoto={this.state.prevPhoto} nextPhoto={this.state.nextPhoto} currentStyle={this.state.currentStyle} changePhoto={this.changePhoto} toggleModal={this.toggleModal} />
           <Styles thumbnails={this.state.styles.map(style => style.photos).map(arr => arr[0].thumbnail_url)} changeStyle={this.changeStyle} styles={this.state.styles} />
           <Cart inventory={Object.entries(this.state.inventory)} addToCart={this.addToCart} />
           <Description productInfo={this.state.productInfo} />
