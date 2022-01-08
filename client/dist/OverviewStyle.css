@@ -36,17 +36,14 @@
   display:flex;
   flex-flow: column;
   position: relative;
-  left: 100px;
+  right: -100px;
+  z-index: 1;
 }
 
 .ov-thumbnail-photo {
   max-height:100px;
   max-width:100px;
-}
-
-.ov-modal-image {
-  max-height:50vmax;
-  max-width:100vmax;
+  padding-bottom: 10px;
 }
 
 .ov-changePhoto {
@@ -68,4 +65,25 @@
 
 .ov-removeMargin {
   margin: 0;
+}
+
+.ov-modal-image {
+  max-height:50vmax;
+  max-width:100vmax;
+}
+
+.ov-zoomedOut {
+  transform: scale(1);
+  cursor: zoom-in
+}
+
+.ov-zoomedIn {
+  transform: scale(2.5);
+  cursor: zoom-out
+}
+
+#ov-toggleModal {
+  position:fixed;
+  top:50px;
+  right:50px;
 }
