@@ -1,3 +1,7 @@
+/*
+ * @jest-environment jsdom
+ */
+
 import React from 'react';
 import {render, fireEvent, screen} from '@testing-library/react';
 import QandA from '../../src/Components/QuestionsAndAnswers/QandA.jsx';
@@ -15,3 +19,10 @@ describe('Question', () => {
     render(<Question/>);
   });
 });
+
+describe('AnswersList', () => {
+  test('renders AnswersList', () => {
+    render(<AnswersList />);
+  });
+})
+
