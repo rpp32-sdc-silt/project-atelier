@@ -39,7 +39,7 @@ class Overview extends React.Component {
     var currentPhotoIndex = this.state.currentPhoto
     var max = this.state.maxLength;
     if (event.target.id === 'forward') {
-      if (this.state.currentPhoto < this.state.maxLength - 1) {
+      if (this.state.currentPhoto < max - 1) {
         this.setState({ prevPhoto: this.state.styles[this.state.currentStyle].photos[currentPhotoIndex].url })
         this.setState({ photo: this.state.styles[this.state.currentStyle].photos[currentPhotoIndex + 1].url })
         this.setState({ nextPhoto: this.state.styles[this.state.currentStyle].photos[currentPhotoIndex + 2].url })
@@ -59,9 +59,9 @@ class Overview extends React.Component {
         this.setState({ currentPhoto: this.state.styles.length - 1 })
       }
     } else {
-      this.setState({prevPhoto: this.state.styles[this.state.currentStyle].photos[Number.parseInt(event.target.id) - 1].url});
+      this.setState({prevPhoto: this.state.styles[this.state.currentStyle].photos[Number.parseInt(event.target.id) - 1].url ? this.state.styles[this.state.currentStyle].photos[Number.parseInt(event.target.id) - 1].url : this.state.styles[this.state.currentStyle].photos[0].url});
       this.setState({photo: this.state.styles[this.state.currentStyle].photos[Number.parseInt(event.target.id)].url});
-      this.setState({nextPhoto: this.state.styles[this.state.currentStyle].photos[Number.parseInt(event.target.id) + 1].url});
+      this.setState({nextPhoto: this.state.styles[this.state.currentStyle].photos[Number.parseInt(event.target.id) + 1].url ? this.state.styles[this.state.currentStyle].photos[Number.parseInt(event.target.id) + 1].url : this.state.styles[this.state.currentStyle].photos[max - 1].url});
       this.setState({ currentPhoto: Number.parseInt(event.target.id)});
     }
   }
