@@ -23,5 +23,6 @@ describe('Question', () => {
 describe('AnswersList', () => {
   test('renders AnswersList', () => {
     render(<AnswersList />);
-  })
+  });
 })
+
