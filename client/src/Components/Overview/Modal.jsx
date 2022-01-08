@@ -1,5 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
+import anime from 'animejs';
 
 class Modal extends React.Component {
   constructor (props) {
@@ -32,7 +33,7 @@ class Modal extends React.Component {
             return <img className='ov-thumbnail-photo' id={index} src={photo.thumbnail_url} onClick={this.props.changePhoto}></img>
           })}</div>
           <img className='ov-zoomedOut ov-modal-image' src={this.props.photo} alt={this.props.productInfo.description} onClick={this.changeZoomLevel}></img>
-        <button id="ov-toggleModal" onClick={this.props.toggleModal}>Close</button>
+          <button id="ov-toggleModal" onClick={this.props.toggleModal}>Close</button>
       </div>
     )
   }

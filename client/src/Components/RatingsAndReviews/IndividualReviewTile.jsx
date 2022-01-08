@@ -6,9 +6,13 @@ class IndividualReviewTile extends React.Component {
     super(props);
     this.state = {
       helpful: false,
-      helpfulCount: Number(this.props.review.helpfulness)
+      helpfulCount: Number(this.props.review.helpfulness),
+      showFullPhoto: false,
+      imageUrl: ''
     };
     this.helpfulClick = this.helpfulClick.bind(this);
+    this.imageFullDisplay = this.imageFullDisplay.bind(this);
+    this.closeImage = this.closeImage.bind(this);
   }
 
   renderStars(rating) {
@@ -41,10 +45,42 @@ class IndividualReviewTile extends React.Component {
     }
   }
 
+  imageFullDisplay(e) {
+    this.setState({
+      showFullPhoto: true,
+      imageUrl: e.target.src
+    })
+  }
+
+  closeImage() {
+    this.setState({
+      showFullPhoto: false,
+      imageUrl: ''
+    })
+  }
+
   render() {
     const {review_id, rating, summary, recommend, response, body, date, reviewer_name, helpfulness, photos} = this.props.review;
     var isRecommended = recommend ? 'fa fa-check' : null;
     var recValue = recommend ? '   I recommend this product' : null;
+    var pics = photos.map((photo) => (
+      <div>
+        <img className="rr-photo" src={photo.url} alt="placeholder text" onClick={this.imageFullDisplay}/>
+        <br/>
+        <br/>
+      </div>
+    ))
+
+    var modal;
+    if (!this.state.showFullPhoto) {
+      modal = null;
+    } else {
+      modal =
+        <div className="rr-photo-modal" onClick={this.closeImage}>
+          <img className="rr-photo-modal-content" src={this.state.imageUrl} alt="placeholder text"/>
+        </div>
+    }
+
     return (
       <div className="rr-individual-review">
         <div className="rr-top-bar">
@@ -53,6 +89,8 @@ class IndividualReviewTile extends React.Component {
         </div>
         <b>{summary}</b>
         <div className="rr-body">{body}</div>
+        {pics}
+        {modal}
         <span className={isRecommended}>{recValue}</span>
         <div className="rr-helpful-report-style">
           Helpful?
