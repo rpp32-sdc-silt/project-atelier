@@ -94,3 +94,29 @@
 .rr-star-off {
   color: #ccc;
 }
+
+.rr-photo {
+  /* height: 60px; */
+  width: 90px;
+  padding-right: 5px;
+}
+
+.rr-photo-modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  padding-top: 50px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.rr-photo-modal-content {
+  position: relative;
+  margin: auto;
+  max-height: 90%;
+  max-width: 90%;
+  width: auto;
+  height: auto;
+  display: block;
+}
