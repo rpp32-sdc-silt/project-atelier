@@ -113,6 +113,12 @@ class NewReview extends React.Component {
           </tr>
         )
       })
+      var minMsg;
+      if (this.state.counter > 0) {
+        minMsg = <small> Number of characters until minimum reached: {this.state.counter}</small>
+      } else {
+        minMsg = <small> Minimum reached</small>
+      }
 
       // Define the new review modal content
       modal =
@@ -122,32 +128,32 @@ class NewReview extends React.Component {
             <h2>Write Your Review</h2>
             <h4>About the {this.props.productName}</h4>
             <form onSubmit={this.formSubmit}>
-              <b>Overall Rating * </b>
-              <div className="StarRating">
-                {[...Array(5)].map((star, index) => {
-                  index += 1;
-                  return (
-                    <button
-                      type="button"
-                      key={index}
-                      // className={"rr-star-button " + (index <= (this.state.ratingHover || this.state.rating) ? "rr-star-on" : "rr-star-off")}
-                      className={"rr-star-button " + (index <= this.state.rating ? "rr-star-on" : "rr-star-off")}
-                      onClick={() => this.setState({rating: index})}
-                      // onMouseEnter={() => this.setState({ratingHover: index})}
-                      // onMouseLeave={() => this.setState({ratingHover: rating})}
-                    >
-                      <span className="fa fa-star"></span>
-                    </button>
-                  )
-                })}
+              <div className="rr-overall-rating">
+                <b>Overall Rating * </b>
+                <span className="rr-star-rating">
+                  {[...Array(5)].map((star, index) => {
+                    index += 1;
+                    return (
+                      <button
+                        type="button"
+                        key={index}
+                        // className={"rr-star-button " + (index <= (this.state.ratingHover || this.state.rating) ? "rr-star-on" : "rr-star-off")}
+                        className={"rr-star-button " + (index <= this.state.rating ? "rr-star-on" : "rr-star-off")}
+                        onClick={() => this.setState({rating: index})}
+                        // onMouseEnter={() => this.setState({ratingHover: index})}
+                        // onMouseLeave={() => this.setState({ratingHover: rating})}
+                      >
+                        <span className="fa fa-star"></span>
+                      </button>
+                    )
+                  })}
+                </span>
               </div>
               {/* <span className="fa fa-star" data-starid="1" onClick={e => {this.starClick(e)}}></span>
               <span className="fa fa-star" data-starid="2" onClick={e => {this.starClick(e)}}></span>
               <span className="fa fa-star" data-starid="3" onClick={e => {this.starClick(e)}}></span>
               <span className="fa fa-star" data-starid="4" onClick={e => {this.starClick(e)}}></span>
               <span className="fa fa-star" data-starid="5" onClick={e => {this.starClick(e)}}></span> */}
-              <br/>
-              <br/>
               <b>Do you recommend this product? * </b>
               <label>Yes
                 <input
@@ -200,8 +206,9 @@ class NewReview extends React.Component {
                 placeholder="Why did you like the product or not?"
                 cols="80"
                 rows="5"
-                onChange={this.onBodyChange}></textarea>
-              <small> Number of characters until minimum reached: {this.state.counter}</small>
+                onChange={this.onBodyChange}>
+              </textarea>
+              {minMsg}
               <br/>
               <br/>
               <b>Upload Photos</b>

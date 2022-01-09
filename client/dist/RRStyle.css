@@ -67,9 +67,13 @@
 
 }
 
-/* .rr-star {
+.rr-overall-rating {
+  padding-bottom: 15px;
+}
+
+.rr-star {
   color: orange;
-} */
+}
 
 #rr-modal-btn {
   padding: 15px;
@@ -85,6 +89,7 @@
   border: none;
   outline: none;
   cursor: pointer;
+  padding-right: 4px;
 }
 
 .rr-star-on {
@@ -98,7 +103,8 @@
 .rr-photo {
   /* height: 60px; */
   width: 90px;
-  padding-right: 5px;
+  padding-right: 10px;
+  padding-bottom: 18px;
 }
 
 .rr-photo-modal {
