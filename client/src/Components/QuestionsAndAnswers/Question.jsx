@@ -15,7 +15,7 @@ class Question extends React.Component {
         <p className='QandAyes'>Yes ({this.props.question.question_helpfulness})</p>
         <p> | </p>
         <p className='QandAAddAnswer'>Add Answer</p>
-        <AnswersList id={this.props.question.question_id} apiUrl={this.props.apiUrl} token={this.props.token} />
+        <AnswersList id={this.props.question.question_id} apiUrl={this.props.apiUrl} token={this.props.token} trackClicks={this.props.trackClicks}/>
       </div>
     )
   }
