@@ -21,14 +21,15 @@ class App extends React.Component {
     var timeClicked = new Date();
     var element = event.target;
 
-    axios.post(this.apiUrl + '/interactions', {
+    axios.post(this.apiUrl + '/interactions',
+    {
+      element: element.className,
+      widget: widgetName,
+      time: timeClicked.toString()
+    },
+    {
       headers: {
-        'Authorization': token
-      },
-      params: {
-        element: element.toString(),
-        widget: widgetName,
-        time: timeClicked.toString()
+        'Authorization': token,
       }
     }).then(() => {
       console.log('Successfully tracked click');
