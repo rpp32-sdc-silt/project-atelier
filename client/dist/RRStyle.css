@@ -67,9 +67,9 @@
 
 }
 
-.rr-star {
+/* .rr-star {
   color: orange;
-}
+} */
 
 #rr-modal-btn {
   padding: 15px;
@@ -78,4 +78,19 @@
 
 .rr-paddingBtwCols td {
   padding: 2.5px 15px;
+}
+
+.rr-star-button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.rr-star-on {
+  color: orange;
+}
+
+.rr-star-off {
+  color: #ccc;
 }

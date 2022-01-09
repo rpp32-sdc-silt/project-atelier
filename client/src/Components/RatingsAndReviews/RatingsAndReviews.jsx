@@ -56,7 +56,7 @@ class RR extends React.Component {
         this.setState({
           meta: results.data
         })
-        // console.log('this.state.meta: ', this.state.meta);
+        console.log('this.state.meta: ', this.state.meta);
       })
       .catch((err) => {
         console.log('API get /reviews/meta failed with error: ', err);
@@ -92,7 +92,13 @@ class RR extends React.Component {
                 <br/>
               </div>
             ))}
-            <NewReview productName={this.state.productName}/>
+            <NewReview
+              productName={this.state.productName}
+              productId={this.props.currentProduct}
+              apiUrl={this.props.apiUrl}
+              token={this.props.token}
+              meta={this.state.meta}
+            />
           </div>
         </div>
       </div>
