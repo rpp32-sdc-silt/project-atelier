@@ -29,7 +29,6 @@ class AnswersList extends React.Component {
   render() {
     return (
       <div>
-        {console.log('answers*********', this.state.answers)}
         <h2>A: </h2>
         <ol>
           {
@@ -51,7 +50,7 @@ class AnswersList extends React.Component {
                   <p className='QandAby'>by {answer.answerer_name}, {monthName + ' ' + day + ', ' + year}</p>
                   <p> | </p>
                   <p className='QandAHelpfulAnswer'>Helpful? </p>
-                  <p className='QandAyes'>Yes ({answer.helpfulness})</p>
+                  <p className='QandAyes' onClick={(event) => { this.props.trackClicks(event, 'Questions & Answers'); }}>Yes ({answer.helpfulness})</p>
                   <p> | </p>
                   <p className='QandAreportAnswer'>Report</p>
                 </li>
@@ -61,7 +60,7 @@ class AnswersList extends React.Component {
                   <p className='QandAby'>by {answer.answerer_name}, {monthName + ' ' + day + ', ' + year}</p>
                   <p> | </p>
                   <p className='QandAHelpfulAnswer'>Helpful? </p>
-                  <p className='QandAyes'>Yes ({answer.helpfulness})</p>
+                  <p className='QandAyes' onClick={(event) => { this.props.trackClicks(event, 'Questions & Answers'); }}>Yes ({answer.helpfulness})</p>
                   <p> | </p>
                   <p className='QandAreportAnswer'>Report</p>
                 </li>
