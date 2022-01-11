@@ -14,32 +14,99 @@ class RR extends React.Component {
       reviews: [],
       sorting: 'relevance',
       meta: {},
-      productName: ''
+      productName: '',
+      count: 3,
+      showMore: false
     };
     this.changeSort = this.changeSort.bind(this);
+    this.moreReviews = this.moreReviews.bind(this);
   }
 
   componentDidMount() {
-    axios.defaults.headers.common['Authorization'] = this.props.token
-    axios.get(`${this.props.apiUrl}/reviews/?product_id=${this.props.currentProduct}&sort=relevant`)
+    axios.defaults.headers.common['Authorization'] = this.props.token;
+    axios.get(`${this.props.apiUrl}/reviews/?product_id=${this.props.currentProduct}&sort=relevant&count=${this.state.count}`)
+    .then((results) => {
+      if (results.data.results.length > this.state.count - 1) {
+        let limitResults = results.data.results;
+        limitResults.splice(this.state.count - 1);
+        this.setState({
+          showMore: true,
+          reviews: limitResults
+        })
+      } else {
+        this.setState({
+          showMore: false
+        })
+      }
+      return true;
+      // console.log('this.state.reviews: ', this.state.reviews);
+    })
+    .catch((err) => {
+      console.log('API get /reviews failed: ', err);
+    })
+    axios.get(`${this.props.apiUrl}/products/${this.props.currentProduct}`)
+    .then((result) => {
+      this.setState({
+        productName: result.data.name
+      })
+    })
+    .catch((err) => {
+      console.log(`API get /products/${this.props.currentProduct} failed: `, err);
+    })
+    axios.get(`${this.props.apiUrl}/reviews/meta/?product_id=${this.props.currentProduct}`)
+      .then((results) => {
+        this.setState({
+          meta: results.data
+        })
+        console.log('this.state.meta: ', this.state.meta);
+      })
+      .catch((err) => {
+        console.log('API get /reviews/meta failed: ', err);
+      })
+  }
+
+  changeSort(e) {
+    axios.get(`${this.props.apiUrl}/reviews/?product_id=${this.props.currentProduct}&sort=${e.target.value}&count=${this.state.count}`)
       .then((results) => {
         this.setState({
           reviews: results.data.results
         })
-        // console.log('this.state.reviews: ', this.state.reviews);
       })
       .catch((err) => {
-        console.log('API get /reviews failed with error: ', err);
+        console.log('API get /reviews failed: ', err);
       })
-    axios.get(`${this.props.apiUrl}/products/${this.props.currentProduct}`)
-      .then((result) => {
-        this.setState({
-          productName: result.data.name
+  }
+
+  moreReviews() {
+    this.setState({
+      count: this.state.count + 2
+    }, () => {
+      axios.get(`${this.props.apiUrl}/reviews/?product_id=${this.props.currentProduct}&sort=relevant&count=${this.state.count}`)
+        .then((results) => {
+          let limitResults = results.data.results.slice();
+          limitResults.splice(this.state.count - 1);
+          this.setState({
+            reviews: limitResults
+          })
+          // console.log('this.state.reviews: ', this.state.reviews);
+          return results;
         })
-      })
-      .catch((err) => {
-        console.log(`API get /products/${this.props.currentProduct} failed with error: `, err);
-      })
+        .then((results) => {
+          // console.log('get reviews results: ', results.data.results.length, 'count: ', this.state.count - 1)
+          if (results.data.results.length > this.state.count - 1) {
+            this.setState({
+              showMore: true
+            })
+          } else {
+            this.setState({
+              showMore: false
+            })
+          }
+        })
+        .catch((err) => {
+          console.log('API get /reviews failed: ', err);
+        })
+    });
     // =======================
     // Alternative Method
     // =======================
@@ -51,31 +118,19 @@ class RR extends React.Component {
     //  }
     // })
     //   .then ...
-    axios.get(`${this.props.apiUrl}/reviews/meta/?product_id=${this.props.currentProduct}`)
-      .then((results) => {
-        this.setState({
-          meta: results.data
-        })
-        console.log('this.state.meta: ', this.state.meta);
-      })
-      .catch((err) => {
-        console.log('API get /reviews/meta failed with error: ', err);
-      })
-  }
-
-  changeSort(e) {
-    axios.get(`${this.props.apiUrl}/reviews/?product_id=${this.props.currentProduct}&sort=${e.target.value}`)
-      .then((results) => {
-        this.setState({
-          reviews: results.data.results
-        })
-      })
-      .catch((err) => {
-        console.log('API get /reviews failed with error: ', err);
-      })
   }
 
   render() {
+    var moreBtn;
+    if (this.state.showMore) {
+      moreBtn =
+        <div>
+          <button className="rr-more-reviews" onClick={this.moreReviews}>More Reviews</button>
+        </div>
+    } else {
+      moreBtn = null;
+    }
+
     return (
       <div>
         <h2>Ratings & Reviews</h2>
@@ -92,14 +147,17 @@ class RR extends React.Component {
                 <br/>
               </div>
             ))}
-            <NewReview
-              productName={this.state.productName}
-              productId={this.props.currentProduct}
-              apiUrl={this.props.apiUrl}
-              token={this.props.token}
-              meta={this.state.meta}
-              token={this.props.token}
-            />
+            <div className="rr-buttons">
+              <NewReview
+                productName={this.state.productName}
+                productId={this.props.currentProduct}
+                apiUrl={this.props.apiUrl}
+                token={this.props.token}
+                meta={this.state.meta}
+                token={this.props.token}
+              />
+              {moreBtn}
+            </div>
           </div>
         </div>
       </div>

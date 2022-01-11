@@ -254,7 +254,7 @@ class NewReview extends React.Component {
     }
     return (
       <div>
-        <button id="rr-modal-btn" onClick={e => {this.newReviewClickHandler();}}>Add A Review</button>
+        <button className="rr-modal-btn" onClick={e => {this.newReviewClickHandler();}}>Add A Review</button>
         {modal}
         <br/>
       </div>
