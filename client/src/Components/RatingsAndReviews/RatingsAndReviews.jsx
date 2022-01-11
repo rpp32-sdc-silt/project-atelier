@@ -98,6 +98,7 @@ class RR extends React.Component {
               apiUrl={this.props.apiUrl}
               token={this.props.token}
               meta={this.state.meta}
+              token={this.props.token}
             />
           </div>
         </div>

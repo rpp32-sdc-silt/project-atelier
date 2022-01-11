@@ -41,8 +41,8 @@ class NewReview extends React.Component {
 
   onCharChange(e) {
     var chars = this.state.characteristics;
-    var charId = this.props.meta.characteristics[e.target.name].id;
-    var val = e.target.value;
+    var charId = String(this.props.meta.characteristics[e.target.name].id);
+    var val = Number.parseInt(e.target.value);
     chars[charId] = val;
 
     this.setState({
@@ -60,8 +60,12 @@ class NewReview extends React.Component {
 
   formSubmit(e) {
     e.preventDefault();
-    console.log('prodid', typeof this.props.productId)
-    axios.post(`${this.props.apiUrl}/reviews`, {
+
+    axios.defaults.headers.common['Authorization'] = this.props.token;
+    axios({
+      method: 'post',
+      url: `${this.props.apiUrl}/reviews`,
+      data: {
         product_id: this.props.productId,
         rating: this.state.rating,
         summary: this.state.summary,
@@ -71,7 +75,12 @@ class NewReview extends React.Component {
         email: this.state.email,
         photos: this.state.photos,
         characteristics: this.state.characteristics
-      })
+      },
+      headers: {
+        'content-type': 'application/json',
+        Accept: 'application/json'
+      }
+    })
       .then((status) => {
         console.log('form submission success: ', status);
       })
@@ -139,7 +148,7 @@ class NewReview extends React.Component {
                         key={index}
                         // className={"rr-star-button " + (index <= (this.state.ratingHover || this.state.rating) ? "rr-star-on" : "rr-star-off")}
                         className={"rr-star-button " + (index <= this.state.rating ? "rr-star-on" : "rr-star-off")}
-                        onClick={() => this.setState({rating: index})}
+                        onClick={() => this.setState({rating: Number(index)})}
                         // onMouseEnter={() => this.setState({ratingHover: index})}
                         // onMouseLeave={() => this.setState({ratingHover: rating})}
                       >
@@ -160,14 +169,14 @@ class NewReview extends React.Component {
                   type="radio"
                   name="recommend"
                   value={true}
-                  onClick={(e) => this.setState({recommend: e.target.value})}/>
+                  onClick={(e) => this.setState({recommend: e.target.value == "true"})}/>
               </label>
               <label>No
                 <input
                   type="radio"
                   name="recommend"
                   value={false}
-                  onClick={(e) => this.setState({recommend: e.target.value})}/>
+                  onClick={(e) => this.setState({recommend: e.target.value == "false"})}/>
               </label>
               <br/>
               <br/>
