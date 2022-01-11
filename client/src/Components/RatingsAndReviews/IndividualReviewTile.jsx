@@ -63,7 +63,6 @@ class IndividualReviewTile extends React.Component {
     const {review_id, rating, summary, recommend, response, body, date, reviewer_name, helpfulness, photos} = this.props.review;
     var isRecommended = recommend ? 'fa fa-check' : null;
     var recValue = recommend ? '   I recommend this product' : null;
-    console.log('photos: ', photos);
     var pics = photos.map((photo) => (
       <span>
         <img className="rr-photo" src={photo.url} alt={`Picture for ${this.props.productName}`} onClick={this.imageFullDisplay}/>
