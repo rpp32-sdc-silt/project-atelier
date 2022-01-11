@@ -11,6 +11,7 @@ class IndividualReviewTile extends React.Component {
       imageUrl: ''
     };
     this.helpfulClick = this.helpfulClick.bind(this);
+    this.reportClick = this.reportClick.bind(this);
     this.imageFullDisplay = this.imageFullDisplay.bind(this);
     this.closeImage = this.closeImage.bind(this);
   }
@@ -33,7 +34,7 @@ class IndividualReviewTile extends React.Component {
     if ( !this.state.helpful ) {
       axios.put(`${this.props.apiUrl}/reviews/${this.props.review.review_id}/helpful`)
         .then(() => {
-          console.log('post success');
+          console.log('helpful PUT success');
           this.setState({
             helpful: true,
             helpfulCount: this.state.helpfulCount + 1
@@ -43,6 +44,20 @@ class IndividualReviewTile extends React.Component {
           console.log('API post /reviews/<review_id>/helpful failed with ', err);
         })
     }
+  }
+
+  reportClick() {
+    axios.put(`${this.props.apiUrl}/reviews/${this.props.review.review_id}/report`)
+        .then(() => {
+          console.log('report PUT success');
+          this.setState({
+            helpful: true,
+            helpfulCount: this.state.helpfulCount + 1
+          })
+        })
+        .catch((err) => {
+          console.log('API post /reviews/<review_id>/report failed with ', err);
+        })
   }
 
   imageFullDisplay(e) {
@@ -93,7 +108,9 @@ class IndividualReviewTile extends React.Component {
         <span className={isRecommended}>{recValue}</span>
         <div className="rr-helpful-report-style">
           Helpful?
-          <span onClick={this.helpfulClick}> Yes({this.state.helpfulCount})</span>
+          <span className="rr-helpful" onClick={this.helpfulClick}> Yes({this.state.helpfulCount})</span>
+          <span>|</span>
+          <span className="rr-report" onClick={this.reportClick}>Report</span>
         </div>
       </div>
     )
