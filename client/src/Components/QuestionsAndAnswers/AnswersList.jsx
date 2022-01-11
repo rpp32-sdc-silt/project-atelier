@@ -52,7 +52,7 @@ class AnswersList extends React.Component {
                   <p className='QandAAnswerBody'>{answer.body}</p>
                   {
                     answer.photos.map((photo) => {
-                      return <img src={photo.url} />
+                      return <img className='QandAAnswerPhoto' src={photo.url} />
                     })
                   }
                   {answerer}

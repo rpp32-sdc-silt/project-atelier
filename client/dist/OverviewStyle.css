@@ -5,8 +5,8 @@
 }
 
 .ov-gallery {
-  max-width: 500px;
-  max-height: 500px;
+  max-width: 30vmax;
+  max-height: 50vmax;
 }
 
 .ov-styles {
@@ -20,14 +20,12 @@
 }
 
 .ov-modal {
-  position:fixed;
+  position:absolute;
   background-color: gray;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display:flex;
+  justify-content:center;
+  align-items:center;
   overflow: hidden;
-  flex-shrink: unset;
-  box-sizing: border-box;
   width:100%;
   height:100%
 }
@@ -36,7 +34,7 @@
   display:flex;
   flex-flow: column;
   position: relative;
-  right: -100px;
+  right: 225;
   z-index: 1;
 }
 
