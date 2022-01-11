@@ -28,7 +28,7 @@ class AnswersList extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className='AnswersListComponent'>
         <h2>A: </h2>
         <ol>
           {
@@ -39,6 +39,14 @@ class AnswersList extends React.Component {
               var monthName = months[monthNumber - 1];
               var year = answer.date.slice(0, 4);
               var day = answer.date.slice(8, 10);
+              var answerer;
+
+              if (answer.answerer_name === 'Seller') {
+                answerer = <p className='seller'>by {answer.answerer_name}, </p>
+              } else {
+                answerer = <p className='QandAby'>by {answer.answerer_name}, </p>
+              }
+
               if (answer.photos.length > 0) {
                 return <li key={index}>
                   <p className='QandAAnswerBody'>{answer.body}</p>
@@ -47,7 +55,8 @@ class AnswersList extends React.Component {
                       return <img src={photo.url} />
                     })
                   }
-                  <p className='QandAby'>by {answer.answerer_name}, {monthName + ' ' + day + ', ' + year}</p>
+                  {answerer}
+                  <p className='timeAnswered'>{monthName + ' ' + day + ', ' + year}</p>
                   <p> | </p>
                   <p className='QandAHelpfulAnswer'>Helpful? </p>
                   <p className='QandAyes' onClick={(event) => { this.props.trackClicks(event, 'Questions & Answers'); }}>Yes ({answer.helpfulness})</p>
@@ -57,7 +66,8 @@ class AnswersList extends React.Component {
               } else {
                 return <li key={index}>
                   <p className='QandAAnswerBody'>{answer.body}</p>
-                  <p className='QandAby'>by {answer.answerer_name}, {monthName + ' ' + day + ', ' + year}</p>
+                  {answerer}
+                  <p className='timeAnswered'>{monthName + ' ' + day + ', ' + year}</p>
                   <p> | </p>
                   <p className='QandAHelpfulAnswer'>Helpful? </p>
                   <p className='QandAyes' onClick={(event) => { this.props.trackClicks(event, 'Questions & Answers'); }}>Yes ({answer.helpfulness})</p>
