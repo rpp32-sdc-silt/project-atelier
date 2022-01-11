@@ -9,7 +9,7 @@ class Question extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className='QuestionComponent' data-testid='QuestionComponent'>
         <h2>Q: {this.props.question.question_body}</h2>
         <p className='QandAHelpfulQuestion'>Helpful?</p>
         <p className='QandAyes'>Yes ({this.props.question.question_helpfulness})</p>
