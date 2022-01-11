@@ -67,6 +67,10 @@
 
 }
 
+.rr-overall-rating {
+  padding-bottom: 15px;
+}
+
 .rr-star {
   color: orange;
 }
@@ -80,10 +84,27 @@
   padding: 2.5px 15px;
 }
 
+.rr-star-button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding-right: 4px;
+}
+
+.rr-star-on {
+  color: orange;
+}
+
+.rr-star-off {
+  color: #ccc;
+}
+
 .rr-photo {
   /* height: 60px; */
   width: 90px;
-  padding-right: 5px;
+  padding-right: 10px;
+  padding-bottom: 18px;
 }
 
 .rr-photo-modal {

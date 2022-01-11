@@ -64,11 +64,9 @@ class IndividualReviewTile extends React.Component {
     var isRecommended = recommend ? 'fa fa-check' : null;
     var recValue = recommend ? '   I recommend this product' : null;
     var pics = photos.map((photo) => (
-      <div>
+      <span>
         <img className="rr-photo" src={photo.url} alt="placeholder text" onClick={this.imageFullDisplay}/>
-        <br/>
-        <br/>
-      </div>
+      </span>
     ))
 
     var modal;
@@ -90,6 +88,7 @@ class IndividualReviewTile extends React.Component {
         <b>{summary}</b>
         <div className="rr-body">{body}</div>
         {pics}
+        <br/>
         {modal}
         <span className={isRecommended}>{recValue}</span>
         <div className="rr-helpful-report-style">
