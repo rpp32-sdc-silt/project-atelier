@@ -157,7 +157,7 @@
   display: block;
 }
 
-.rr-reviews {
-  max-height: calc(100vh - 55px);
+.rr-review-list {
+  max-height: calc(100vh - 90px);
   overflow-y: auto;
 }
