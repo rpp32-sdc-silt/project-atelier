@@ -23,13 +23,19 @@ class QandA extends React.Component {
       }
     }).then((results) => {
       //store questions data in state
-      this.setState({questions: results.data.results});
+      var questionsUnsorted = results.data.results;
+      var sorted = questionsUnsorted.sort((a, b) => {
+        return b.helpfulness - a.helpfulness;
+      });
+
+      this.setState({questions: sorted});
     }).catch((err) => {console.log('Error getting questions from API: ' + err)});
   }
 
   render() {
     return (
       <div id="QandA">
+        {console.log('Questions********: ', this.state.questions)}
         {
           this.state.questions.map((question, index) => {
             return (
