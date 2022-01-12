@@ -9,6 +9,20 @@
   padding: 1em 0;
 }
 
+.rr-helpful {
+  padding-right: 15px;
+  padding-left: 2px;
+}
+
+.rr-report {
+  padding-left: 15px;
+}
+
+.rr-report:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 .rr-breakdown {
   width: 20rem;
   /* margin: 0; */
