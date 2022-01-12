@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import moment from 'moment';
 
 class IndividualReviewTile extends React.Component {
   constructor(props) {
@@ -98,7 +99,7 @@ class IndividualReviewTile extends React.Component {
       <div className="rr-individual-review">
         <div className="rr-top-bar">
           <span className="rr-rating">{this.renderStars(rating)}</span>
-          <span className="rr-name-date">{reviewer_name}, {date.slice(0, 10)}</span>
+          <span className="rr-name-date">{reviewer_name} | {moment(date.slice(0, 10)).format('MMMM D, YYYY' )}</span>
         </div>
         <b>{summary}</b>
         <div className="rr-body">{body}</div>
