@@ -20,6 +20,7 @@ class NewReview extends React.Component {
     this.onCharChange = this.onCharChange.bind(this);
     this.onBodyChange = this.onBodyChange.bind(this);
     this.formSubmit = this.formSubmit.bind(this);
+    this.onImageChange = this.onImageChange.bind(this);
   }
 
   newReviewClickHandler() {
@@ -75,18 +76,43 @@ class NewReview extends React.Component {
         email: this.state.email,
         photos: this.state.photos,
         characteristics: this.state.characteristics
-      },
-      headers: {
-        'content-type': 'application/json',
-        Accept: 'application/json'
       }
+      // headers: {
+      //   'content-type': 'application/json',
+      //   Accept: 'application/json'
+      // }
     })
       .then((status) => {
         console.log('form submission success: ', status);
+        this.setState({
+          showModal: false,
+          counter: 50,
+          rating: 0,
+          ratingHover: 0,
+          recommend: false,
+          characteristics: {},
+          summary: '',
+          body: '',
+          photos: [],
+          email: '',
+          name: ''
+        })
       })
       .catch((err) => {
         console.log('New review POST failed: ', err);
       })
+  }
+
+  onImageChange(e) {
+    if (e.target.files && e.target.files[0]) {
+      let pics = this.state.photos;
+      let img = URL.createObjectURL(e.target.files[0]);
+      console.log('image uploaded', img)
+      pics.push(img)
+      this.setState({
+        photos: pics
+      })
+    }
   }
 
   render() {
@@ -122,11 +148,25 @@ class NewReview extends React.Component {
           </tr>
         )
       })
+
+      // Dynamic message for remaining characters in review body
       var minMsg;
       if (this.state.counter > 0) {
         minMsg = <small> Number of characters until minimum reached: {this.state.counter}</small>
       } else {
         minMsg = <small> Minimum reached</small>
+      }
+
+      // Thumbnail images to be displayed when image uploaded
+      var images;
+      if (this.state.photos.length > 0) {
+        images = this.state.photos.map((image, index) => (
+          <span>
+            <img className="rr-photo" key={index} src={image} alt={`Picture for ${this.props.productName}`}></img>
+          </span>
+        ))
+      } else {
+        images = null;
       }
 
       // Define the new review modal content
@@ -222,7 +262,12 @@ class NewReview extends React.Component {
               <br/>
               <b>Upload Photos</b>
               <p>Click the "Choose File" button to upload a photo:</p>
-              <input type="file"></input>
+              <input
+                type="file"
+                onChange={this.onImageChange}
+                accept="image/gif, image/jpeg, image/png"
+                style={this.state.photos.length < 5 ? null : {display: 'none'}}></input>
+              {images}
               <br/>
               <br/>
               <label><b>What is your nickname * </b></label>
