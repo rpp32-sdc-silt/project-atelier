@@ -141,22 +141,24 @@ class RR extends React.Component {
           </div>
           <div className="rr-reviews">
             <SortOptions changeSort={this.changeSort} />
-            {this.state.reviews.map((review) => (
-              <div key={review.review_id}>
-                <IndividualReviewTile review={review} apiUrl={this.props.apiUrl} productName={this.state.productName}/>
-                <br/>
+            <div className="rr-review-list">
+              {this.state.reviews.map((review) => (
+                <div key={review.review_id}>
+                  <IndividualReviewTile review={review} apiUrl={this.props.apiUrl} productName={this.state.productName}/>
+                  <br/>
+                </div>
+              ))}
+              <div className="rr-buttons">
+                <NewReview
+                  productName={this.state.productName}
+                  productId={this.props.currentProduct}
+                  apiUrl={this.props.apiUrl}
+                  token={this.props.token}
+                  meta={this.state.meta}
+                  token={this.props.token}
+                />
+                {moreBtn}
               </div>
-            ))}
-            <div className="rr-buttons">
-              <NewReview
-                productName={this.state.productName}
-                productId={this.props.currentProduct}
-                apiUrl={this.props.apiUrl}
-                token={this.props.token}
-                meta={this.state.meta}
-                token={this.props.token}
-              />
-              {moreBtn}
             </div>
           </div>
         </div>
