@@ -35,7 +35,6 @@ class QandA extends React.Component {
   render() {
     return (
       <div id="QandA">
-        {console.log('Questions********: ', this.state.questions)}
         {
           this.state.questions.map((question, index) => {
             return (
