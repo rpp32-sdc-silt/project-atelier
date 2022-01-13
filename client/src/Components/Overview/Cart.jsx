@@ -45,17 +45,17 @@ class Cart extends React.Component {
     return (
       <form>
         <label htmlFor="size">Size</label>
-        <select name="size" onChange={this.selectSize}>Size
+        <select className="ov-changeSize" name="size" onChange={this.selectSize}>Size
           <option key='default'>Size:</option>
           {this.props.inventory.map((item, index) => <option key={item[0] + 'qty' + item[1].quantity} id={item[0] + 'qty' + item[1].quantity}>{item[1].size}</option>)}
         </select>
         <label htmlFor="quantity">Quantity</label>
-        <select name="quantity" onChange={this.selectQuantity}>Quantity
+        <select className="ov-changeQuantity" name="quantity" onChange={this.selectQuantity}>Quantity
           {Array.from({ length: this.state.maxQuantity + 1 }, (blank, i) => i).map((option, i) => {
             return <option key={'quantity' + i}>{i}</option>
           })}
         </select>
-        <button id="addItem" onClick={this.submitToCart}>Submit</button>
+        <button className="ov-addItem" onClick={this.submitToCart}>Submit</button>
       </form>)
   }
 }
