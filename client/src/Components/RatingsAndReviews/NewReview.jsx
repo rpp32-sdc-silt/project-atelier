@@ -9,13 +9,14 @@ class NewReview extends React.Component {
       counter: 50,
       rating: 0,
       ratingHover: 0,
-      recommend: false,
+      recommend: null,
       characteristics: {},
       summary: '',
       body: '',
       photos: [],
       email: '',
-      name: ''
+      name: '',
+      incompleteMsg: null
     };
     this.onCharChange = this.onCharChange.bind(this);
     this.onBodyChange = this.onBodyChange.bind(this);
@@ -61,6 +62,44 @@ class NewReview extends React.Component {
 
   formSubmit(e) {
     e.preventDefault();
+
+    var incomplete = [];
+    if (this.state.rating === 0) {
+      incomplete.push('Overall Rating');
+    }
+    if (this.state.recommend === null) {
+      incomplete.push('Do you recommend this product?');
+    }
+    if (Object.keys(this.state.characteristics).length === 0) {
+      incomplete.push('Characteristics');
+    }
+    if (this.state.body === '') {
+      incomplete.push('Review Body');
+    }
+    if (this.state.name === '') {
+      incomplete.push('Nickname');
+    }
+    if (this.state.email === '') {
+      incomplete.push('Email');
+    }
+
+    if (incomplete.length > 0) {
+      var message =
+
+      <div className="incomplete-message" >
+        <b>You must enter the following:</b>
+        {incomplete.map((field, index) => (
+            <ul key={index}>
+              <li>{field}</li>
+            </ul>
+        ))}
+      </div>
+
+      this.setState({
+        incompleteMsg: message
+      })
+      return;
+    }
 
     axios.defaults.headers.common['Authorization'] = this.props.token;
     axios({
@@ -293,6 +332,7 @@ class NewReview extends React.Component {
               <br/>
               <br/>
               <button className="submit-button" type="submit">Submit Review</button>
+              {this.state.incompleteMsg}
             </form>
           </div>
         </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import moment from 'moment';
 
 class IndividualReviewTile extends React.Component {
   constructor(props) {
@@ -78,7 +79,7 @@ class IndividualReviewTile extends React.Component {
     const {review_id, rating, summary, recommend, response, body, date, reviewer_name, helpfulness, photos} = this.props.review;
     var isRecommended = recommend ? 'fa fa-check' : null;
     var recValue = recommend ? '   I recommend this product' : null;
-    var pics = photos.map((photo) => (
+    var pics = photos.map((photo, index) => (
       <span key={index}>
         <img className="rr-photo" src={photo.url} alt={`Picture for ${this.props.productName}`} onClick={this.imageFullDisplay}/>
       </span>
@@ -98,7 +99,7 @@ class IndividualReviewTile extends React.Component {
       <div className="rr-individual-review">
         <div className="rr-top-bar">
           <span className="rr-rating">{this.renderStars(rating)}</span>
-          <span className="rr-name-date">{reviewer_name}, {date.slice(0, 10)}</span>
+          <span className="rr-name-date">{reviewer_name} | {moment(date.slice(0, 10)).format('MMMM D, YYYY' )}</span>
         </div>
         <b>{summary}</b>
         <div className="rr-body">{body}</div>

@@ -30,7 +30,6 @@ class RatingBreakdown extends React.Component {
   render() {
     var metaData = this.props.meta;
     var ratingFilter = this.props.ratingFilter;
-    console.log(this.props);
     var display;
     if (Object.keys(metaData).length > 0) {
       let totalReviews = parseInt(this.props.meta.recommended.false) + parseInt(this.props.meta.recommended.true);
@@ -49,7 +48,6 @@ class RatingBreakdown extends React.Component {
       });
 
       var filterMessage;
-      console.log(ratingFilter);
       if (ratingFilter.length > 0) {
         var ratingsString = ratingFilter.reduce((prev, curr) => (
           prev.toString().concat(`, ${curr.toString()}`)
