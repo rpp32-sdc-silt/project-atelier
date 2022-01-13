@@ -132,12 +132,12 @@ class RR extends React.Component {
     }
 
     return (
-      <div>
-        <h2>Ratings & Reviews</h2>
+      <div className="RandR">
+        <h3 style={{'line-height':'100%', 'margin-bottom': '10px'}}>RATINGS & REVIEWS</h3>
         <div className="rr-container">
           <div className="rr-breakdown">
             <RatingBreakdown reviews={this.state.reviews} meta={this.state.meta} />
-            <ProductBreakdown meta={this.state.meta} />
+            { JSON.stringify(this.state.meta) !== '{}' ? <ProductBreakdown meta={this.state.meta} /> : null}
           </div>
           <div className="rr-reviews">
             <SortOptions changeSort={this.changeSort} />

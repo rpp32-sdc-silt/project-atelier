@@ -151,3 +151,28 @@
   height: auto;
   display: block;
 }
+
+.rr-product-breakdown {
+  padding-top: 15px;
+}
+
+.rr-progress-bar {
+  height: 7px;
+  max-width: 60%;
+  background-color: lightgray;
+}
+
+.rr-progress-bar>div {
+  background-color: green;
+  height: 7px;
+}
+
+.rr-avg-rating {
+  font-size: 40px;
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+
+.rr-breakdown-recommend {
+  padding-top: 10px;
+}
