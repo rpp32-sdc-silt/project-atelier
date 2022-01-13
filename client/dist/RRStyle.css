@@ -14,7 +14,7 @@
   padding-left: 2px;
 }
 
-.rr-helpful {
+.rr-helpful:hover {
   cursor: pointer;
   text-decoration: underline;
 }
