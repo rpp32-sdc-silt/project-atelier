@@ -27,12 +27,10 @@ class RatingBreakdown extends React.Component {
     }
   }
 
-  ratingClick(e, value) {
-    console.log(e.target, value);
-  }
-
   render() {
     var metaData = this.props.meta;
+    var ratingFilter = this.props.ratingFilter;
+    console.log(this.props);
     var display;
     if (Object.keys(metaData).length > 0) {
       let totalReviews = parseInt(this.props.meta.recommended.false) + parseInt(this.props.meta.recommended.true);
@@ -42,13 +40,28 @@ class RatingBreakdown extends React.Component {
           width: ((parseFloat(this.props.meta.ratings[star]) / totalReviews) * 100).toString().concat('%'),
         }
         return (
-          <div className={`rr-rating-bd-${star}stars`} key={index}>{star} stars:
+          <div className={`rr-rating-bd-stars`} key={index} onClick={() => this.props.ratingClick(star)} >{star} stars:
             <div className="rr-progress-bar">
-              <div className="rr-rating-bd" style={style} onClick={(e) => this.ratingClick(e, star)}></div>
+              <div className="rr-rating-bd" style={style} ></div>
             </div>
           </div>
         )
       });
+
+      var filterMessage;
+      console.log(ratingFilter);
+      if (ratingFilter.length > 0) {
+        var ratingsString = ratingFilter.reduce((prev, curr) => (
+          prev.toString().concat(`, ${curr.toString()}`)
+        ));
+        filterMessage =
+          <div className="rr-filter-message">
+            <small style={{'color': 'blue'}}>Filtering on: {ratingsString} stars</small>
+            <button className="rr-reset-filters" onClick={this.props.resetFilters} >Remove all filters</button>
+          </div>
+      } else {
+        filterMessage = null;
+      }
 
       display =
         <div>
@@ -57,7 +70,8 @@ class RatingBreakdown extends React.Component {
           </div>
           <small>{totalReviews} total reviews</small>
           <br/>
-          <h4 style={{'line-height': '100%', 'margin-bottom': '5px'}}>Rating Breakdown</h4>
+          <h4 style={{'lineHeight': '100%', 'marginBottom': '5px'}}>Rating Breakdown</h4>
+          {filterMessage}
           {starsBreakdown}
           <div className="rr-breakdown-recommend">{this.calculateRecommended(metaData)} recommend this product</div>
         </div>;

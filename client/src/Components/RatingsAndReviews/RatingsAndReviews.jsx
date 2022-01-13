@@ -16,10 +16,13 @@ class RR extends React.Component {
       meta: {},
       productName: '',
       count: 3,
-      showMore: false
+      showMore: false,
+      ratingFilter: []
     };
     this.changeSort = this.changeSort.bind(this);
     this.moreReviews = this.moreReviews.bind(this);
+    this.ratingClick = this.ratingClick.bind(this);
+    this.resetFilters = this.resetFilters.bind(this);
   }
 
   componentDidMount() {
@@ -120,6 +123,26 @@ class RR extends React.Component {
     //   .then ...
   }
 
+  ratingClick(value) {
+    var storeRatingFilter = this.state.ratingFilter.slice();
+    var parseValue = parseInt(value);
+    var index = storeRatingFilter.indexOf(parseValue);
+    if (storeRatingFilter.includes(parseValue)) {
+      storeRatingFilter.splice(index, 1);
+    } else {
+      storeRatingFilter.push(parseValue);
+    }
+    this.setState({
+      ratingFilter: storeRatingFilter
+    })
+  }
+
+  resetFilters() {
+    this.setState({
+      ratingFilter: []
+    })
+  }
+
   render() {
     var moreBtn;
     if (this.state.showMore) {
@@ -130,23 +153,30 @@ class RR extends React.Component {
     } else {
       moreBtn = null;
     }
+    var filteredReviews = this.state.ratingFilter.length > 0 ? this.state.reviews.filter(review => this.state.ratingFilter.includes(review.rating)) : this.state.reviews;
 
     return (
       <div className="RandR">
-        <h3 style={{'line-height':'100%', 'margin-bottom': '10px'}}>RATINGS & REVIEWS</h3>
+        <h3 style={{'lineHeight':'100%', 'marginBottom': '10px'}}>RATINGS & REVIEWS</h3>
         <div className="rr-container">
           <div className="rr-breakdown">
-            <RatingBreakdown reviews={this.state.reviews} meta={this.state.meta} />
+            <RatingBreakdown
+              reviews={this.state.reviews}
+              meta={this.state.meta}
+              ratingClick={this.ratingClick}
+              ratingFilter={this.state.ratingFilter}
+              resetFilters={this.resetFilters}
+            />
             { JSON.stringify(this.state.meta) !== '{}' ? <ProductBreakdown meta={this.state.meta} /> : null}
           </div>
           <div className="rr-reviews">
             <SortOptions changeSort={this.changeSort} />
-            {this.state.reviews.map((review) => (
-              <div key={review.review_id}>
-                <IndividualReviewTile review={review} apiUrl={this.props.apiUrl} productName={this.state.productName}/>
-                <br/>
-              </div>
-            ))}
+            {filteredReviews.map((review) => (
+                <div key={review.review_id}>
+                  <IndividualReviewTile review={review} apiUrl={this.props.apiUrl} productName={this.state.productName}/>
+                  <br/>
+                </div>
+              ))}
             <div className="rr-buttons">
               <NewReview
                 productName={this.state.productName}

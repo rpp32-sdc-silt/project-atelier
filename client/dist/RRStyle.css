@@ -176,3 +176,17 @@
 .rr-breakdown-recommend {
   padding-top: 10px;
 }
+
+.rr-rating-bd-stars:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.rr-reset-filters {
+  font-size: 10px;
+  float: right;
+}
+
+.rr-filter-message {
+  padding-right: 30px;
+}
