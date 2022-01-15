@@ -32,9 +32,32 @@ class QandA extends React.Component {
     }).catch((err) => {console.log('Error getting questions from API: ' + err)});
   }
 
+  //method for click of "More Answered Questions" button to make more questions visible
+  showMoreQuestions() {
+    var hiddenQuestions = document.getElementsByClassName('moreQuestions');
+    var questionsButton = document.getElementById('moreQuestionsButton');
+
+    for (var currentElement = 0; currentElement < 2; currentElement++) {
+      if(hiddenQuestions[currentElement] !== undefined) {
+        hiddenQuestions[currentElement].classList.remove('moreQuestions');
+      }
+    }
+    if(hiddenQuestions.length === 0) {
+      questionsButton.style.visibility = 'collapse';
+    }
+  }
+
   render() {
+    var questionsButton;
+
+    if(this.state.questions.length > 2) {
+      var questionsButton = <button id='moreQuestionsButton' onClick={this.showMoreQuestions}>More Answered Questions</button>;
+    }
+
     return (
       <div id="QandA">
+        <h2 className='QandATitle'>Questions & Answers</h2>
+        <div className='QandAList'>
         {
           this.state.questions.map((question, index) => {
             return (
@@ -42,6 +65,8 @@ class QandA extends React.Component {
             )
           })
         }
+        </div>
+        {questionsButton}
       </div>
     )
   }

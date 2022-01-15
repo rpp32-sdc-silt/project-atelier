@@ -68,8 +68,8 @@ class AnswersList extends React.Component {
                 return <li className={index > 1 ? 'answersListItem moreAnswers' : 'answersListItem'} key={index}>
                   <p className='QandAAnswerBody'>{answer.body}</p>
                   {
-                    answer.photos.map((photo) => {
-                      return <img className='QandAAnswerPhoto' src={photo.url} />
+                    answer.photos.map((photo, index) => {
+                      return <img key={index} className='QandAAnswerPhoto' src={photo.url} />
                     })
                   }
                   {answerer}

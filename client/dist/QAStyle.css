@@ -1,3 +1,8 @@
+.QandAList {
+  height: 100vh;
+  overflow: scroll;
+}
+
 .seller {
   font-weight: bold;
 }
@@ -5,6 +10,10 @@
 .QandAAnswerPhoto {
   max-width: 100px;
   max-height: 100px;
+}
+
+#moreQuestionsButton {
+  visibility: visible;
 }
 
 .moreAnswers {
