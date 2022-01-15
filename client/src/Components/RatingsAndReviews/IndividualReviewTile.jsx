@@ -77,11 +77,16 @@ class IndividualReviewTile extends React.Component {
 
   render() {
     const {review_id, rating, summary, recommend, response, body, date, reviewer_name, helpfulness, photos} = this.props.review;
+    const trackClicks = this.props.trackClicks;
     var isRecommended = recommend ? 'fa fa-check' : null;
     var recValue = recommend ? '   I recommend this product' : null;
     var pics = photos.map((photo, index) => (
       <span key={index}>
-        <img className="rr-photo" src={photo.url} alt={`Picture for ${this.props.productName}`} onClick={this.imageFullDisplay}/>
+        <img
+          className="rr-photo"
+          src={photo.url}
+          alt={`Picture for ${this.props.productName}`}
+          onClick={(e) => {this.imageFullDisplay(e); trackClicks(e, 'Reviews');}}/>
       </span>
     ))
 
@@ -90,7 +95,7 @@ class IndividualReviewTile extends React.Component {
       modal = null;
     } else {
       modal =
-        <div className="rr-photo-modal" onClick={this.closeImage}>
+        <div className="rr-photo-modal" onClick={e => {this.closeImage(); trackClicks(e, 'Reviews')}}>
           <img className="rr-photo-modal-content" src={this.state.imageUrl} alt="placeholder text"/>
         </div>
     }
@@ -109,9 +114,9 @@ class IndividualReviewTile extends React.Component {
         <span className={isRecommended}>{recValue}</span>
         <div className="rr-helpful-report-style">
           Helpful?
-          <span className="rr-helpful" onClick={this.helpfulClick}> Yes({this.state.helpfulCount})</span>
+          <span className="rr-helpful" onClick={e => {this.helpfulClick(); trackClicks(e, 'Reviews')}}> Yes({this.state.helpfulCount})</span>
           <span>|</span>
-          <span className="rr-report" onClick={this.reportClick}>Report</span>
+          <span className="rr-report" onClick={e => {this.reportClick(); trackClicks(e, 'Reviews')}}>Report</span>
         </div>
       </div>
     )

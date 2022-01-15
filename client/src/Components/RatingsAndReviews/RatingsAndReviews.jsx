@@ -146,11 +146,12 @@ class RR extends React.Component {
   }
 
   render() {
+    const trackClicks = this.props.trackClicks;
     var moreBtn;
     if (this.state.showMore) {
       moreBtn =
         <div>
-          <button className="rr-more-reviews" onClick={this.moreReviews}>More Reviews</button>
+          <button className="rr-more-reviews" onClick={(e) => {this.moreReviews(); trackClicks(e, 'Reviews')}}>More Reviews</button>
         </div>
     } else {
       moreBtn = null;
@@ -168,15 +169,21 @@ class RR extends React.Component {
               ratingClick={this.ratingClick}
               ratingFilter={this.state.ratingFilter}
               resetFilters={this.resetFilters}
+              trackClicks={trackClicks}
             />
             { JSON.stringify(this.state.meta) !== '{}' ? <ProductBreakdown meta={this.state.meta} /> : null}
           </div>
           <div className="rr-reviews">
-            <SortOptions changeSort={this.changeSort} />
+            <SortOptions changeSort={this.changeSort} trackClicks={trackClicks} />
             <div className="rr-review-list">
               {filteredReviews.map((review) => (
                 <div key={review.review_id}>
-                  <IndividualReviewTile review={review} apiUrl={this.props.apiUrl} productName={this.state.productName}/>
+                  <IndividualReviewTile
+                    review={review}
+                    apiUrl={this.props.apiUrl}
+                    productName={this.state.productName}
+                    trackClicks={trackClicks}
+                  />
                   <br/>
                 </div>
               ))}
@@ -188,6 +195,7 @@ class RR extends React.Component {
                   token={this.props.token}
                   meta={this.state.meta}
                   token={this.props.token}
+                  trackClicks={trackClicks}
                 />
                 {moreBtn}
               </div>

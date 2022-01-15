@@ -7,10 +7,11 @@ class SortOptions extends React.Component {
   }
 
   render() {
+    const trackClicks = this.props.trackClicks;
     return (
       <div>
         <label>Sort on: </label>
-        <select onChange={this.props.changeSort}>
+        <select onChange={e => {this.props.changeSort(e); trackClicks(e, 'Reviews');}}>
           <option value="relevant">Relevant</option>
           <option value="newest">Newest</option>
           <option value="helpful">Helpful</option>
