@@ -28,6 +28,7 @@ class RatingBreakdown extends React.Component {
   }
 
   render() {
+    const trackClicks = this.props.trackClicks;
     var metaData = this.props.meta;
     var ratingFilter = this.props.ratingFilter;
     var display;
@@ -39,7 +40,11 @@ class RatingBreakdown extends React.Component {
           width: ((parseFloat(this.props.meta.ratings[star]) / totalReviews) * 100).toString().concat('%'),
         }
         return (
-          <div className={`rr-rating-bd-stars`} key={index} onClick={() => this.props.ratingClick(star)} >{star} stars:
+          <div
+            className={`rr-rating-bd-stars`}
+            key={index}
+            onClick={(e) => {this.props.ratingClick(star); trackClicks(e, 'Reviews');}}
+          >{star} stars:
             <div className="rr-progress-bar">
               <div className="rr-rating-bd" style={style} ></div>
             </div>
@@ -55,7 +60,7 @@ class RatingBreakdown extends React.Component {
         filterMessage =
           <div className="rr-filter-message">
             <small style={{'color': 'blue'}}>Filtering on: {ratingsString} stars</small>
-            <button className="rr-reset-filters" onClick={this.props.resetFilters} >Remove all filters</button>
+            <button className="rr-reset-filters" onClick={e => {this.props.resetFilters(); trackClicks(e, 'Reviews');}} >Remove all filters</button>
           </div>
       } else {
         filterMessage = null;

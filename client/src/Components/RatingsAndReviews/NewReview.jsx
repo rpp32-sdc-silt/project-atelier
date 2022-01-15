@@ -155,6 +155,7 @@ class NewReview extends React.Component {
   }
 
   render() {
+    const trackClicks = this.props.trackClicks;
     // Modal only displayed if Add Review button is clicked
     var modal;
     if (!this.state.showModal) {
@@ -179,7 +180,7 @@ class NewReview extends React.Component {
               return(
                 <td key={index2}>
                   <label>{ratingName}
-                    <input type="radio" value={index2} onChange={this.onCharChange} name={char}></input>
+                    <input className="rr-characteristic" type="radio" value={index2} onChange={this.onCharChange} name={char}></input>
                   </label>
                 </td>
               )
@@ -215,7 +216,7 @@ class NewReview extends React.Component {
             <span className="rr-close-btn" onClick={e => {this.closeBtnHandler();}}>close</span>
             <h2>Write Your Review</h2>
             <h4>About the {this.props.productName}</h4>
-            <form onSubmit={this.formSubmit}>
+            <form onSubmit={e => {this.formSubmit(e); trackClicks(e, 'Reviews')}}>
               <div className="rr-overall-rating">
                 <b>Overall Rating * </b>
                 <span className="rr-star-rating">
@@ -237,11 +238,6 @@ class NewReview extends React.Component {
                   })}
                 </span>
               </div>
-              {/* <span className="fa fa-star" data-starid="1" onClick={e => {this.starClick(e)}}></span>
-              <span className="fa fa-star" data-starid="2" onClick={e => {this.starClick(e)}}></span>
-              <span className="fa fa-star" data-starid="3" onClick={e => {this.starClick(e)}}></span>
-              <span className="fa fa-star" data-starid="4" onClick={e => {this.starClick(e)}}></span>
-              <span className="fa fa-star" data-starid="5" onClick={e => {this.starClick(e)}}></span> */}
               <b>Do you recommend this product? * </b>
               <label>Yes
                 <input
@@ -339,7 +335,7 @@ class NewReview extends React.Component {
     }
     return (
       <div>
-        <button className="rr-modal-btn" onClick={e => {this.newReviewClickHandler();}}>Add A Review</button>
+        <button className="rr-modal-btn" onClick={e => {this.newReviewClickHandler(); trackClicks(e, 'Reviews')}}>Add A Review</button>
         {modal}
         <br/>
       </div>
