@@ -22,7 +22,24 @@ class AnswersList extends React.Component {
       }
     }).then((results) => {
       //save answers list to state
-      this.setState({ answers: results.data.results });
+      var answersSorted = results.data.results.sort((a, b) => {
+        return b.helpfulness - a.helpfulness;
+      });
+      var finalAnswers = [];
+
+      for (var currentAnswer = 0; currentAnswer < answersSorted.length; currentAnswer++) {
+        if (answersSorted[currentAnswer].answerer_name === 'Seller') {
+          finalAnswers.push(answersSorted[currentAnswer]);
+        }
+      }
+
+      for (var currentAnswer = 0; currentAnswer < answersSorted.length; currentAnswer++) {
+        if (answersSorted[currentAnswer].answerer_name !== 'Seller') {
+          finalAnswers.push(answersSorted[currentAnswer]);
+        }
+      }
+
+      this.setState({ answers: finalAnswers });
     }).catch((err) => { console.log('Error getting answers from API: ' + err) });
   }
 
@@ -48,7 +65,7 @@ class AnswersList extends React.Component {
               }
 
               if (answer.photos.length > 0) {
-                return <li key={index}>
+                return <li className={index > 1 ? 'answersListItem moreAnswers' : 'answersListItem'} key={index}>
                   <p className='QandAAnswerBody'>{answer.body}</p>
                   {
                     answer.photos.map((photo, index) => {
@@ -59,18 +76,18 @@ class AnswersList extends React.Component {
                   <p className='timeAnswered'>{monthName + ' ' + day + ', ' + year}</p>
                   <p> | </p>
                   <p className='QandAHelpfulAnswer'>Helpful? </p>
-                  <p className='QandAyes' onClick={(event) => { this.props.trackClicks(event, 'Questions & Answers'); }}>Yes ({answer.helpfulness})</p>
+                  <a className='QandAyes' onClick={(event) => { this.props.trackClicks(event, 'Questions & Answers'); }}>Yes ({answer.helpfulness})</a>
                   <p> | </p>
                   <p className='QandAreportAnswer'>Report</p>
                 </li>
               } else {
-                return <li key={index}>
+                return <li className={index > 1 ? 'answersListItem moreAnswers' : 'answersListItem'} key={index}>
                   <p className='QandAAnswerBody'>{answer.body}</p>
                   {answerer}
                   <p className='timeAnswered'>{monthName + ' ' + day + ', ' + year}</p>
                   <p> | </p>
                   <p className='QandAHelpfulAnswer'>Helpful? </p>
-                  <p className='QandAyes' onClick={(event) => { this.props.trackClicks(event, 'Questions & Answers'); }}>Yes ({answer.helpfulness})</p>
+                  <a className='QandAyes' onClick={(event) => { this.props.trackClicks(event, 'Questions & Answers'); }}>Yes ({answer.helpfulness})</a>
                   <p> | </p>
                   <p className='QandAreportAnswer'>Report</p>
                 </li>
