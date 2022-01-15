@@ -47,6 +47,7 @@ class RR extends React.Component {
     .catch((err) => {
       console.log('API get /reviews failed: ', err);
     })
+
     axios.get(`${this.props.apiUrl}/products/${this.props.currentProduct}`)
     .then((result) => {
       this.setState({
@@ -56,6 +57,7 @@ class RR extends React.Component {
     .catch((err) => {
       console.log(`API get /products/${this.props.currentProduct} failed: `, err);
     })
+
     axios.get(`${this.props.apiUrl}/reviews/meta/?product_id=${this.props.currentProduct}`)
       .then((results) => {
         this.setState({

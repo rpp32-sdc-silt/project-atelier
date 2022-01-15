@@ -5,7 +5,11 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 
-import RR from '../../src/Components/RatingsAndReviews/RatingsAndReviews';
+import RatingsAndReviews from '../../src/Components/RatingsAndReviews/RatingsAndReviews';
+import IndividualReviewTile from '../../src/Components/RatingsAndReviews/IndividualReviewTile';
+import NewReview from '../../src/Components/RatingsAndReviews/NewReview';
+import ProductBreakdown from '../../src/Components/RatingsAndReviews/ProductBreakdown';
+import RatingBreakdown from '../../src/Components/RatingsAndReviews/RatingBreakdown';
 
 // ================================
 // Example from React website
@@ -32,9 +36,33 @@ import RR from '../../src/Components/RatingsAndReviews/RatingsAndReviews';
 //   expect(container.textContent).toBe("Ratings and Reviews");
 // });
 
-describe('RR', () => {
-  test('renders RR component', () => {
-    render(<RR />);
+describe('RatingsAndReviews', () => {
+  test('renders RatingsAndReviews component', () => {
+    render(<RatingsAndReviews />);
     // screen.debug();
   });
 });
+
+describe('IndividualReviewTile', () => {
+  test('renders IndividualReviewTile', () => {
+    render(<IndividualReviewTile />);
+  })
+})
+
+describe('NewReview', () => {
+  test('renders NewReview', () => {
+    render(<NewReview />);
+  })
+})
+
+describe('ProductBreakDown', () => {
+  test('renders ProductBreakDown', () => {
+    render(<ProductBreakDown />);
+  })
+})
+
+describe('RatingBreakdown', () => {
+  test('renders RatingBreakdown', () => {
+    render(<RatingBreakdown />);
+  })
+})
