@@ -7,6 +7,11 @@
   max-height: 100px;
 }
 
+.moreAnswers {
+  visibility: collapse;
+  font-size: 0; 
+}
+
 .moreQuestions {
   font-size: 0;
   visibility: collapse;

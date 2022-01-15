@@ -65,7 +65,7 @@ class AnswersList extends React.Component {
               }
 
               if (answer.photos.length > 0) {
-                return <li key={index}>
+                return <li className={index > 1 ? 'answersListItem moreAnswers' : 'answersListItem'} key={index}>
                   <p className='QandAAnswerBody'>{answer.body}</p>
                   {
                     answer.photos.map((photo) => {
@@ -81,7 +81,7 @@ class AnswersList extends React.Component {
                   <p className='QandAreportAnswer'>Report</p>
                 </li>
               } else {
-                return <li key={index}>
+                return <li className={index > 1 ? 'answersListItem moreAnswers' : 'answersListItem'} key={index}>
                   <p className='QandAAnswerBody'>{answer.body}</p>
                   {answerer}
                   <p className='timeAnswered'>{monthName + ' ' + day + ', ' + year}</p>
