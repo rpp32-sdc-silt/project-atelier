@@ -6,3 +6,8 @@
   max-width: 100px;
   max-height: 100px;
 }
+
+.moreQuestions {
+  font-size: 0;
+  visibility: collapse;
+}
