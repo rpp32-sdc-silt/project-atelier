@@ -38,7 +38,7 @@ class QandA extends React.Component {
         {
           this.state.questions.map((question, index) => {
             return (
-            <Question key={index} question={question} apiUrl={this.props.apiUrl} token={this.props.token} trackClicks={this.props.trackClicks}/>
+            <Question key={index} question={question} apiUrl={this.props.apiUrl} token={this.props.token} trackClicks={this.props.trackClicks} index={index}/>
             )
           })
         }

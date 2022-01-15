@@ -107,3 +107,5 @@ config.js
 NewReviewStarRating.jsx
 
 FEC.pem
+
+scripts/
