@@ -18,10 +18,16 @@
 
 .moreAnswers {
   visibility: collapse;
-  font-size: 0; 
+  font-size: 0;
 }
 
 .moreQuestions {
   font-size: 0;
   visibility: collapse;
+}
+
+.QandAReportAnswer {
+  text-decoration: underline;
+  cursor: pointer;
+  opacity: 1;
 }
