@@ -76,7 +76,10 @@ class AnswersList extends React.Component {
                   <p className='timeAnswered'>{monthName + ' ' + day + ', ' + year}</p>
                   <p> | </p>
                   <p className='QandAHelpfulAnswer'>Helpful? </p>
-                  <a className='QandAyes' onClick={(event) => { this.props.trackClicks(event, 'Questions & Answers'); }}>Yes ({answer.helpfulness})</a>
+                  <p className='QandAyes' onClick={(event) => {
+                    this.props.trackClicks(event, 'Questions & Answers');
+                    event.target.textContent = `Yes (${answer.helpfulness + 1})`;
+                  }}>Yes ({answer.helpfulness})</p>
                   <p> | </p>
                   <p className='QandAreportAnswer'>Report</p>
                 </li>
@@ -87,7 +90,10 @@ class AnswersList extends React.Component {
                   <p className='timeAnswered'>{monthName + ' ' + day + ', ' + year}</p>
                   <p> | </p>
                   <p className='QandAHelpfulAnswer'>Helpful? </p>
-                  <a className='QandAyes' onClick={(event) => { this.props.trackClicks(event, 'Questions & Answers'); }}>Yes ({answer.helpfulness})</a>
+                  <a className='QandAyes' onClick={(event) => {
+                    this.props.trackClicks(event, 'Questions & Answers');
+                    event.target.textContent = `Yes (${answer.helpfulness + 1})`;
+                  }}>Yes ({answer.helpfulness})</a>
                   <p> | </p>
                   <p className='QandAreportAnswer'>Report</p>
                 </li>
