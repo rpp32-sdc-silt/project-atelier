@@ -81,7 +81,7 @@ class AnswersList extends React.Component {
                   <p className='QandAreportAnswer' onClick={(event) => {
                     this.props.trackClicks(event, 'Questions & Answers');
                     event.target.textContent = 'Reported';
-                    event.target.style.cursor = 'none';
+                    event.target.style.cursor = 'default';
                     event.target.style.opacity = 0.5;
                     event.target.style['text-decoration'] = 'none';
                   }}>Report</p>
@@ -98,7 +98,7 @@ class AnswersList extends React.Component {
                   <p className='QandAreportAnswer' onClick={(event) => {
                     this.props.trackClicks(event, 'Questions & Answers');
                     event.target.textContent = 'Reported';
-                    event.target.style.cursor = 'none';
+                    event.target.style.cursor = 'default';
                     event.target.style.opacity = 0.5;
                     event.target.style['text-decoration'] = 'none';
                   }}>Report</p>
