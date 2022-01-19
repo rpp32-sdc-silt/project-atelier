@@ -26,6 +26,11 @@
   visibility: collapse;
 }
 
+.listOfAnswers {
+  height: 50vh;
+  overflow: auto;
+}
+
 .QandAReportAnswer {
   text-decoration: underline;
   cursor: pointer;
