@@ -12,7 +12,7 @@ class RR extends React.Component {
     super(props);
     this.state = {
       reviews: [],
-      sorting: 'relevance',
+      sorting: 'relevant',
       meta: {},
       productName: '',
       count: 3,
@@ -27,7 +27,7 @@ class RR extends React.Component {
 
   componentDidMount() {
     axios.defaults.headers.common['Authorization'] = this.props.token;
-    axios.get(`${this.props.apiUrl}/reviews/?product_id=${this.props.currentProduct}&sort=relevant&count=${this.state.count}`)
+    axios.get(`${this.props.apiUrl}/reviews/?product_id=${this.props.currentProduct}&sort=${this.state.sorting}&count=${this.state.count}`)
     .then((results) => {
       if (results.data.results.length > this.state.count - 1) {
         let limitResults = results.data.results;
@@ -47,6 +47,7 @@ class RR extends React.Component {
     .catch((err) => {
       console.log('API get /reviews failed: ', err);
     })
+
     axios.get(`${this.props.apiUrl}/products/${this.props.currentProduct}`)
     .then((result) => {
       this.setState({
@@ -56,6 +57,7 @@ class RR extends React.Component {
     .catch((err) => {
       console.log(`API get /products/${this.props.currentProduct} failed: `, err);
     })
+
     axios.get(`${this.props.apiUrl}/reviews/meta/?product_id=${this.props.currentProduct}`)
       .then((results) => {
         this.setState({
@@ -71,8 +73,11 @@ class RR extends React.Component {
   changeSort(e) {
     axios.get(`${this.props.apiUrl}/reviews/?product_id=${this.props.currentProduct}&sort=${e.target.value}&count=${this.state.count}`)
       .then((results) => {
+        let limitResults = results.data.results.slice();
+        limitResults.splice(this.state.count - 1);
         this.setState({
-          reviews: results.data.results
+          reviews: limitResults,
+          sorting: e.target.value
         })
       })
       .catch((err) => {
@@ -84,7 +89,8 @@ class RR extends React.Component {
     this.setState({
       count: this.state.count + 2
     }, () => {
-      axios.get(`${this.props.apiUrl}/reviews/?product_id=${this.props.currentProduct}&sort=relevant&count=${this.state.count}`)
+      console.log(this.state.sorting)
+      axios.get(`${this.props.apiUrl}/reviews/?product_id=${this.props.currentProduct}&sort=${this.state.sorting}&count=${this.state.count}`)
         .then((results) => {
           let limitResults = results.data.results.slice();
           limitResults.splice(this.state.count - 1);
@@ -155,8 +161,12 @@ class RR extends React.Component {
       moreBtn = null;
     }
     var filteredReviews = this.state.ratingFilter.length > 0 ? this.state.reviews.filter(review => this.state.ratingFilter.includes(review.rating)) : this.state.reviews;
-
-    return (
+    var display;
+    if (!(this.state.reviews.length > 0 && Object.keys(this.state.meta).length > 0 && this.state.productName !== '')) {
+      display = <p>Loading...</p>;
+    } else {
+      // display everything
+      display =
       <div className="RandR">
         <h3 style={{'lineHeight':'100%', 'marginBottom': '10px'}}>RATINGS & REVIEWS</h3>
         <div className="rr-container">
@@ -201,6 +211,11 @@ class RR extends React.Component {
           </div>
         </div>
       </div>
+    }
+
+
+    return (
+      display
     )
   }
 }
