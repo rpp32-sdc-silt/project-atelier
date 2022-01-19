@@ -10,6 +10,7 @@ import IndividualReviewTile from '../../src/Components/RatingsAndReviews/Individ
 import NewReview from '../../src/Components/RatingsAndReviews/NewReview';
 import ProductBreakdown from '../../src/Components/RatingsAndReviews/ProductBreakdown';
 import RatingBreakdown from '../../src/Components/RatingsAndReviews/RatingBreakdown';
+import SortOptions from '../../src/Components/RatingsAndReviews/SortOptions';
 
 // ================================
 // Example from React website
@@ -36,33 +37,49 @@ import RatingBreakdown from '../../src/Components/RatingsAndReviews/RatingBreakd
 //   expect(container.textContent).toBe("Ratings and Reviews");
 // });
 
+// ================================
+// Render Tests
+// ================================
+
 describe('RatingsAndReviews', () => {
-  test('renders RatingsAndReviews component', () => {
+  test('renders RatingsAndReviews component', done => {
     render(<RatingsAndReviews />);
+    done();
     // screen.debug();
   });
 });
 
 describe('IndividualReviewTile', () => {
-  test('renders IndividualReviewTile', () => {
+  test('renders IndividualReviewTile', done => {
     render(<IndividualReviewTile />);
+    done();
   })
-})
+});
 
 describe('NewReview', () => {
-  test('renders NewReview', () => {
+  test('renders NewReview', done => {
     render(<NewReview />);
+    done();
   })
-})
+});
 
-describe('ProductBreakDown', () => {
-  test('renders ProductBreakDown', () => {
-    render(<ProductBreakDown />);
+describe('ProductBreakdown', () => {
+  test('renders ProductBreakdown', done => {
+    render(<ProductBreakdown />);
+    done();
   })
-})
+});
 
 describe('RatingBreakdown', () => {
-  test('renders RatingBreakdown', () => {
+  test('renders RatingBreakdown', done => {
     render(<RatingBreakdown />);
+    done();
   })
-})
+});
+
+describe('SortOptions', () => {
+  test('renders SortOptions', done => {
+    render(<SortOptions />);
+    done();
+  })
+});
