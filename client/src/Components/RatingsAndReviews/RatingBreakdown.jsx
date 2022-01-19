@@ -32,7 +32,7 @@ class RatingBreakdown extends React.Component {
     var metaData = this.props.meta;
     var ratingFilter = this.props.ratingFilter;
     var display;
-    if (Object.keys(metaData).length > 0) {
+    if (metaData && Object.keys(metaData).length > 0) {
       let totalReviews = parseInt(this.props.meta.recommended.false) + parseInt(this.props.meta.recommended.true);
       let stars = Object.keys(this.props.meta.ratings).reverse();
       var starsBreakdown = stars.map((star, index) => {

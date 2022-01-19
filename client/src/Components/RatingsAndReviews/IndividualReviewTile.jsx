@@ -6,15 +6,29 @@ class IndividualReviewTile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      review: null,
       helpful: false,
-      helpfulCount: Number(this.props.review.helpfulness),
+      helpfulCount: null,
       showFullPhoto: false,
-      imageUrl: ''
+      imageUrl: '',
+      response: null
     };
     this.helpfulClick = this.helpfulClick.bind(this);
     this.reportClick = this.reportClick.bind(this);
     this.imageFullDisplay = this.imageFullDisplay.bind(this);
     this.closeImage = this.closeImage.bind(this);
+  }
+
+  componentDidMount() {
+    this.setState({
+      review: this.props.review,
+      helpfulCount: Number(this.props.review.helpfulness)
+    })
+    if (this.props.review.response) {
+      this.setState({
+        response: this.props.review.response
+      })
+    }
   }
 
   renderStars(rating) {
@@ -51,10 +65,6 @@ class IndividualReviewTile extends React.Component {
     axios.put(`${this.props.apiUrl}/reviews/${this.props.review.review_id}/report`)
         .then(() => {
           console.log('report PUT success');
-          this.setState({
-            helpful: true,
-            helpfulCount: this.state.helpfulCount + 1
-          })
         })
         .catch((err) => {
           console.log('API post /reviews/<review_id>/report failed with ', err);
@@ -76,7 +86,10 @@ class IndividualReviewTile extends React.Component {
   }
 
   render() {
-    const {review_id, rating, summary, recommend, response, body, date, reviewer_name, helpfulness, photos} = this.props.review;
+    if (!this.state.review) {
+      return <div />
+    }
+    const {review_id, rating, summary, recommend, response, body, date, reviewer_name, helpfulness, photos} = this.state.review;
     const trackClicks = this.props.trackClicks;
     var isRecommended = recommend ? 'fa fa-check' : null;
     var recValue = recommend ? '   I recommend this product' : null;
@@ -100,6 +113,17 @@ class IndividualReviewTile extends React.Component {
         </div>
     }
 
+    var displayResponse;
+    if (this.state.response) {
+      displayResponse =
+        <div>
+          <h4>Response from Seller:</h4>
+          <p>{this.state.response}</p>
+        </div>
+    } else {
+      displayResponse = null;
+    }
+
     return (
       <div className="rr-individual-review">
         <div className="rr-top-bar">
@@ -118,6 +142,7 @@ class IndividualReviewTile extends React.Component {
           <span>|</span>
           <span className="rr-report" onClick={e => {this.reportClick(); trackClicks(e, 'Reviews')}}>Report</span>
         </div>
+        {displayResponse}
       </div>
     )
   }
