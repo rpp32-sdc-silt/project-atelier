@@ -1,6 +1,6 @@
 .QandAList {
   height: 100vh;
-  overflow: scroll;
+  overflow: auto;
 }
 
 .seller {
@@ -18,10 +18,15 @@
 
 .moreAnswers {
   visibility: collapse;
-  font-size: 0; 
+  font-size: 0;
 }
 
 .moreQuestions {
   font-size: 0;
   visibility: collapse;
+}
+
+.QandAYes {
+  cursor: pointer;
+  text-decoration: underline;
 }
