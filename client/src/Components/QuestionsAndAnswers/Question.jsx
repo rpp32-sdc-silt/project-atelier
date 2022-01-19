@@ -11,7 +11,7 @@ class Question extends React.Component {
     if (this.props.index < 2) {
       return (
         <div className='QuestionComponent' data-testid='QuestionComponent'>
-          <h2>Q: {this.props.question.question_body}</h2>
+          <h2 className='questionBody'>Q: {this.props.question.question_body}</h2>
           <p className='QandAHelpfulQuestion'>Helpful?</p>
           <p className='QandAyes'>Yes ({this.props.question.question_helpfulness})</p>
           <p> | </p>
@@ -22,7 +22,7 @@ class Question extends React.Component {
     } else {
       return (
         <div className='QuestionComponent moreQuestions' data-testid='QuestionComponent'>
-          <h2>Q: {this.props.question.question_body}</h2>
+          <h2 className='questionBody'>Q: {this.props.question.question_body}</h2>
           <p className='QandAHelpfulQuestion'>Helpful?</p>
           <p className='QandAyes'>Yes ({this.props.question.question_helpfulness})</p>
           <p> | </p>

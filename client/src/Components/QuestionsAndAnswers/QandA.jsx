@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import Question from './Question.jsx';
 import axios from 'axios';
+import Question from './Question.jsx';
+import SearchBar from './SearchBar.jsx';
 
 class QandA extends React.Component {
   constructor(props) {
@@ -57,6 +58,7 @@ class QandA extends React.Component {
     return (
       <div id="QandA">
         <h2 className='QandATitle'>Questions & Answers</h2>
+        <SearchBar questions={this.state.questions} trackClicks={this.props.trackClicks}/>
         <div className='QandAList'>
         {
           this.state.questions.map((question, index) => {

@@ -1,5 +1,5 @@
 .QandAList {
-  height: 100vh;
+  max-height: 100vh;
   overflow: scroll;
 }
 
@@ -18,10 +18,18 @@
 
 .moreAnswers {
   visibility: collapse;
-  font-size: 0; 
+  font-size: 0;
 }
 
 .moreQuestions {
   font-size: 0;
   visibility: collapse;
+}
+
+.searchBar {
+  width: 300px;
+}
+
+.resultNotFound {
+  visibility: hidden;
 }
