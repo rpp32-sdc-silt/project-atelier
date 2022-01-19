@@ -26,6 +26,12 @@
   visibility: collapse;
 }
 
+.QandAReportAnswer {
+  text-decoration: underline;
+  cursor: pointer;
+  opacity: 1;
+}
+
 .QandAYes {
   cursor: pointer;
   text-decoration: underline;

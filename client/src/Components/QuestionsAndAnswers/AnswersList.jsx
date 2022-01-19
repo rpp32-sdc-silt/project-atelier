@@ -81,7 +81,13 @@ class AnswersList extends React.Component {
                     event.target.textContent = `Yes (${answer.helpfulness + 1})`;
                   }}>Yes ({answer.helpfulness})</p>
                   <p> | </p>
-                  <p className='QandAreportAnswer'>Report</p>
+                  <p className='QandAreportAnswer' onClick={(event) => {
+                    this.props.trackClicks(event, 'Questions & Answers');
+                    event.target.textContent = 'Reported';
+                    event.target.style.cursor = 'default';
+                    event.target.style.opacity = 0.5;
+                    event.target.style['text-decoration'] = 'none';
+                  }}>Report</p>
                 </li>
               } else {
                 return <li className={index > 1 ? 'answersListItem moreAnswers' : 'answersListItem'} key={index}>
@@ -95,7 +101,13 @@ class AnswersList extends React.Component {
                     event.target.textContent = `Yes (${answer.helpfulness + 1})`;
                   }}>Yes ({answer.helpfulness})</a>
                   <p> | </p>
-                  <p className='QandAreportAnswer'>Report</p>
+                  <p className='QandAreportAnswer' onClick={(event) => {
+                    this.props.trackClicks(event, 'Questions & Answers');
+                    event.target.textContent = 'Reported';
+                    event.target.style.cursor = 'default';
+                    event.target.style.opacity = 0.5;
+                    event.target.style['text-decoration'] = 'none';
+                  }}>Report</p>
                 </li>
               }
             })
