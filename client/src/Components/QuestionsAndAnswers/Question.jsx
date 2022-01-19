@@ -13,7 +13,10 @@ class Question extends React.Component {
         <div className='QuestionComponent' data-testid='QuestionComponent'>
           <h2>Q: {this.props.question.question_body}</h2>
           <p className='QandAHelpfulQuestion'>Helpful?</p>
-          <p className='QandAyes'>Yes ({this.props.question.question_helpfulness})</p>
+          <p className='QandAyes' onClick={ (event) => {
+            this.props.trackClicks(event, 'Questions & Answers');
+            event.target.textContent = `Yes (${this.props.question.question_helpfulness + 1})`;
+          }}>Yes ({this.props.question.question_helpfulness})</p>
           <p> | </p>
           <p className='QandAAddAnswer'>Add Answer</p>
           <AnswersList id={this.props.question.question_id} apiUrl={this.props.apiUrl} token={this.props.token} trackClicks={this.props.trackClicks}/>
@@ -24,7 +27,10 @@ class Question extends React.Component {
         <div className='QuestionComponent moreQuestions' data-testid='QuestionComponent'>
           <h2>Q: {this.props.question.question_body}</h2>
           <p className='QandAHelpfulQuestion'>Helpful?</p>
-          <p className='QandAyes'>Yes ({this.props.question.question_helpfulness})</p>
+          <p className='QandAyes' onClick={ (event) => {
+            this.props.trackClicks(event, 'Questions & Answers');
+            event.target.textContent = `Yes (${this.props.question.question_helpfulness + 1})`;
+          }}>Yes ({this.props.question.question_helpfulness})</p>
           <p> | </p>
           <p className='QandAAddAnswer'>Add Answer</p>
           <AnswersList id={this.props.question.question_id} apiUrl={this.props.apiUrl} token={this.props.token} trackClicks={this.props.trackClicks}/>

@@ -101,7 +101,7 @@ class NewReview extends React.Component {
       return;
     }
 
-    axios.defaults.headers.common['Authorization'] = this.props.token;
+    // axios.defaults.headers.common['Authorization'] = this.props.token;
     axios({
       method: 'post',
       url: `${this.props.apiUrl}/reviews`,
@@ -115,11 +115,12 @@ class NewReview extends React.Component {
         email: this.state.email,
         photos: this.state.photos,
         characteristics: this.state.characteristics
-      }
-      // headers: {
+      },
+      headers: {
       //   'content-type': 'application/json',
       //   Accept: 'application/json'
-      // }
+        Authorization: this.props.token
+      }
     })
       .then((status) => {
         console.log('form submission success: ', status);
