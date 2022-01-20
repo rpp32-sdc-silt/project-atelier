@@ -45,9 +45,9 @@
 }
 
 .ov-thumbnail-photo {
-  max-height:100px;
-  max-width:100px;
-  padding-bottom: 10px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 5px;
 }
 
 .ov-changePhoto {
