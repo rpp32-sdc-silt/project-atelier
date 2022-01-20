@@ -66,8 +66,11 @@ class QandA extends React.Component {
   render() {
     var questionsButton;
 
-    if (this.state.questions.length > 2) {
-      var questionsButton = <button id='moreQuestionsButton' onClick={this.showMoreQuestions}>More Answered Questions</button>;
+    if(this.state.questions.length > 2) {
+      var questionsButton = <button id='moreQuestionsButton' onClick={ (event) => {
+        this.showMoreQuestions();
+        this.props.trackClicks(event, 'Questions & Answers');
+      }}>More Answered Questions</button>;
     }
 
     return (

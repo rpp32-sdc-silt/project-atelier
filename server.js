@@ -5,7 +5,6 @@ const port = 3000
 
 app.use(express.static(path.join(__dirname, 'client', 'dist')));
 
-
 app.get('/', (req, res) => {
   res.end()
 })

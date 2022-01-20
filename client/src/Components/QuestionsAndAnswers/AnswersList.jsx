@@ -43,61 +43,109 @@ class AnswersList extends React.Component {
     }).catch((err) => { console.log('Error getting answers from API: ' + err) });
   }
 
-  render() {
-    return (
-      <div className='AnswersListComponent'>
-        <h2>A: </h2>
-        <ol>
-          {
-            this.state.answers.map((answer, index) => {
-              var months = ['January', 'February', 'March', 'April', 'May', 'June',
-                'July', 'August', 'September', 'October', 'November', 'December'];
-              var monthNumber = Number(answer.date.slice(5, 7));
-              var monthName = months[monthNumber - 1];
-              var year = answer.date.slice(0, 4);
-              var day = answer.date.slice(8, 10);
-              var answerer;
+  //method for click of "See More Answers" button to make more answers visible
+  showMoreAnswers() {
+    var hiddenAnswers = document.getElementsByClassName('moreAnswers');
+    var allAnswers = document.getElementsByClassName('answersListItem');
+    var answersButton = document.getElementsByClassName('moreAnswersButton')[0];
 
-              if (answer.answerer_name === 'Seller') {
-                answerer = <p className='seller'>by {answer.answerer_name}, </p>
-              } else {
-                answerer = <p className='QandAby'>by {answer.answerer_name}, </p>
-              }
-
-              if (answer.photos.length > 0) {
-                return <li className={index > 1 ? 'answersListItem moreAnswers' : 'answersListItem'} key={index}>
-                  <p className='QandAAnswerBody'>{answer.body}</p>
-                  {
-                    answer.photos.map((photo, index) => {
-                      return <img key={index} className='QandAAnswerPhoto' src={photo.url} />
-                    })
-                  }
-                  {answerer}
-                  <p className='timeAnswered'>{monthName + ' ' + day + ', ' + year}</p>
-                  <p> | </p>
-                  <p className='QandAHelpfulAnswer'>Helpful? </p>
-                  <a className='QandAyes' onClick={(event) => { this.props.trackClicks(event, 'Questions & Answers'); }}>Yes ({answer.helpfulness})</a>
-                  <p> | </p>
-                  <p className='QandAreportAnswer'>Report</p>
-                </li>
-              } else {
-                return <li className={index > 1 ? 'answersListItem moreAnswers' : 'answersListItem'} key={index}>
-                  <p className='QandAAnswerBody'>{answer.body}</p>
-                  {answerer}
-                  <p className='timeAnswered'>{monthName + ' ' + day + ', ' + year}</p>
-                  <p> | </p>
-                  <p className='QandAHelpfulAnswer'>Helpful? </p>
-                  <a className='QandAyes' onClick={(event) => { this.props.trackClicks(event, 'Questions & Answers'); }}>Yes ({answer.helpfulness})</a>
-                  <p> | </p>
-                  <p className='QandAreportAnswer'>Report</p>
-                </li>
-              }
-            })
-          }
-        </ol>
-      </div>
-    )
+    if (answersButton.textContent === 'See More Answers') {
+      for (var currentElement = 0; currentElement < hiddenAnswers.length; currentElement++) {
+        if (hiddenAnswers[currentElement] !== undefined) {
+          hiddenAnswers[currentElement].classList.remove('moreAnswers');
+        }
+      }
+      answersButton.innerText = 'Collapse Answers';
+    } else {
+      for (var currentElement = 2; currentElement < allAnswers.length; currentElement++) {
+        if (allAnswers[currentElement] !== undefined) {
+          allAnswers[currentElement].classList.add('moreAnswers');
+        }
+      }
+      answersButton.innerText = 'See More Answers';
+    }
   }
-}
+
+    render() {
+      if (this.state.answers.length > 2) {
+        var moreAnswersButton = <button className='moreAnswersButton' onClick={(event) => {
+          this.props.trackClicks(event, 'Questions & Answers');
+          this.showMoreAnswers();
+        }}>See More Answers</button>
+      }
+      return (
+        <div className='AnswersListComponent'>
+          <h2>A: </h2>
+          <ol className='listOfAnswers'>
+            {
+              this.state.answers.map((answer, index) => {
+                var months = ['January', 'February', 'March', 'April', 'May', 'June',
+                  'July', 'August', 'September', 'October', 'November', 'December'];
+                var monthNumber = Number(answer.date.slice(5, 7));
+                var monthName = months[monthNumber - 1];
+                var year = answer.date.slice(0, 4);
+                var day = answer.date.slice(8, 10);
+                var answerer;
+
+                if (answer.answerer_name === 'Seller') {
+                  answerer = <p className='seller'>by {answer.answerer_name}, </p>
+                } else {
+                  answerer = <p className='QandAby'>by {answer.answerer_name}, </p>
+                }
+
+                if (answer.photos.length > 0) {
+                  return <li className={index > 1 ? 'answersListItem moreAnswers' : 'answersListItem'} key={index}>
+                    <p className='QandAAnswerBody'>{answer.body}</p>
+                    {
+                      answer.photos.map((photo, index) => {
+                        return <img key={index} className='QandAAnswerPhoto' src={photo.url} />
+                      })
+                    }
+                    {answerer}
+                    <p className='timeAnswered'>{monthName + ' ' + day + ', ' + year}</p>
+                    <p> | </p>
+                    <p className='QandAHelpfulAnswer'>Helpful? </p>
+                    <p className='QandAyes' onClick={(event) => {
+                      this.props.trackClicks(event, 'Questions & Answers');
+                      event.target.textContent = `Yes (${answer.helpfulness + 1})`;
+                    }}>Yes ({answer.helpfulness})</p>
+                    <p> | </p>
+                    <p className='QandAreportAnswer' onClick={(event) => {
+                      this.props.trackClicks(event, 'Questions & Answers');
+                      event.target.textContent = 'Reported';
+                      event.target.style.cursor = 'default';
+                      event.target.style.opacity = 0.5;
+                      event.target.style['text-decoration'] = 'none';
+                    }}>Report</p>
+                  </li>
+                } else {
+                  return <li className={index > 1 ? 'answersListItem moreAnswers' : 'answersListItem'} key={index}>
+                    <p className='QandAAnswerBody'>{answer.body}</p>
+                    {answerer}
+                    <p className='timeAnswered'>{monthName + ' ' + day + ', ' + year}</p>
+                    <p> | </p>
+                    <p className='QandAHelpfulAnswer'>Helpful? </p>
+                    <a className='QandAyes' onClick={(event) => {
+                      this.props.trackClicks(event, 'Questions & Answers');
+                      event.target.textContent = `Yes (${answer.helpfulness + 1})`;
+                    }}>Yes ({answer.helpfulness})</a>
+                    <p> | </p>
+                    <p className='QandAreportAnswer' onClick={(event) => {
+                      this.props.trackClicks(event, 'Questions & Answers');
+                      event.target.textContent = 'Reported';
+                      event.target.style.cursor = 'default';
+                      event.target.style.opacity = 0.5;
+                      event.target.style['text-decoration'] = 'none';
+                    }}>Report</p>
+                  </li>
+                }
+              })
+            }
+          </ol>
+          {moreAnswersButton}
+        </div>
+      )
+    }
+  }
 
 export default AnswersList;
