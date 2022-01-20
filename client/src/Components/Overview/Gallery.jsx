@@ -11,9 +11,9 @@ class Gallery extends React.Component {
   render(){
     return (
       <>
-        <img className="ov-gallery" src={this.props.prevPhoto}></img>
-        <img className="ov-gallery" src={this.props.photo} onClick={(e)=> {this.props.toggleModal(e); this.props.trackClicks(e, 'Overview');}}></img>
-        <img className="ov-gallery" src={this.props.nextPhoto}></img>
+        <img className="ov-gallery" max-height="750" max-width="750" src={this.props.prevPhoto}></img>
+        <img className="ov-gallery" max-height="750" max-width="750" src={this.props.photo} onClick={(e)=> {this.props.toggleModal(e); this.props.trackClicks(e, 'Overview');}}></img>
+        <img className="ov-gallery" max-height="750" max-width="750" src={this.props.nextPhoto}></img>
         <button id="back" className='ov-changePhoto' onClick={(e)=> {this.props.changePhoto(e); this.props.trackClicks(e, 'Overview');}}>←</button>
         <button id="forward" className='ov-changePhoto' onClick={(e)=> {this.props.changePhoto(e); this.props.trackClicks(e, 'Overview');}}>→</button>
       </>

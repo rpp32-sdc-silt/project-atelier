@@ -1,6 +1,5 @@
 import React from 'react';
 import $ from 'jquery';
-import anime from 'animejs';
 
 class Modal extends React.Component {
   constructor (props) {
