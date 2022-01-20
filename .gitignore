@@ -110,3 +110,6 @@ NewReviewStarRating.jsx
 FEC.pem
 
 scripts/
+
+*.br
+*.gz

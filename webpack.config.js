@@ -1,5 +1,7 @@
 const path = require("path");
-const webpack = require('webpack')
+const webpack = require('webpack');
+const CompressionPlugin = require('compression-webpack-plugin');
+const BrotliPlugin = require('brotli-webpack-plugin');
 const dotenv = require('dotenv')
 dotenv.config();
 
@@ -10,7 +12,19 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       'process.env': JSON.stringify(process.env)
-   })
+    }),
+    new CompressionPlugin({
+      algorithm: 'gzip',
+      test: /\.js$|\.css$|\.html$/,
+      threshold: 10240,
+      minRatio: 0.8
+    }),
+    new BrotliPlugin({
+      asset: '[path].br[query]',
+      test: /\.(js|css|html|svg)$/,
+      threshold: 10240,
+      minRatio: 0.8
+    })
   ],
   module: {
     rules: [
