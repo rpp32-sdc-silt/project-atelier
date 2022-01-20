@@ -25,7 +25,7 @@ function Description(props) {
           <th>Rating</th>
         </tr>
         <tr>
-          <td>{productInfo.features ? productInfo.features.map((feature, id) => <tr key={'feature' + id}><td><b>{feature.feature}</b>: {feature.value}</td></tr>) : ''}</td>
+          <tr>{productInfo.features ? productInfo.features.map((feature, id) => <tr key={'feature' + id}><td><b>{feature.feature}</b>: {feature.value}</td></tr>) : ''}</tr>
           <Rating avgRating={Math.floor(props.avgRating)} />
         </tr>
       </tbody>
