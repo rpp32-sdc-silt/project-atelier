@@ -1,5 +1,5 @@
 .QandAList {
-  height: 100vh;
+  max-height: 100vh;
   overflow: auto;
 }
 
@@ -24,6 +24,14 @@
 .moreQuestions {
   font-size: 0;
   visibility: collapse;
+}
+
+.searchBar {
+  width: 300px;
+}
+
+.resultNotFound {
+  visibility: hidden;
 }
 
 .askRequiredField {
