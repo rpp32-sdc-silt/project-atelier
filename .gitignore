@@ -107,6 +107,7 @@ config.js
 config2.js
 NewReviewStarRating.jsx
 
-FEC.pem
+*.pem
+login.sh
 
 scripts/
