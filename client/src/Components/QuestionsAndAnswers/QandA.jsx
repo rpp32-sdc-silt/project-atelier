@@ -3,7 +3,6 @@ import ReactDom from 'react-dom';
 import { Modal, CloseButton } from 'react-bootstrap';
 import Question from './Question.jsx';
 import axios from 'axios';
-import Question from './Question.jsx';
 import SearchBar from './SearchBar.jsx';
 
 class QandA extends React.Component {
