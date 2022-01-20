@@ -103,7 +103,7 @@ class QandA extends React.Component {
               if(event.target[1].value === '') {
                 warningMessage += ' "Nickname" ';
               }
-              if(!event.target[2].value.includes('@') || !event.target[2].value.includes('.com')) {
+              if(!event.target[2].value.includes('@') || !event.target[2].value.includes('.')) {
                 warningMessage += ' "Email" ';
               }
 
