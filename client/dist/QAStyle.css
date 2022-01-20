@@ -34,6 +34,56 @@
   visibility: hidden;
 }
 
+.askRequiredField {
+  font-size: 12px;
+}
+
+.yourQuestionInput {
+  max-width: 300px;
+  position: relative;
+  top: 32px;
+  left: 10px;
+}
+
+.askNicknameLabel {
+  position: relative;
+  top: 27px;
+  left: 40px;
+}
+
+.askNicknameInput {
+  position: relative;
+  left: 10px;
+}
+
+.askPrivacyReasons {
+  font-size: 12px;
+}
+
+.askEmailLabel {
+  position: relative;
+  top: 25px;
+  left: 60px;
+}
+
+.askEmailInput {
+  position: relative;
+  left: 10px;
+  width: 265px;
+}
+
+.askAuthReasons {
+  font-size: 12px;
+  position: relative;
+  right: 60px;
+}
+
+.askSubmit {
+  position: relative;
+  left: 389px;
+  top: 35px;
+}
+
 .listOfAnswers {
   height: 50vh;
   overflow: auto;
