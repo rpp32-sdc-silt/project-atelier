@@ -52,13 +52,13 @@
 #back {
   align-self: center;
   right: 75%;
-  bottom:40%
+  bottom:10%
 }
 
 #forward {
   align-self: center;
   right:25%;
-  bottom:40%
+  bottom:10%
 }
 
 .ov-removeMargin {
