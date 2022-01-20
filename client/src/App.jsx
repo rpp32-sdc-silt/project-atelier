@@ -4,7 +4,6 @@ import Overview from './Components/Overview/Overview.jsx';
 import Related from './Components/Related/Related.jsx'
 import RR from './Components/RatingsAndReviews/RatingsAndReviews.jsx';
 import QandA from './Components/QuestionsAndAnswers/QandA.jsx';
-import token from '../../config.js';
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -29,7 +28,7 @@ class App extends React.Component {
     },
     {
       headers: {
-        'Authorization': token,
+        'Authorization': process.env.API_KEY,
       }
     }).then(() => {
       console.log('Successfully tracked click');
@@ -41,10 +40,10 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Overview apiUrl={this.apiUrl} token={token} currentProduct={this.state.currentProduct} trackClicks={this.trackClicks} />
-        <Related apiUrl={this.apiUrl} token={token} currentProduct={this.state.currentProduct} trackClicks={this.trackClicks} />
-        <QandA apiUrl={this.apiUrl} token={token} currentProduct={this.state.currentProduct} trackClicks={this.trackClicks} />
-        <RR apiUrl={this.apiUrl} token={token} currentProduct={this.state.currentProduct} trackClicks={this.trackClicks} />
+        <Overview apiUrl={this.apiUrl} token={process.env.API_KEY} currentProduct={this.state.currentProduct} trackClicks={this.trackClicks} />
+        <Related apiUrl={this.apiUrl} token={process.env.API_KEY} currentProduct={this.state.currentProduct} trackClicks={this.trackClicks} />
+        <QandA apiUrl={this.apiUrl} token={process.env.API_KEY} currentProduct={this.state.currentProduct} trackClicks={this.trackClicks} />
+        <RR apiUrl={this.apiUrl} token={process.env.API_KEY} currentProduct={this.state.currentProduct} trackClicks={this.trackClicks} />
       </div>
     )
   }
