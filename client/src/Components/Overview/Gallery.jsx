@@ -29,7 +29,7 @@ class Gallery extends React.Component {
       nextButton = null;
     }
     return (
-      <div class="ov-gallery-container">
+      <div className="ov-gallery-container">
         {prevPhoto}
         <img className="ov-gallery" max-height="750" max-width="750" src={this.props.currentPhotoUrl} onClick={(e) => { this.props.toggleModal(e); this.props.trackClicks(e, 'Overview'); }}></img>
         {nextPhoto}

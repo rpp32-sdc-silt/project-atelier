@@ -4,6 +4,10 @@
   justify-content: center;
 }
 
+.ov-gallery-container {
+  border: 2px gray inset;
+}
+
 .ov-gallery {
   max-width: 30vmax;
   max-height: 50vmax;
