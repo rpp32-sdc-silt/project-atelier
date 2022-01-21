@@ -37,19 +37,18 @@ class Overview extends React.Component {
     this.setState({ cart: newCart })
   }
   changePhoto(event) {
-    var currentPhotoIndex = this.state.currentPhotoId;
     var max = this.state.maxLength;
     if (event.target.id === 'forward') {
       //change to next currentPhotoUrl
     } else if (event.target.id === 'back') {
       //change to previous currentPhotoUrl
     } else {
-      this.setState({prevPhotoUrl: this.state.styles[this.state.currentStyle].photos[Number.parseInt(event.target.id) - 1].url ? this.state.styles[this.state.currentStyle].photos[Number.parseInt(event.target.id) - 1].url : this.state.styles[this.state.currentStyle].photos[this.state.maxLength].url});
+      this.setState({prevPhotoUrl: this.state.styles[this.state.currentStyle].photos[Number.parseInt(event.target.id) - 1] || null});
       this.setState({currentPhotoUrl: this.state.styles[this.state.currentStyle].photos[Number.parseInt(event.target.id)].url});
-      this.setState({nextPhotoUrl: this.state.styles[this.state.currentStyle].photos[Number.parseInt(event.target.id) + 1].url ? this.state.styles[this.state.currentStyle].photos[Number.parseInt(event.target.id) + 1].url : this.state.styles[this.state.currentStyle].photos[max - 1].url});
-      this.setState({ prevPhotoId: Number.parseInt(event.target.id) + 1 || this.state.maxLength});
+      this.setState({nextPhotoUrl: this.state.styles[this.state.currentStyle].photos[Number.parseInt(event.target.id) + 1].url || null});
+      this.setState({ prevPhotoId: Number.parseInt(event.target.id) + 1 || null});
       this.setState({ currentPhotoId: Number.parseInt(event.target.id)});
-      this.setState({ nextPhotoId: Number.parseInt(event.target.id) - 1});
+      this.setState({ nextPhotoId: Number.parseInt(event.target.id) - 1} || null);
     }
   }
 
