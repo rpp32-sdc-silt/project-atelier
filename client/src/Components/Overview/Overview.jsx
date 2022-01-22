@@ -95,15 +95,11 @@ class Overview extends React.Component {
   }
 
   changeStyle(event) {
-    var checkmark = '<span class="fa fa-check ov-checkmark"></span>';
     var id = Number.parseInt(event.target.id);
-    //add checkmark to current style
-    $('.fa-check').remove();
-    $('#' + event.target.id).after(checkmark);
     this.setState({ currentStyle: id })
-    this.setState({ prevPhoto: this.state.styles[id].photos[this.state.styles[id].photos.length - 1].url })
-    this.setState({ photo: this.state.styles[id].photos[0].url })
-    this.setState({ nextPhoto: this.state.styles[id].photos[1].url })
+    this.setState({ prevPhotoUrl: this.state.styles[id].photos[this.state.styles[id].photos.length - 1].url })
+    this.setState({ currentPhotoUrl: this.state.styles[id].photos[0].url })
+    this.setState({ nextPhotoUrl: this.state.styles[id].photos[1].url })
     this.setState({ inventory: this.state.styles[id].skus })
   }
 
