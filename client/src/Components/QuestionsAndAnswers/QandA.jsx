@@ -254,7 +254,7 @@ class QandA extends React.Component {
             </form>
             {
               this.state.uploadedPhotos.map((currentPhoto, index) => {
-                var photo = <img className='answerThumbnail' src={URL.createObjectURL(currentPhoto)} onLoad={() => { URL.revokeObjectURL(photo.src) }}></img>
+                var photo = <img className='answerThumbnail' src={URL.createObjectURL(currentPhoto)} alt={currentPhoto.name} onLoad={() => { URL.revokeObjectURL(photo.src) }}></img>
                 return <a target='_blank' href={URL.createObjectURL(currentPhoto)}>{photo}</a>;
               })
             }

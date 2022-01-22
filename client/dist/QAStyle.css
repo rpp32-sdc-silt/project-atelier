@@ -93,6 +93,7 @@
   text-decoration: underline;
   cursor: pointer;
   opacity: 1;
+  float: left;
 }
 
 .QandAyes {
@@ -116,6 +117,7 @@
 .QandAAddAnswer {
   cursor: pointer;
   text-decoration: underline;
+  float: right;
 }
 
 .yourAnswerInput {
@@ -163,4 +165,78 @@
 .answerNicknameInput {
   position: relative;
   left: 10px;
+}
+
+#QandA {
+  position: relative;
+  left: 400px;
+  width: calc(100vh - 200px);
+}
+
+.QandATitle {
+  position: relative;
+  right: 350px;
+}
+
+.searchBar {
+  position: relative;
+  right: 350px;
+}
+
+.QandAyes {
+  position: relative;
+  width: 100px;
+  float: right;
+}
+
+.QandAyesAnswer {
+  width: 100px;
+  float: left;
+}
+
+.QandAHelpfulQuestion {
+  position: relative;
+  width: 80px;
+  float: right;
+}
+
+.helpfulLineAnswer {
+  float: left;
+  padding-right: 30px;
+}
+
+.helpfulLine {
+  float: right;
+  padding-right: 30px;
+}
+
+
+li {
+  list-style-type: none;
+}
+
+.AnswersListComponent {
+  position: relative;
+  top: 40px;
+}
+
+.QandAby {
+  float: left;
+  padding-right: 10px;
+}
+
+.timeAnswered {
+  float: left;
+  padding-right: 30px;
+}
+
+.QandAHelpfulAnswer {
+  float: left;
+  padding-right: 30px;
+}
+
+.QandAAnswerBody {
+  text-align: left;
+  padding-left: 0;
+  width: 100px;
 }
