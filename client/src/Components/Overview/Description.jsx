@@ -4,7 +4,7 @@ import Rating from './Rating.jsx';
 function Description(props) {
   var productInfo = props.productInfo;
   return (
-    <table>
+    <table class="ov-description">
       <thead>
         <tr>
           <th>Product</th>
