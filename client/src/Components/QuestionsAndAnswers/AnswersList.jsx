@@ -138,7 +138,7 @@ class AnswersList extends React.Component {
                     <p className='QandAyes' onClick={(event) => {
                       this.props.trackClicks(event, 'Questions & Answers');
                       event.target.textContent = `Yes (${answer.helpfulness + 1})`;
-                      this.answerYesLinkPost(answer.answer_id);
+                      this.answerYesLinkPut(answer.answer_id);
                     }}>Yes ({answer.helpfulness})</p>
                     <p> | </p>
                     <p className='QandAReportAnswer' onClick={(event) => {
@@ -160,7 +160,7 @@ class AnswersList extends React.Component {
                     <p className='QandAyes' onClick={(event) => {
                       this.props.trackClicks(event, 'Questions & Answers');
                       event.target.textContent = `Yes (${answer.helpfulness + 1})`;
-                      this.answerYesLinkPost(answer.answer_id);
+                      this.answerYesLinkPut(answer.answer_id);
                     }}>Yes ({answer.helpfulness})</p>
                     <p> | </p>
                     <p className='QandAReportAnswer' onClick={(event) => {
