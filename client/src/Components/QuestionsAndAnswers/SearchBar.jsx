@@ -35,6 +35,7 @@ class SearchBar extends React.Component {
           questionsOnDOM[question].classList.remove('moreQuestions');
         }
       }
+      noResultsElement.style.visibility = 'hidden';
     }
   }
 
