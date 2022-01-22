@@ -27,6 +27,14 @@ class RatingBreakdown extends React.Component {
     }
   }
 
+  renderStars(rating) {
+    var stars = [];
+    for (var i = 0; i < 5; i++) {
+        stars.push(<span key={i} className="fa fa-star rr-avg-star"></span>)
+    }
+    return stars;
+  }
+
   render() {
     const trackClicks = this.props.trackClicks;
     var metaData = this.props.meta;
@@ -66,11 +74,21 @@ class RatingBreakdown extends React.Component {
         filterMessage = null;
       }
 
+      var avgRating = this.calculateAvg(metaData.ratings);
+      var percentage = (Math.round(avgRating * 4) / 4).toFixed(2) / 5 * 100;
+      console.log('percentage', percentage);
+
       display =
         <div>
-          <div className="rr-avg-rating">{this.calculateAvg(metaData.ratings)}
-              {/* stars go here */}
+          <div className="rr-avg-star-container">
+            <span className="rr-avg-rating">{avgRating}</span>
+            {/* stars go here */}
+            <span className="rr-avg-stars-under">
+              {this.renderStars(avgRating)}
+              <span className="rr-avg-stars-over" style={{width: `${100 - percentage}%`}} />
+            </span>
           </div>
+          <br/>
           <small>{totalReviews} total reviews</small>
           <br/>
           <h4 style={{'lineHeight': '100%', 'marginBottom': '5px'}}>Rating Breakdown</h4>
