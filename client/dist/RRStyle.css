@@ -200,3 +200,26 @@
   max-height: calc(100vh - 90px);
   overflow-y: auto;
 }
+
+.avg-stars-under {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+}
+
+.rr-avg-star {
+  width: 18px;
+  margin-right: 2px;
+  display: flex;
+  color: orange;
+}
+
+.rr-avg-stars-over {
+  background-color: black;
+  mix-blend-mode: color;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}

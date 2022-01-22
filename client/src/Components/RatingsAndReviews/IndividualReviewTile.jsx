@@ -36,10 +36,10 @@ class IndividualReviewTile extends React.Component {
     var stars = [];
     for (var i = 0; i < 5; i++) {
       if (count < rating) {
-        stars.push(<span className="fa fa-star rr-star"></span>)
+        stars.push(<span key={i} className="fa fa-star rr-star"></span>)
         count++;
       } else {
-        stars.push(<span className="fa fa-star"></span>)
+        stars.push(<span key={i} className="fa fa-star"></span>)
       }
     }
     return stars;
