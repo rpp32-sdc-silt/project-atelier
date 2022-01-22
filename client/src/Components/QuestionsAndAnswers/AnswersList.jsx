@@ -66,6 +66,21 @@ class AnswersList extends React.Component {
     }
   }
 
+  AnswerYesLinkPost(id) {
+    axios.put(this.props.apiUrl + '/qa/answers/' + id + '/helpful', {
+      headers: {
+        'Authorization': this.props.token
+      },
+      params: {
+        answer_id: id
+      }
+    }).then(() => {
+      console.log('Successfully posted answer helpfulness');
+    }).catch((err) => {
+      console.log('Error posting answer helpfulness: ' + err);
+    })
+  }
+
     render() {
       if (this.state.answers.length > 2) {
         var moreAnswersButton = <button className='moreAnswersButton' onClick={(event) => {
@@ -108,6 +123,7 @@ class AnswersList extends React.Component {
                     <p className='QandAyes' onClick={(event) => {
                       this.props.trackClicks(event, 'Questions & Answers');
                       event.target.textContent = `Yes (${answer.helpfulness + 1})`;
+                      this.AnswerYesLinkPost(answer.answer_id);
                     }}>Yes ({answer.helpfulness})</p>
                     <p> | </p>
                     <p className='QandAReportAnswer' onClick={(event) => {
@@ -128,7 +144,8 @@ class AnswersList extends React.Component {
                     <p className='QandAyes' onClick={(event) => {
                       this.props.trackClicks(event, 'Questions & Answers');
                       event.target.textContent = `Yes (${answer.helpfulness + 1})`;
-                    }}>Yes ({answer.helpfulness})</p>
+                      this.AnswerYesLinkPost(answer.answer_id);
+                    }}>Yes ({answer.helpfulness})</a>
                     <p> | </p>
                     <p className='QandAReportAnswer' onClick={(event) => {
                       this.props.trackClicks(event, 'Questions & Answers');
