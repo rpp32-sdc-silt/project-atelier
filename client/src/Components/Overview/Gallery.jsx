@@ -21,7 +21,7 @@ class Gallery extends React.Component {
       backButton = null;
     }
 
-    if (this.props.nextPhotoId <= this.props.maxLength) {
+    if (this.props.nextPhotoId < this.props.maxLength) {
       nextPhoto = <img className="ov-gallery" max-height="750" max-width="750" src={this.props.nextPhotoUrl}></img>
       nextButton = <button id="forward" className='ov-changePhoto' onClick={(e) => { this.props.changePhoto(e); this.props.trackClicks(e, 'Overview'); }}>→</button>
     } else {
@@ -29,7 +29,7 @@ class Gallery extends React.Component {
       nextButton = null;
     }
     return (
-      <div class="ov-gallery-container">
+      <div className="ov-gallery-container">
         {prevPhoto}
         <img className="ov-gallery" max-height="750" max-width="750" src={this.props.currentPhotoUrl} onClick={(e) => { this.props.toggleModal(e); this.props.trackClicks(e, 'Overview'); }}></img>
         {nextPhoto}
