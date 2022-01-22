@@ -50,7 +50,7 @@ class AnswersList extends React.Component {
     var answersButton = document.getElementsByClassName('moreAnswersButton')[0];
 
     if (answersButton.textContent === 'See More Answers') {
-      for (var currentElement = 0; currentElement < hiddenAnswers.length; currentElement++) {
+      for (var currentElement = 0; currentElement < hiddenAnswers.length; currentElement + 1) {
         if (hiddenAnswers[currentElement] !== undefined) {
           hiddenAnswers[currentElement].classList.remove('moreAnswers');
         }
@@ -66,6 +66,21 @@ class AnswersList extends React.Component {
     }
   }
 
+  answerYesLinkPut(id) {
+    axios.put(this.props.apiUrl + '/qa/answers/' + id + '/helpful', {
+      headers: {
+        'Authorization': this.props.token
+      },
+      params: {
+        answer_id: id
+      }
+    }).then(() => {
+      console.log('Successfully posted answer helpfulness');
+    }).catch((err) => {
+      console.log('Error posting answer helpfulness: ' + err);
+    })
+  }
+  
   reportAnswerPut(id) {
     axios.put(this.props.apiUrl + '/qa/answers/' + id + '/report', {
       headers: {
@@ -123,9 +138,10 @@ class AnswersList extends React.Component {
                     <p className='QandAyes' onClick={(event) => {
                       this.props.trackClicks(event, 'Questions & Answers');
                       event.target.textContent = `Yes (${answer.helpfulness + 1})`;
+                      this.AnswerYesLinkPost(answer.answer_id);
                     }}>Yes ({answer.helpfulness})</p>
                     <p> | </p>
-                    <p className='QandAreportAnswer' onClick={(event) => {
+                    <p className='QandAReportAnswer' onClick={(event) => {
                       this.props.trackClicks(event, 'Questions & Answers');
                       event.target.textContent = 'Reported';
                       event.target.style.cursor = 'default';
@@ -141,12 +157,13 @@ class AnswersList extends React.Component {
                     <p className='timeAnswered'>{monthName + ' ' + day + ', ' + year}</p>
                     <p> | </p>
                     <p className='QandAHelpfulAnswer'>Helpful? </p>
-                    <a className='QandAyes' onClick={(event) => {
+                    <p className='QandAyes' onClick={(event) => {
                       this.props.trackClicks(event, 'Questions & Answers');
                       event.target.textContent = `Yes (${answer.helpfulness + 1})`;
-                    }}>Yes ({answer.helpfulness})</a>
+                      this.AnswerYesLinkPost(answer.answer_id);
+                    }}>Yes ({answer.helpfulness})</p>
                     <p> | </p>
-                    <p className='QandAreportAnswer' onClick={(event) => {
+                    <p className='QandAReportAnswer' onClick={(event) => {
                       this.props.trackClicks(event, 'Questions & Answers');
                       event.target.textContent = 'Reported';
                       event.target.style.cursor = 'default';
