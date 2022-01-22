@@ -69,7 +69,7 @@ class AnswersList extends React.Component {
   reportAnswerPut(id) {
     axios.put(this.props.apiUrl + '/qa/answers/' + id + '/report', {
       headers: {
-        'Authoriaztion': this.props.token
+        'Authorization': this.props.token
       },
       params: {
         answer_id: id
