@@ -66,7 +66,7 @@ class AnswersList extends React.Component {
     }
   }
 
-  AnswerYesLinkPost(id) {
+  answerYesLinkPut(id) {
     axios.put(this.props.apiUrl + '/qa/answers/' + id + '/helpful', {
       headers: {
         'Authorization': this.props.token
@@ -78,6 +78,21 @@ class AnswersList extends React.Component {
       console.log('Successfully posted answer helpfulness');
     }).catch((err) => {
       console.log('Error posting answer helpfulness: ' + err);
+    })
+  }
+  
+  reportAnswerPut(id) {
+    axios.put(this.props.apiUrl + '/qa/answers/' + id + '/report', {
+      headers: {
+        'Authorization': this.props.token
+      },
+      params: {
+        answer_id: id
+      }
+    }).then(() => {
+      console.log('Successfully reported answer');
+    }).catch((err) => {
+      console.log('Error reporting answer: ' + err);
     })
   }
 
@@ -132,6 +147,7 @@ class AnswersList extends React.Component {
                       event.target.style.cursor = 'default';
                       event.target.style.opacity = 0.5;
                       event.target.style['text-decoration'] = 'none';
+                      this.reportAnswerPut(answer.answer_id);
                     }}>Report</p>
                   </li>
                 } else {
@@ -153,6 +169,7 @@ class AnswersList extends React.Component {
                       event.target.style.cursor = 'default';
                       event.target.style.opacity = 0.5;
                       event.target.style['text-decoration'] = 'none';
+                      this.reportAnswerPut(answer.answer_id);
                     }}>Report</p>
                   </li>
                 }
