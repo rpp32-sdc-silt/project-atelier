@@ -11,11 +11,13 @@ class Overview extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      currentPhoto: 0,
+      prevPhotoId: null,
+      currentPhotoId: 0,
+      nextPhotoId: 1,
       currentStyle: 0,
-      prevPhoto: '',
-      photo: '',
-      nextPhoto: '',
+      prevPhotoUrl: '',
+      currentPhotoUrl: '',
+      nextPhotoUrl: '',
       styles: [],
       productInfo: [],
       maxLength: 0,
@@ -37,33 +39,45 @@ class Overview extends React.Component {
   }
 
   changePhoto(event) {
-    var currentPhotoIndex = this.state.currentPhoto
-    var max = this.state.maxLength;
+    var currentPhotoId = this.state.currentPhotoId;
     if (event.target.id === 'forward') {
-      if (this.state.currentPhoto < max - 1) {
-        this.setState({ prevPhoto: this.state.styles[this.state.currentStyle].photos[currentPhotoIndex].url })
-        this.setState({ photo: this.state.styles[this.state.currentStyle].photos[currentPhotoIndex + 1].url })
-        this.setState({ nextPhoto: this.state.styles[this.state.currentStyle].photos[currentPhotoIndex + 2].url ? this.state.styles[this.state.currentStyle].photos[currentPhotoIndex + 2].url : this.state.styles[this.state.currentStyle].photos[0].url })
-        this.setState({ currentPhoto: currentPhotoIndex + 1 })
-      } else {
-        this.setState({ photo: this.state.styles[this.state.currentStyle].photos[0].url });
-        this.setState({ currentPhoto: 0 })
-      }
+      //change to next currentPhotoUrl
+      this.setState({prevPhotoId: currentPhotoId || null}); //prev photo is former current photo
+      this.setState({ currentPhotoId: currentPhotoId + 1 || null}); //new current photo is old + 1
+      this.setState({ nextPhotoId: currentPhotoId + 2 || null}); //new next photo is old + 2
+      this.setState({ prevPhotoUrl: this.state.styles[this.state.currentStyle].photos[currentPhotoId].url || null}); //prev photo is former current photo
+      this.setState({ currentPhotoUrl: this.state.styles[this.state.currentStyle].photos[currentPhotoId + 1].url || null}); //new current photo is old + 1
+      this.setState({ nextPhotoUrl: this.state.styles[this.state.currentStyle].photos[currentPhotoId + 2].url || null}); //new next photo is old + 2
     } else if (event.target.id === 'back') {
-      if (this.state.currentPhoto > 0) {
-        this.setState({ currentPhoto: currentPhotoIndex - 1 })
-        this.setState({ prevPhoto: this.state.styles[this.state.currentStyle].photos[currentPhotoIndex - 2].url? this.state.styles[this.state.currentStyle].photos[currentPhotoIndex - 2].url : this.state.styles[this.state.currentStyle].photos[max - 1].url })
-        this.setState({ photo: this.state.styles[this.state.currentStyle].photos[currentPhotoIndex - 1].url? this.state.styles[this.state.currentStyle].photos[currentPhotoIndex - 1].url : his.state.styles[this.state.currentStyle].photos[0].url })
-        this.setState({ nextPhoto: this.state.styles[this.state.currentStyle].photos[currentPhotoIndex].url })
+      //change to previous currentPhotoUrl
+      if(currentPhotoId === 1) {
+        this.setState({ prevPhotoId: null}); //prev photo doesn't exist
+        this.setState({ currentPhotoId: 0}); //new current photo is the first photo
+        this.setState({ nextPhotoId: 1}); //new next photo is old
+        this.setState({ prevPhotoUrl: null}); //prev photo doesn't exist
+        this.setState({ currentPhotoUrl: this.state.styles[this.state.currentStyle].photos[0].url}); //new current photo is the first photo
+        this.setState({ nextPhotoUrl: this.state.styles[this.state.currentStyle].photos[1].url}); //new next photo is second photo
       } else {
-        this.setState({ photo: this.state.styles[this.state.currentStyle].photos[max - 1].url });
-        this.setState({ currentPhoto: max - 1 })
+        this.setState({ prevPhotoId: currentPhotoId - 2 ? currentPhotoId - 2 : null}); //prev photo is old - 2
+        this.setState({ currentPhotoId: currentPhotoId - 1 ? currentPhotoId - 1 : 0}); //new current photo is old - 1
+        this.setState({ nextPhotoId: currentPhotoId - 1 ? currentPhotoId - 1 : null}); //new next photo is old
+        this.setState({ prevPhotoUrl: this.state.styles[this.state.currentStyle].photos[currentPhotoId - 2].url ? this.state.styles[this.state.currentStyle].photos[currentPhotoId - 2].url : null}); //prev photo is old - 2
+        this.setState({ currentPhotoUrl: this.state.styles[this.state.currentStyle].photos[currentPhotoId - 1].url ? this.state.styles[this.state.currentStyle].photos[currentPhotoId - 1].url : this.state.styles[this.state.currentStyle].photos[0].url}); //new current photo is old - 1
+        this.setState({ nextPhotoUrl: this.state.styles[this.state.currentStyle].photos[currentPhotoId].url}); //new next photo is old
       }
+      this.setState({ prevPhotoId: currentPhotoId - 2 ? currentPhotoId - 2 : null}); //prev photo is old - 2
+      this.setState({ currentPhotoId: currentPhotoId - 1 ? currentPhotoId - 1 : 0}); //new current photo is old - 1
+      this.setState({ nextPhotoId: currentPhotoId - 1 ? currentPhotoId - 1 : null}); //new next photo is old
+      this.setState({ prevPhotoUrl: this.state.styles[this.state.currentStyle].photos[currentPhotoId - 2].url ? this.state.styles[this.state.currentStyle].photos[currentPhotoId - 2].url : null}); //prev photo is old - 2
+      this.setState({ currentPhotoUrl: this.state.styles[this.state.currentStyle].photos[currentPhotoId - 1].url ? this.state.styles[this.state.currentStyle].photos[currentPhotoId - 1].url : this.state.styles[this.state.currentStyle].photos[0].url}); //new current photo is old - 1
+      this.setState({ nextPhotoUrl: this.state.styles[this.state.currentStyle].photos[currentPhotoId].url}); //new next photo is old
     } else {
-      this.setState({prevPhoto: this.state.styles[this.state.currentStyle].photos[Number.parseInt(event.target.id) - 1].url ? this.state.styles[this.state.currentStyle].photos[Number.parseInt(event.target.id) - 1].url : this.state.styles[this.state.currentStyle].photos[0].url});
-      this.setState({photo: this.state.styles[this.state.currentStyle].photos[Number.parseInt(event.target.id)].url});
-      this.setState({nextPhoto: this.state.styles[this.state.currentStyle].photos[Number.parseInt(event.target.id) + 1].url ? this.state.styles[this.state.currentStyle].photos[Number.parseInt(event.target.id) + 1].url : this.state.styles[this.state.currentStyle].photos[max - 1].url});
-      this.setState({ currentPhoto: Number.parseInt(event.target.id)});
+      this.setState({ prevPhotoUrl: this.state.styles[this.state.currentStyle].photos[Number.parseInt(event.target.id) - 1] || null});
+      this.setState({ currentPhotoUrl: this.state.styles[this.state.currentStyle].photos[Number.parseInt(event.target.id)].url});
+      this.setState({ nextPhotoUrl: this.state.styles[this.state.currentStyle].photos[Number.parseInt(event.target.id) + 1].url || null});
+      this.setState({ prevPhotoId: Number.parseInt(event.target.id) + 1 || null});
+      this.setState({ currentPhotoId: Number.parseInt(event.target.id)});
+      this.setState({ nextPhotoId: Number.parseInt(event.target.id) - 1} || null);
     }
   }
 
@@ -82,7 +96,11 @@ class Overview extends React.Component {
   }
 
   changeStyle(event) {
+    var checkmark = '<span class="fa fa-check ov-checkmark"></span>';
     var id = Number.parseInt(event.target.id);
+    //add checkmark to current style
+    $('.fa-check').remove();
+    $('#' + event.target.id).after(checkmark);
     this.setState({ currentStyle: id })
     this.setState({ prevPhoto: this.state.styles[id].photos[this.state.styles[id].photos.length - 1].url })
     this.setState({ photo: this.state.styles[id].photos[0].url })
@@ -90,14 +108,15 @@ class Overview extends React.Component {
     this.setState({ inventory: this.state.styles[id].skus })
   }
 
+
   componentDidMount() {
     axios.defaults.headers.common['Authorization'] = this.props.token
     axios.get(this.props.apiUrl + '/products/' + this.props.currentProduct + '/styles')
       .then((results) => {
         //set photos to API results at current index at photos array at current style index
-        this.setState({ prevPhoto: results.data.results[0].photos[results.data.results[0].photos.length - 1].url })
-        this.setState({ photo: results.data.results[0].photos[0].url })
-        this.setState({ nextPhoto: results.data.results[0].photos[1].url })
+        this.setState({ prevPhotoUrl: results.data.results[0].photos[results.data.results[0].photos.length - 1].url })
+        this.setState({ currentPhotoUrl: results.data.results[0].photos[0].url })
+        this.setState({ nextPhotoUrl: results.data.results[0].photos[1].url })
         this.setState({ styles: results.data.results });
         this.setState({ inventory: results.data.results[0].skus })
         this.setState({ maxLength: results.data.results.map(id => id.photos).length })
@@ -116,7 +135,7 @@ class Overview extends React.Component {
   render() {
     var modal;
     if (this.state.modalOn) {
-      modal = <Modal trackClicks={this.props.trackClicks} productInfo={this.state.productInfo} photos={this.state.styles[this.state.currentStyle].photos} photo={this.state.photo} toggleModal={this.toggleModal} changePhoto={this.changePhoto} />
+      modal = <Modal trackClicks={this.props.trackClicks} productInfo={this.state.productInfo} photos={this.state.styles[this.state.currentStyle].photos} currentPhotoUrl={this.state.currentPhotoUrl} toggleModal={this.toggleModal} changePhoto={this.changePhoto} />
     } else {
       modal = null;
     }
@@ -124,7 +143,7 @@ class Overview extends React.Component {
       <div className='ov-main'>
         {modal}
         <div>
-          <Gallery trackClicks={this.props.trackClicks} productInfo={this.state.productInfo} photo={this.state.photo} prevPhoto={this.state.prevPhoto} nextPhoto={this.state.nextPhoto} currentStyle={this.state.currentStyle} changePhoto={this.changePhoto} toggleModal={this.toggleModal} />
+          <Gallery trackClicks={this.props.trackClicks} productInfo={this.state.productInfo} currentPhotoUrl={this.state.currentPhotoUrl} currentPhotoId={this.state.currentPhotoId} prevPhotoUrl={this.state.prevPhotoUrl} prevPhotoId={this.state.prevPhotoId} nextPhotoUrl={this.state.nextPhotoUrl} nextPhotoId={this.state.nextPhotoId} currentStyle={this.state.currentStyle} changePhoto={this.changePhoto} toggleModal={this.toggleModal} maxLength={this.state.maxLength} />
           <Styles trackClicks={this.props.trackClicks} thumbnails={this.state.styles.map(style => style.photos).map(arr => arr[0].thumbnail_url)} changeStyle={this.changeStyle} styles={this.state.styles} />
           <Cart trackClicks={this.props.trackClicks} inventory={Object.entries(this.state.inventory)} addToCart={this.addToCart} />
           <Description productInfo={this.state.productInfo} avgRating={this.state.avgRating} />

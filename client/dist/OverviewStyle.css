@@ -4,9 +4,18 @@
   justify-content: center;
 }
 
+.ov-gallery-container {
+  border: 2px gray inset;
+}
+
 .ov-gallery {
   max-width: 30vmax;
   max-height: 50vmax;
+}
+
+.ov-placeholder {
+  display:inline-flex;
+  width:30vmax;
 }
 
 .ov-styles-container {
@@ -33,7 +42,8 @@
   align-items:center;
   overflow: hidden;
   width:100%;
-  height:100%
+  height:100%;
+  z-index: 1;
 }
 
 .ov-thumbnail {
@@ -41,7 +51,7 @@
   flex-flow: column;
   position: sticky;
   right: 225;
-  z-index: 1;
+  z-index: 2;
 }
 
 .ov-thumbnail-photo {
@@ -58,13 +68,15 @@
 #back {
   align-self: center;
   right: 75%;
-  bottom:10%
+  bottom:10%;
+  z-index: 0;
 }
 
 #forward {
   align-self: center;
   right:25%;
-  bottom:10%
+  bottom:10%;
+  z-index: 0;
 }
 
 .ov-removeMargin {
