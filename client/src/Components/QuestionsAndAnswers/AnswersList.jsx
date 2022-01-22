@@ -145,7 +145,7 @@ class AnswersList extends React.Component {
                       this.props.trackClicks(event, 'Questions & Answers');
                       event.target.textContent = `Yes (${answer.helpfulness + 1})`;
                       this.AnswerYesLinkPost(answer.answer_id);
-                    }}>Yes ({answer.helpfulness})</a>
+                    }}>Yes ({answer.helpfulness})</p>
                     <p> | </p>
                     <p className='QandAReportAnswer' onClick={(event) => {
                       this.props.trackClicks(event, 'Questions & Answers');
