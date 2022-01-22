@@ -17,8 +17,9 @@
 }
 
 .moreAnswers {
-  visibility: collapse;
   font-size: 0;
+  height: 0px;
+  visibility: collapse;
 }
 
 .moreQuestions {
@@ -63,7 +64,7 @@
 .askEmailLabel {
   position: relative;
   top: 25px;
-  left: 60px;
+  left: 25px;
 }
 
 .askEmailInput {
@@ -75,17 +76,16 @@
 .askAuthReasons {
   font-size: 12px;
   position: relative;
-  right: 60px;
 }
 
 .askSubmit {
   position: relative;
-  left: 389px;
-  top: 35px;
+  left: 355px;
+  top: 25px;
 }
 
 .listOfAnswers {
-  height: 50vh;
+  max-height: 50vh;
   overflow: auto;
 }
 
@@ -95,7 +95,72 @@
   opacity: 1;
 }
 
-.QandAYes {
+.QandAyes {
   cursor: pointer;
   text-decoration: underline;
+}
+
+.answerThumbnail {
+  max-height: 100px;
+  max-width: 150px;
+}
+
+.answerThumbnail:hover {
+  box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
+
+.answerUploadPhotosInput {
+  visibility: visible;
+}
+
+.QandAAddAnswer {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.yourAnswerInput {
+  position: relative;
+  top: 30px;
+  left: 10px;
+}
+
+.answerNicknameLabel {
+  position: relative;
+  left: 30px;
+  top: 20px;
+}
+
+.answerPrivacy {
+  font-size: 12px;
+}
+
+.answerEmailInput {
+  position: relative;
+  left: 10px;
+}
+
+.answerEmailLabel {
+  position: relative;
+  left: 13px;
+}
+
+.answerUploadPhotosLabel {
+  position: relative;
+  left: 35px;
+  top: 30px;
+}
+
+.answerSubmit {
+  position: relative;
+  left: 700px;
+}
+
+.answerUploadPhotosInput {
+  position: relative;
+  left: 10px;
+}
+
+.answerNicknameInput {
+  position: relative;
+  left: 10px;
 }

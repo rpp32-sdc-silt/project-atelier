@@ -50,7 +50,7 @@ class AnswersList extends React.Component {
     var answersButton = document.getElementsByClassName('moreAnswersButton')[0];
 
     if (answersButton.textContent === 'See More Answers') {
-      for (var currentElement = 0; currentElement < hiddenAnswers.length; currentElement++) {
+      for (var currentElement = 0; currentElement < hiddenAnswers.length; currentElement + 1) {
         if (hiddenAnswers[currentElement] !== undefined) {
           hiddenAnswers[currentElement].classList.remove('moreAnswers');
         }
@@ -126,7 +126,7 @@ class AnswersList extends React.Component {
                       this.AnswerYesLinkPost(answer.answer_id);
                     }}>Yes ({answer.helpfulness})</p>
                     <p> | </p>
-                    <p className='QandAreportAnswer' onClick={(event) => {
+                    <p className='QandAReportAnswer' onClick={(event) => {
                       this.props.trackClicks(event, 'Questions & Answers');
                       event.target.textContent = 'Reported';
                       event.target.style.cursor = 'default';
@@ -141,13 +141,13 @@ class AnswersList extends React.Component {
                     <p className='timeAnswered'>{monthName + ' ' + day + ', ' + year}</p>
                     <p> | </p>
                     <p className='QandAHelpfulAnswer'>Helpful? </p>
-                    <a className='QandAyes' onClick={(event) => {
+                    <p className='QandAyes' onClick={(event) => {
                       this.props.trackClicks(event, 'Questions & Answers');
                       event.target.textContent = `Yes (${answer.helpfulness + 1})`;
                       this.AnswerYesLinkPost(answer.answer_id);
                     }}>Yes ({answer.helpfulness})</a>
                     <p> | </p>
-                    <p className='QandAreportAnswer' onClick={(event) => {
+                    <p className='QandAReportAnswer' onClick={(event) => {
                       this.props.trackClicks(event, 'Questions & Answers');
                       event.target.textContent = 'Reported';
                       event.target.style.cursor = 'default';
