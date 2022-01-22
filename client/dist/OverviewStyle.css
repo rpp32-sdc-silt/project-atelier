@@ -23,10 +23,17 @@
 }
 
 .ov-styles {
+  position: relative;
   border-radius: 50%;
   object-fit: cover;
   box-shadow: -5px 5px 10px 5px gray;
   margin: 5px;
+}
+
+.ov-checkmark {
+  position:absolute;
+  color:white;
+  transform: translate(-65px, 50px)
 }
 
 .ov-changePhoto {
