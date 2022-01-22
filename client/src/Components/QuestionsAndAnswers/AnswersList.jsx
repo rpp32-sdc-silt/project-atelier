@@ -80,7 +80,7 @@ class AnswersList extends React.Component {
       console.log('Error posting answer helpfulness: ' + err);
     })
   }
-  
+
   reportAnswerPut(id) {
     axios.put(this.props.apiUrl + '/qa/answers/' + id + '/report', {
       headers: {
@@ -138,7 +138,7 @@ class AnswersList extends React.Component {
                     <p className='QandAyes' onClick={(event) => {
                       this.props.trackClicks(event, 'Questions & Answers');
                       event.target.textContent = `Yes (${answer.helpfulness + 1})`;
-                      this.AnswerYesLinkPost(answer.answer_id);
+                      this.answerYesLinkPost(answer.answer_id);
                     }}>Yes ({answer.helpfulness})</p>
                     <p> | </p>
                     <p className='QandAReportAnswer' onClick={(event) => {
@@ -160,7 +160,7 @@ class AnswersList extends React.Component {
                     <p className='QandAyes' onClick={(event) => {
                       this.props.trackClicks(event, 'Questions & Answers');
                       event.target.textContent = `Yes (${answer.helpfulness + 1})`;
-                      this.AnswerYesLinkPost(answer.answer_id);
+                      this.answerYesLinkPost(answer.answer_id);
                     }}>Yes ({answer.helpfulness})</p>
                     <p> | </p>
                     <p className='QandAReportAnswer' onClick={(event) => {
