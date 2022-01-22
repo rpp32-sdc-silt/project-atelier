@@ -21,8 +21,7 @@ class Overview extends React.Component {
       maxLength: 0,
       inventory: [],
       cart: [],
-      modalOn: false,
-      avgRating: 0
+      modalOn: false
     }
     this.changePhoto = this.changePhoto.bind(this);
     this.changeStyle = this.changeStyle.bind(this);
@@ -82,7 +81,11 @@ class Overview extends React.Component {
   }
 
   changeStyle(event) {
+    var checkmark = '<span class="fa fa-check ov-checkmark"></span>';
     var id = Number.parseInt(event.target.id);
+    //add checkmark to current style
+    $('.fa-check').remove();
+    $('#' + event.target.id).after(checkmark);
     this.setState({ currentStyle: id })
     this.setState({ prevPhoto: this.state.styles[id].photos[this.state.styles[id].photos.length - 1].url })
     this.setState({ photo: this.state.styles[id].photos[0].url })
@@ -106,11 +109,6 @@ class Overview extends React.Component {
       .then((results) => {
         this.setState({ productInfo: results.data })
       });
-      axios.get(this.props.apiUrl + '/reviews/?product_id=' + this.props.currentProduct)
-      .then((results) => {
-        return results.data.results.map(item => item.rating);
-      })
-      .then((ratings) => this.setState({avgRating: ratings.reduce((a, b) => a + b)/ratings.length}))
   }
 
   render() {
@@ -127,7 +125,7 @@ class Overview extends React.Component {
           <Gallery trackClicks={this.props.trackClicks} productInfo={this.state.productInfo} photo={this.state.photo} prevPhoto={this.state.prevPhoto} nextPhoto={this.state.nextPhoto} currentStyle={this.state.currentStyle} changePhoto={this.changePhoto} toggleModal={this.toggleModal} />
           <Styles trackClicks={this.props.trackClicks} thumbnails={this.state.styles.map(style => style.photos).map(arr => arr[0].thumbnail_url)} changeStyle={this.changeStyle} styles={this.state.styles} />
           <Cart trackClicks={this.props.trackClicks} inventory={Object.entries(this.state.inventory)} addToCart={this.addToCart} />
-          <Description productInfo={this.state.productInfo} avgRating={this.state.avgRating} />
+          <Description productInfo={this.state.productInfo} />
         </div>
       </div>
     )
