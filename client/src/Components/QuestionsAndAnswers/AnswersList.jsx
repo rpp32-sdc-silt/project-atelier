@@ -66,6 +66,21 @@ class AnswersList extends React.Component {
     }
   }
 
+  reportAnswerPut(id) {
+    axios.put(this.props.apiUrl + '/qa/answers/' + id + '/report', {
+      headers: {
+        'Authoriaztion': this.props.token
+      },
+      params: {
+        answer_id: id
+      }
+    }).then(() => {
+      console.log('Successfully reported answer');
+    }).catch((err) => {
+      console.log('Error reporting answer: ' + err);
+    })
+  }
+
     render() {
       if (this.state.answers.length > 2) {
         var moreAnswersButton = <button className='moreAnswersButton' onClick={(event) => {
@@ -116,6 +131,7 @@ class AnswersList extends React.Component {
                       event.target.style.cursor = 'default';
                       event.target.style.opacity = 0.5;
                       event.target.style['text-decoration'] = 'none';
+                      this.reportAnswerPut(answer.answer_id);
                     }}>Report</p>
                   </li>
                 } else {
@@ -136,6 +152,7 @@ class AnswersList extends React.Component {
                       event.target.style.cursor = 'default';
                       event.target.style.opacity = 0.5;
                       event.target.style['text-decoration'] = 'none';
+                      this.reportAnswerPut(answer.answer_id);
                     }}>Report</p>
                   </li>
                 }
