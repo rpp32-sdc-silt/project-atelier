@@ -18,7 +18,10 @@ class Question extends React.Component {
             event.target.textContent = `Yes (${this.props.question.question_helpfulness + 1})`;
           }}>Yes ({this.props.question.question_helpfulness})</p>
           <p> | </p>
-          <p className='QandAAddAnswer'>Add Answer</p>
+          <p className='QandAAddAnswer' onClick={ (event) => {
+            this.props.trackClicks(event, 'Questions & Answers');
+            this.props.showAddAnswerModal(this.props.question.question_body, this.props.question.question_id);
+          }}>Add Answer</p>
           <AnswersList id={this.props.question.question_id} apiUrl={this.props.apiUrl} token={this.props.token} trackClicks={this.props.trackClicks}/>
         </div>
       )
@@ -32,7 +35,10 @@ class Question extends React.Component {
             event.target.textContent = `Yes (${this.props.question.question_helpfulness + 1})`;
           }}>Yes ({this.props.question.question_helpfulness})</p>
           <p> | </p>
-          <p className='QandAAddAnswer'>Add Answer</p>
+          <p className='QandAAddAnswer' onClick={ (event) => {
+            this.props.trackClicks(event, 'Questions & Answers');
+            this.props.showAddAnswerModal(this.props.question.question_body, this.props.question.question_id);
+          }}>Add Answer</p>
           <AnswersList id={this.props.question.question_id} apiUrl={this.props.apiUrl} token={this.props.token} trackClicks={this.props.trackClicks}/>
         </div>
       )
