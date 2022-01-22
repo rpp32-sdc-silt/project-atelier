@@ -101,9 +101,9 @@ class Overview extends React.Component {
     $('.fa-check').remove();
     $('#' + event.target.id).after(checkmark);
     this.setState({ currentStyle: id })
-    this.setState({ prevPhotoUrl: this.state.styles[id].photos[this.state.styles[id].photos.length - 1].url })
-    this.setState({ currentPhotoUrl: this.state.styles[id].photos[0].url })
-    this.setState({ nextPhotoUrl: this.state.styles[id].photos[1].url })
+    this.setState({ prevPhotoUrl: this.state.styles[id].photos[this.state.prevPhotoId].url })
+    this.setState({ currentPhotoUrl: this.state.styles[id].photos[this.state.currentPhotoId].url })
+    this.setState({ nextPhotoUrl: this.state.styles[id].photos[this.state.nextPhotoId].url })
     this.setState({ inventory: this.state.styles[id].skus })
   }
 
