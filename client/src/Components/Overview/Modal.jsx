@@ -37,7 +37,7 @@ class Modal extends React.Component {
       <div className="ov-modal">
         <div className='ov-thumbnail'>
           {this.props.photos.map((photo, index) => {
-            return <img className='ov-thumbnail-photo' id={index} key={index} src={photo.thumbnail_url} onClick={(e) => { this.props.changePhoto(e); this.props.trackClicks(e, 'Overview')}}></img>
+            return <img className='ov-thumbnail-photo' height='100px' width='100px' id={index} key={index} src={photo.thumbnail_url} onClick={(e) => { this.props.changePhoto(e); this.props.trackClicks(e, 'Overview')}}></img>
           })}</div>
         <img className='ov-modal-image ov-zoomedOut' src={this.props.currentPhotoUrl} alt={this.props.productInfo.description} onClick={(e) => {this.changeZoomLevel(e); this.props.trackClicks(e, 'Overview')}} onMouseMove={this.panOnMouseMove} ></img>
         <button id="ov-toggleModal" onClick={(e)=> {this.props.toggleModal(e); this.props.trackClicks(e, 'Overview');}}>Close</button>

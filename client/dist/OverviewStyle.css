@@ -18,9 +18,15 @@
   width:30vmax;
 }
 
+.ov-styles-container {
+  padding: 20px;
+}
+
 .ov-styles {
-  inline-size: 100px;
-  border-radius: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: -5px 5px 10px 5px gray;
+  margin: 5px;
 }
 
 .ov-changePhoto {
@@ -49,9 +55,9 @@
 }
 
 .ov-thumbnail-photo {
-  max-height:100px;
-  max-width:100px;
-  padding-bottom: 10px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 5px;
 }
 
 .ov-changePhoto {
@@ -96,4 +102,8 @@
   position:fixed;
   top:50px;
   right:50px;
+}
+
+.ov-description tr, .ov-description th, .ov-description td {
+  padding: 0 20px 0 20px;
 }

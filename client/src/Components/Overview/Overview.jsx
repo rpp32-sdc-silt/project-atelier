@@ -23,7 +23,8 @@ class Overview extends React.Component {
       maxLength: 0,
       inventory: [],
       cart: [],
-      modalOn: false
+      modalOn: false,
+      avgRating: 0
     }
     this.changePhoto = this.changePhoto.bind(this);
     this.changeStyle = this.changeStyle.bind(this);
@@ -124,6 +125,11 @@ class Overview extends React.Component {
       .then((results) => {
         this.setState({ productInfo: results.data })
       });
+      axios.get(this.props.apiUrl + '/reviews/?product_id=' + this.props.currentProduct)
+      .then((results) => {
+        return results.data.results.map(item => item.rating);
+      })
+      .then((ratings) => this.setState({avgRating: ratings.reduce((a, b) => a + b)/ratings.length}))
   }
 
   render() {
@@ -140,7 +146,7 @@ class Overview extends React.Component {
           <Gallery trackClicks={this.props.trackClicks} productInfo={this.state.productInfo} currentPhotoUrl={this.state.currentPhotoUrl} currentPhotoId={this.state.currentPhotoId} prevPhotoUrl={this.state.prevPhotoUrl} prevPhotoId={this.state.prevPhotoId} nextPhotoUrl={this.state.nextPhotoUrl} nextPhotoId={this.state.nextPhotoId} currentStyle={this.state.currentStyle} changePhoto={this.changePhoto} toggleModal={this.toggleModal} maxLength={this.state.maxLength} />
           <Styles trackClicks={this.props.trackClicks} thumbnails={this.state.styles.map(style => style.photos).map(arr => arr[0].thumbnail_url)} changeStyle={this.changeStyle} styles={this.state.styles} />
           <Cart trackClicks={this.props.trackClicks} inventory={Object.entries(this.state.inventory)} addToCart={this.addToCart} />
-          <Description productInfo={this.state.productInfo} />
+          <Description productInfo={this.state.productInfo} avgRating={this.state.avgRating} />
         </div>
       </div>
     )
