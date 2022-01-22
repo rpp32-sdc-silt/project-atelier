@@ -128,19 +128,19 @@ class AnswersList extends React.Component {
                     <p className='QandAAnswerBody'>{answer.body}</p>
                     {
                       answer.photos.map((photo, index) => {
-                        return <img key={index} className='QandAAnswerPhoto' src={photo.url} />
+                        return <img key={index} alt={answer.body} className='QandAAnswerPhoto' src={photo.url} />
                       })
                     }
                     {answerer}
                     <p className='timeAnswered'>{monthName + ' ' + day + ', ' + year}</p>
-                    <p> | </p>
+                    <p className='helpfulLineAnswer'> | </p>
                     <p className='QandAHelpfulAnswer'>Helpful? </p>
-                    <p className='QandAyes' onClick={(event) => {
+                    <p className='QandAyesAnswer' onClick={(event) => {
                       this.props.trackClicks(event, 'Questions & Answers');
                       event.target.textContent = `Yes (${answer.helpfulness + 1})`;
                       this.answerYesLinkPut(answer.answer_id);
                     }}>Yes ({answer.helpfulness})</p>
-                    <p> | </p>
+                    <p className='helpfulLineAnswer'> | </p>
                     <p className='QandAReportAnswer' onClick={(event) => {
                       this.props.trackClicks(event, 'Questions & Answers');
                       event.target.textContent = 'Reported';
@@ -149,20 +149,21 @@ class AnswersList extends React.Component {
                       event.target.style['text-decoration'] = 'none';
                       this.reportAnswerPut(answer.answer_id);
                     }}>Report</p>
+                    <br></br>
                   </li>
                 } else {
                   return <li className={index > 1 ? 'answersListItem moreAnswers' : 'answersListItem'} key={index}>
                     <p className='QandAAnswerBody'>{answer.body}</p>
                     {answerer}
                     <p className='timeAnswered'>{monthName + ' ' + day + ', ' + year}</p>
-                    <p> | </p>
+                    <p className='helpfulLineAnswer'> | </p>
                     <p className='QandAHelpfulAnswer'>Helpful? </p>
-                    <p className='QandAyes' onClick={(event) => {
+                    <p className='QandAyesAnswer' onClick={(event) => {
                       this.props.trackClicks(event, 'Questions & Answers');
                       event.target.textContent = `Yes (${answer.helpfulness + 1})`;
                       this.answerYesLinkPut(answer.answer_id);
                     }}>Yes ({answer.helpfulness})</p>
-                    <p> | </p>
+                    <p className='helpfulLineAnswer'> | </p>
                     <p className='QandAReportAnswer' onClick={(event) => {
                       this.props.trackClicks(event, 'Questions & Answers');
                       event.target.textContent = 'Reported';
@@ -171,6 +172,7 @@ class AnswersList extends React.Component {
                       event.target.style['text-decoration'] = 'none';
                       this.reportAnswerPut(answer.answer_id);
                     }}>Report</p>
+                    <br></br>
                   </li>
                 }
               })
