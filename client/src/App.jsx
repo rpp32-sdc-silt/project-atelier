@@ -8,10 +8,10 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // currentProduct: 64620
-      currentProduct: 1
+      currentProduct: 64620,
+      newCurrentProduct: 10
     }
-    // this.apiUrl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp';
+    this.oldApiUrl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp';
     this.apiUrl = 'http://localhost:3000';
     this.trackClicks = this.trackClicks.bind(this);
   }
@@ -42,10 +42,10 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Overview apiUrl={this.apiUrl} token={process.env.API_KEY} currentProduct={this.state.currentProduct} trackClicks={this.trackClicks} />
-        <Related apiUrl={this.apiUrl} token={process.env.API_KEY} currentProduct={this.state.currentProduct} trackClicks={this.trackClicks} />
-        <QandA apiUrl={this.apiUrl} token={process.env.API_KEY} currentProduct={this.state.currentProduct} trackClicks={this.trackClicks} />
-        <RR apiUrl={this.apiUrl} token={process.env.API_KEY} currentProduct={this.state.currentProduct} trackClicks={this.trackClicks} />
+        <Overview apiUrl={this.oldApiUrl} token={process.env.API_KEY} currentProduct={this.state.newCurrentProduct} trackClicks={this.trackClicks} />
+        <Related apiUrl={this.oldApiUrl} token={process.env.API_KEY} currentProduct={this.state.currentProduct} trackClicks={this.trackClicks} />
+        <QandA apiUrl={this.apiUrl} token={process.env.API_KEY} currentProduct={this.state.newCurrentProduct} trackClicks={this.trackClicks} />
+        <RR apiUrl={this.oldApiUrl} token={process.env.API_KEY} currentProduct={this.state.currentProduct} trackClicks={this.trackClicks} />
       </div>
     )
   }

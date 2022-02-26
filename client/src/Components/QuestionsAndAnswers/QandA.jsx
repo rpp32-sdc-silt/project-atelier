@@ -128,6 +128,7 @@ class QandA extends React.Component {
               if (warningMessage.length > 30) {
                 alert(warningMessage);
               } else {
+                console.log(event.target[0].value)
                 axios.post(this.props.apiUrl + '/qa/questions',
                   {
                     body: event.target[0].value,
