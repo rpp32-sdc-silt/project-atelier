@@ -113,6 +113,7 @@ class Overview extends React.Component {
     axios.defaults.headers.common['Authorization'] = this.props.token
     axios.get(this.props.apiUrl + '/products/' + this.props.currentProduct + '/styles')
       .then((results) => {
+        console.log('styles', results.data.results);
         //set photos to API results at current index at photos array at current style index
         this.setState({ prevPhotoUrl: results.data.results[0].photos[results.data.results[0].photos.length - 1].url })
         this.setState({ currentPhotoUrl: results.data.results[0].photos[0].url })
@@ -123,6 +124,7 @@ class Overview extends React.Component {
       });
     axios.get(this.props.apiUrl + '/products/' + this.props.currentProduct)
       .then((results) => {
+        console.log('product id', results.data);
         this.setState({ productInfo: results.data })
       });
     axios.get(this.props.apiUrl + '/reviews/?product_id=' + this.props.currentProduct)

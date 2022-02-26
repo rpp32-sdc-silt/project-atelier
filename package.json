@@ -6,8 +6,10 @@
   "scripts": {
     "build": "webpack --watch",
     "start": "pm2 start ./server.js --watch",
+    "start-local": "nodemon ./server.js",
     "test": "jest --coverage",
-    "run": "npm run build & npm run start"
+    "run": "npm run build & npm run start",
+    "run2": "npm run build & npm run start-local"
   },
   "repository": {
     "type": "git",
